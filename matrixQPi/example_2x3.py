@@ -30,8 +30,8 @@ keyPad=[[7, 8, 9],
 #
 # used GPIO address, logically grouped as row and column
 # for the above buttons (2 x 3 matrix)
-row=[4,5]
-col=[0, 2, 3]
+row=[37,36]
+col=[11, 13, 15]
 
 # our keypad intance
 QPad  = matrixQPi(keyPad=keyPad,row=row,col=col)
