@@ -15,9 +15,9 @@ while True:
       print "wheel"
       print(event.value)
       if event.value == 1:
-        os.system("amixer -q sset Master 3%+")
+        os.system("amixer -q sset Master 1%+")
       elif event.value == -1:
-        os.system("amixer -q sset Master 3%-")
+        os.system("amixer -q sset Master 1%-")
     elif event.code == 272:
       print "left button"
       print(event.value)
