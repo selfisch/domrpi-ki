@@ -26,7 +26,7 @@ while True:
             #print(event.value)
         elif event.code == 275:
             print "links aussen"
-            print(event.value)
+            #print(event.value)
         elif event.code == 276:
             print "rechts aussen"
-            print(event.value)
+            #print(event.value)
