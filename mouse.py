@@ -19,10 +19,14 @@ while True:
       elif event.value == -1:
         os.system("amixer -q sset Master 1%-")
     elif event.code == 272:
-      print "left button"
-      print(event.value)
+      #print "linker Knopf"
+      #print(event.value)
     elif event.code == 273:
-      print "right button"
+      #print "rechter Knopf"
+      #print(event.value)
+    elif event.code == 275:
+      print "links aussen"
       print(event.value)
-    else:
+    elif event.code == 276:
+      print "rechts aussen"
       print(event.value)
