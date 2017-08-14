@@ -28,12 +28,12 @@ while True:
                 os.system("amixer -q sset Master 1%+")
             elif event.value == -1:
                 os.system("amixer -q sset Master 1%-")
-        elif event.code == 272: #&& event.value == '01':
+        elif event.code == 272 && event.value == 1:
             print "linker Knopf"
-            print(event.value)
-            print(event.code)
-            print(event.type)
-            #client.next()
+            #print(event.value)
+            #print(event.code)
+            #print(event.type)
+            client.next()
         elif event.code == 273:
             print "rechter Knopf"
             #print(event.value)
