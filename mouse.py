@@ -6,7 +6,7 @@
 from evdev import InputDevice
 from select import select
 import os
-from mpd import MPDClient as mc
+from mpd import MPDClient
 
 # MPDClient config
 client = MPDClient()    # create client object
