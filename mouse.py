@@ -8,6 +8,12 @@ from select import select
 import os
 from mpd import MPDClient as mc
 
+# MPDClient config
+client = MPDClient()    # create client object
+client.timeout = 10     # network timeout in seconds (floats allowed), default: None
+client.idletimeout = None
+client.connect("localhost", 6680)
+
 dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
 
 while True:
