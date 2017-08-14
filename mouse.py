@@ -12,7 +12,7 @@ from mpd import MPDClient
 client = MPDClient()    # create client object
 client.timeout = 10     # network timeout in seconds (floats allowed), default: None
 client.idletimeout = None
-client.connect("localhost", 6680)
+client.connect("localhost", 6600)
 
 dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
 
