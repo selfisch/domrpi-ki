@@ -28,6 +28,6 @@ while True:
             print "links aussen"
             #print(event.value)
         elif event.code == 276:
-            print "rechts aussen"
+            ##print "rechts aussen"
             os.system("sudo shutdown -h now")
             #print(event.value)
