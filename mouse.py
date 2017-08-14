@@ -6,7 +6,7 @@
 from evdev import InputDevice
 from select import select
 import os
-import MPDClient as mc
+import MPDClient
 
 dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
 
@@ -25,7 +25,7 @@ while True:
         elif event.code == 272:
             print "linker Knopf"
             #print(event.value)
-            mc.next()
+            MPDCLIENT.next()
         elif event.code == 273:
             print "rechter Knopf"
             #print(event.value)
