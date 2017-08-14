@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # Requirements apt: python-dev
-# Requirements pip: MPDClient, evdev, 
+# Requirements pip: MPDClient, evdev,
 
 from evdev import InputDevice
 from select import select
@@ -25,7 +25,7 @@ while True:
         elif event.code == 272:
             print "linker Knopf"
             #print(event.value)
-            mc.next)()
+            mc.next()
         elif event.code == 273:
             print "rechter Knopf"
             #print(event.value)
