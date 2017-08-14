@@ -31,7 +31,7 @@ while True:
         elif event.code == 272:
             print "linker Knopf"
             #print(event.value)
-            mc.next()
+            client.next()
         elif event.code == 273:
             print "rechter Knopf"
             #print(event.value)
