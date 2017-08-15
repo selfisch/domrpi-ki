@@ -41,10 +41,15 @@ while True:
                 #print("rechte Maustaste")
                 client.play()
         elif event.code == 273 and event.value == 1:
-            #print "rechter Knopf"
-            #print(event.value)
+            print "rechter Knopf"
+        elif event.code == 274:
+            #print "Mausrad klick"
+            os.system("sudo shutdown -h now")
+        elif event.code == 275:
+            print "links aussen"
+        elif event.code == 276:
+            #print "rechts aussen"
             state = client.status()['state'].split(":")
-            #print(state)
             if 'play' in state:
                 client.stop()
                 client.clear()
@@ -53,12 +58,3 @@ while True:
                 client.clear()
                 client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
                 client.play()
-        elif event.code == 275:
-            print "links aussen"
-            #print(event.value)
-        elif event.code == 276:
-            ##print "rechts aussen"
-            os.system("sudo shutdown -h now")
-            #print(event.value)
-        else:
-            print(event.code)
