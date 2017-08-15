@@ -1,3 +1,7 @@
+<img src='/pic/1.jpg' alt='aktueller Stand'>
+<img src='/pic/2.jpg' alt='aktueller Stand'>
+<img src='/pic/3.jpg' alt='aktueller Stand'>
+
 # domrpi-ki
 Projekt Aiwa Kompaktanlage
 
