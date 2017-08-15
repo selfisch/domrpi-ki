@@ -33,7 +33,6 @@ while True:
             #print "linker Knopf"
             #print(event.value)
             #print(event.code)
-            #print(event.type)
             #client.next()
             state = client.status()['state'].split(":")
             if 'play' in state:
@@ -61,3 +60,5 @@ while True:
             ##print "rechts aussen"
             os.system("sudo shutdown -h now")
             #print(event.value)
+        else:
+            print(event.value)
