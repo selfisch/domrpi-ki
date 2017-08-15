@@ -38,9 +38,16 @@ while True:
         elif event.code == 273 and event.value == 1:
             #print "rechter Knopf"
             #print(event.value)
-            client.clear()
-            client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
-            client.play()
+            state = client.status()['state'].split(":")
+            #print(state)
+            if 'play' in state:
+                client.stop()
+                client.clear()
+            elif 'stop' in state:
+                #print("rechte Maustaste")
+                client.clear()
+                client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
+                client.play()
         elif event.code == 275:
             print "links aussen"
             #print(event.value)
