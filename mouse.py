@@ -35,6 +35,7 @@ while True:
             #print(event.code)
             #print(event.type)
             #client.next()
+            state = client.status()['state'].split(":")
             if 'play' in state:
                 client.pause()
             elif 'pause' in state:
