@@ -30,11 +30,16 @@ while True:
             elif event.value == -1:
                 os.system("amixer -q sset Master 1%-")
         elif event.code == 272 and event.value == 1:
-            print "linker Knopf"
+            #print "linker Knopf"
             #print(event.value)
             #print(event.code)
             #print(event.type)
             #client.next()
+            if 'play' in state:
+                client.pause()
+            elif 'pause' in state:
+                #print("rechte Maustaste")
+                client.play()
         elif event.code == 273 and event.value == 1:
             #print "rechter Knopf"
             #print(event.value)
