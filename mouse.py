@@ -61,4 +61,4 @@ while True:
             os.system("sudo shutdown -h now")
             #print(event.value)
         else:
-            print(event.value)
+            print(event.code)
