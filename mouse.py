@@ -14,6 +14,7 @@ client.timeout = 10     # network timeout in seconds (floats allowed), default: 
 client.idletimeout = None
 client.connect("localhost", 6600)
 
+#dev = InputDevice('/dev/input/event13') # This can be any other event number. On$
 dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
 
 while True:
@@ -33,10 +34,13 @@ while True:
             #print(event.value)
             #print(event.code)
             #print(event.type)
-            client.next()
-        elif event.code == 273:
-            print "rechter Knopf"
+            #client.next()
+        elif event.code == 273 and event.value == 1:
+            #print "rechter Knopf"
             #print(event.value)
+            client.clear()
+            client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
+            client.play()
         elif event.code == 275:
             print "links aussen"
             #print(event.value)
