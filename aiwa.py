@@ -42,7 +42,7 @@ while True:
                 client.play()
         elif event.code == 273 and event.value == 1:
             print "rechter Knopf"
-        elif event.code == 274:
+        elif event.code == 274 and event.value == 1:
             #print "Mausrad klick"
             os.system("sudo shutdown -h now")
         elif event.code == 275:
