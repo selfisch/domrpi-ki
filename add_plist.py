@@ -1,15 +1,11 @@
 #from readtest import *
-from CardList import CardList
-from Reader import Reader
-reader = Reader()
-cardList = CardList()
+from pList import pList
+pList = pList()
 
 while True:
-        print 'Place the card in the reader'
-        #card = reader.readCard()
-        card=raw_input('Specfiy Card ID: ')
-        plist=raw_input('Specify Spotify URI, q to quit: ')
-        if plist=="q":
-                break
-	cardList.addPlaylist(card, plist)
+    plist_id=raw_input('Specfiy Playlist ID: ')
+    plist_uri=raw_input('Specify Spotify URI, q to quit: ')
+    if plist=="q":
+        break
+	pList.addPlaylist(plist_id, plist_uri)
 print "Exiting"

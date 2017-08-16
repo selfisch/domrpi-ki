@@ -8,7 +8,7 @@ class pList:
 		self.pList = self.readList()
 
 	def readList(self):
-		with open(self.path + '/plist.csv', mode='r') as infile:
+		with open(self.path + '/pList.csv', mode='r') as infile:
 			reader = csv.reader(infile)
 			cardList = {rows[0]:rows[1] for rows in reader}
 			infile.close()
@@ -17,7 +17,7 @@ class pList:
 	def getPlaylist(self,plist_id):
 		self.pList = self.readList()
 		try:
-			return self.cardList[plist_id]
+			return self.pList[plist_id]
 		except:
 			print 'ID %s is not plist' % plist_id
 			return ''
@@ -35,4 +35,4 @@ class pList:
 			if not os.path.isfile(self.path + '/pList.csv'):
 				print 'File pList.csv does not exist'
 				print 'lege Datei an'
-				os.system("touch plist.csv")
+				os.system("touch pList.csv")
