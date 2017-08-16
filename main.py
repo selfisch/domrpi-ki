@@ -41,7 +41,10 @@ while True:
                 #print("rechte Maustaste")
                 client.play()
         elif event.code == 273 and event.value == 1:
-            print "rechter Knopf"
+            #print "rechter Knopf"
+            state = client.status()['state'].split(":")
+            if 'play' in state:
+                client.stop()
         elif event.code == 274 and event.value == 1:
             #print "Mausrad klick"
             os.system("sudo shutdown -h now")
