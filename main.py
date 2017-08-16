@@ -7,6 +7,8 @@ from evdev import InputDevice
 from select import select
 import os
 from mpd import MPDClient
+import re
+from CardList import CardList
 
 # MPDClient config
 client = MPDClient()    # create client object
@@ -14,7 +16,19 @@ client.timeout = 10     # network timeout in seconds (floats allowed), default: 
 client.idletimeout = None
 client.connect("localhost", 6600)
 
-# zweite Maus für Test an meinem Rechner
+# linke Aussentaste an der Maus startet eine random Playliste
+def play(client, plist):
+	try:
+		client.stop()
+		client.clear()
+		client.add(plist)
+		if re.search('playlist',plist):
+			client.shuffle()
+		client.play()
+	except:
+		print 'Could not play playlist %s' % plist
+
+# zweite Maus fuer Test an meinem Rechner
 #dev = InputDevice('/dev/input/event13') # This can be any other event number. On$
 
 # Maus an der Aiwa
@@ -46,7 +60,18 @@ while True:
             #print "Mausrad klick"
             os.system("sudo shutdown -h now")
         elif event.code == 275:
-            print "links aussen"
+            #print "links aussen"
+            #card = reader.readCard()
+            card = 1
+            print 'Read card', card
+            plist = cardList.getPlaylist(card)
+            print 'Playlist', plist
+            if plist != '':
+                if plist=='pause':
+                    client.pause()
+                else:
+                    play(client, plist)
+                    #client.close()
         elif event.code == 276:
             #print "rechts aussen"
             state = client.status()['state'].split(":")
