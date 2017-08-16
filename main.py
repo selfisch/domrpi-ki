@@ -62,7 +62,7 @@ while True:
         elif event.code == 275:
             #print "links aussen"
             #card = reader.readCard()
-            card = 1
+            card = "1"
             print 'Read card', card
             plist = CardList.getPlaylist(card)
             print 'Playlist', plist
