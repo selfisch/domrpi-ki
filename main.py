@@ -64,7 +64,7 @@ while True:
             #card = reader.readCard()
             card = 1
             print 'Read card', card
-            plist = cardList.getPlaylist(card)
+            plist = CardList.getPlaylist(card)
             print 'Playlist', plist
             if plist != '':
                 if plist=='pause':
