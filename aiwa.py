@@ -2,7 +2,6 @@
 
 # Requirements apt: python-dev
 # Requirements pip: MPDClient, evdev,
-# test commit
 
 from evdev import InputDevice
 from select import select
