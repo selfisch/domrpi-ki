@@ -47,7 +47,7 @@ def linksAussen():
 	plist_zahl = plist_zahl - 1
 	#print(plist_zahl)
 	#print(plist[plist_zahl])
-	uri = str(plist[plist_zahl])
+	uri = str(plist[plist_zahl][1])
 	uri = uri.replace('[','')
 	uri = uri.replace(']','')
 	uri = uri.replace('\'','')
