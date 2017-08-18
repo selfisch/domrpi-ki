@@ -39,3 +39,6 @@ INFO:mpd:Calling MPD connect('localhost', 6600, timeout=None)
 2017-08-18 12:05:56,095 - __main__ - ERROR - via Tastatur beendet
 2017-08-18 12:06:00,441 - __main__ - INFO - Starte die Anwendung
 2017-08-18 12:08:05,371 - __main__ - ERROR - main crashed [Errno 19] No such device
+2017-08-18 14:46:29,904 - __main__ - INFO - Starte die Anwendung - 116
+2017-08-18 14:47:54,252 - __main__ - INFO - via Tastatur beendet - 121
+2017-08-18 14:48:00,389 - __main__ - INFO - Starte die Anwendung - 116

@@ -1,2 +1,4 @@
 plist.csv
 settings.py
+aiwa.log
+*.pyc
