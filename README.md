@@ -25,6 +25,9 @@ Grundsätzlich hat die Anlage auf der Front an die 20 Knöpfe, die ich jedoch ni
 Alternativ habe ich somit momentan die Überlegung, die Button über eine USB Lösung anzusteuern/auszulesen.
 Falls jemand etwas derartiges schon gemacht hat, ich bin für Vorschläge offen :-).
 
+Update: 18.08.17
+- die Spotify Playlisten funktionieren endlich, es funktionieren aber nur persönliche Playlisten, öffentliche Spotify Playlisten lassen sich nicht hinzufügen
+
 ToDo:
 - Stromverbrauch messen
 - geeignete USB Lösung für die Realisierung der Buttons suchen
