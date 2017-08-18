@@ -29,12 +29,16 @@ logger.addHandler(handler)
 client = MPDClient()    # create client object
 client.timeout = 10     # network timeout in seconds (floats allowed), default: None
 client.idletimeout = None
-client.connect("localhost", 6600)
 
-e = str()
+def mpdConnect():
+	client.connect("localhost", 6600)
+
+def mpdDisconnect():
+	client.disconnect()
 
 # linke Aussentaste an der Maus startet eine random Playliste
-def playList():
+def linksAussen():
+	mpdConnect()
 	uris = csv.reader(open("plist.csv", "r"),delimiter=';')
 	plist = []
 	plist.extend(uris)
@@ -51,47 +55,54 @@ def playList():
 	client.clear()
 	client.add(uri)
 	client.play()
+	mpdDisconnect()
+
+def linkeMaustaste():
+  mpdConnect()
+  state = client.status()['state'].split(":")
+  if 'play' in state:
+    client.pause()
+  elif 'pause' in state:
+    client.play()
+  mpdDisconnect()
+
+def rechteMaustaste():
+  mpdConnect()
+  state = client.status()['state'].split(":")
+  if 'play' in state:
+    client.stop()
+  else:
+    client.stop()
+  mpdDisconnect()
+
+def rechtsAussen():
+  mpdConnect()
+  client.stop()
+  client.clear()
+  client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
+  client.play()
+  mpdDisconnect()
 
 def main():
 	while True:
 	    r,w,x = select([dev], [], [])
 	    for event in dev.read():
-	        if event.code == 8:
-	            #print "wheel"
-	            if event.value == 1:
-	                os.system("amixer -q sset Master 1%+")
-	            elif event.value == -1:
-	                os.system("amixer -q sset Master 1%-")
-	        elif event.code == 272 and event.value == 1:
-	            #print "linker Knopf"
-	            state = client.status()['state'].split(":")
-	            if 'play' in state:
-	                client.pause()
-	            elif 'pause' in state:
-	                #print("rechte Maustaste")
-	                client.play() and event.value == 1
-	        elif event.code == 273 and event.value == 1:
-	            #print "rechter Knopf"
-	            state = client.status()['state'].split(":")
-	            if 'play' in state:
-	                client.stop()
-	        elif event.code == 274 and event.value == 1:
-	            #print "Mausrad klick"
-	            os.system("shutdown -h now")
-	        elif event.code == 275 and event.value == 1:
-	            #print "links aussen"
-				playList()
-	        elif event.code == 276 and event.value == 1:
-	            #print "rechts aussen"
-	            state = client.status()['state'].split(":")
-	            if 'play' in state:
-	                client.stop()
-	                client.clear()
-	            elif 'stop' in state:
-	                #print("rechte Maustaste")
-	                client.clear()
-	                client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
-	                client.play()
+			if event.code == 8:
+				#print "wheel"
+				if event.value == 1:
+				    os.system("amixer -q sset Master 1%+")
+				elif event.value == -1:
+				    os.system("amixer -q sset Master 1%-")
+			elif event.code == 272 and event.value == 1:
+				linkeMaustaste()
+			elif event.code == 273 and event.value == 1:
+				rechteMaustaste()
+			elif event.code == 274 and event.value == 1:
+				os.system("shutdown -h now")
+			elif event.code == 275 and event.value == 1:
+				linksAussen()
+			elif event.code == 276 and event.value == 1:
+				rechtsAussen()
 
 # und laufen lassen
 if __name__ == "__main__":
