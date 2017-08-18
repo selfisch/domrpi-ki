@@ -9,7 +9,7 @@ from mpd import MPDClient
 from random import randint
 import csv
 import os
-from settings.ini import *
+from settings import *
 
 # MPDClient config
 client = MPDClient()    # create client object
