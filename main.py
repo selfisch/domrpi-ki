@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # Requirements apt: python-dev
 # Requirements pip: MPDClient, evdev,
@@ -19,7 +19,7 @@ handler = logging.FileHandler('aiwa.log')
 handler.setLevel(logging.DEBUG)
 
 # create a logging format
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
 handler.setFormatter(formatter)
 
 # add the handlers to the logger
@@ -115,7 +115,9 @@ if __name__ == "__main__":
 	try:
 		logger.info('Starte die Anwendung')
 		main()
-	except (SystemExit, KeyboardInterrupt):
-		logger.error("via Tastatur beendet")
+	except (SystemExit):
+		logger.info("Anwendung beendet")
+	except (KeyboardInterrupt):
+		logger.info("via Tastatur beendet")
 	except Exception, e:
 		logger.error("main crashed {0}".format(str(e)))
