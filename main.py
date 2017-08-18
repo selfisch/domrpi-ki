@@ -11,6 +11,11 @@ import csv, os
 import logging
 from settings import *
 
+# in das Verzeichnis des Skript wechseln
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
