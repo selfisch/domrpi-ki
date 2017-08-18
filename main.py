@@ -37,10 +37,10 @@ def playList():
 	client.play()
 
 # zweite Maus fuer Test an meinem Rechner
-dev = InputDevice('/dev/input/event15') # This can be any other event number. On$
+#dev = InputDevice('/dev/input/event15') # This can be any other event number. On$
 
 # Maus an der Aiwa
-#dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
+dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
 
 while True:
     r,w,x = select([dev], [], [])
