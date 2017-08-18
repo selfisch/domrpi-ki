@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # create a file handler
-handler = logging.FileHandler('aiwa.log')
+handler = logging.FileHandler('log/aiwa.log')
 handler.setLevel(logging.DEBUG)
 
 # create a logging format
