@@ -13,10 +13,15 @@ sys.path.append('./conf')
 
 from evdev import InputDevice
 from select import select
-from mpd import MPDClient
 from random import randint
 import logging
 from input import dev
+from mpd import MPDClient
+
+# MPDClient config
+client = MPDClient()    # create client object
+client.timeout = 10     # network timeout in seconds (floats allowed), default: None
+client.idletimeout = None
 
 # logger konfigurieren
 logging.basicConfig(level=logging.INFO)
@@ -32,11 +37,6 @@ handler.setFormatter(formatter)
 
 # add the handlers to the logger
 logger.addHandler(handler)
-
-# MPDClient config
-client = MPDClient()    # create client object
-client.timeout = 10     # network timeout in seconds (floats allowed), default: None
-client.idletimeout = None
 
 def mpdConnect():
 	client.connect("localhost", 6600)
