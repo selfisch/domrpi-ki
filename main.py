@@ -52,14 +52,12 @@ def linksAussen():
 	plist.extend(uris)
 
 	plist_zahl = randint(0, len(plist))
-	plist_zahl = plist_zahl - 1
-	#print(plist_zahl)
-	#print(plist[plist_zahl])
+	if plist_zahl >= 1:
+		plist_zahl = plist_zahl - 1
 	uri = str(plist[plist_zahl][1])
 	uri = uri.replace('[','')
 	uri = uri.replace(']','')
 	uri = uri.replace('\'','')
-	#print(uri)
 	client.clear()
 	client.add(uri)
 	client.play()
