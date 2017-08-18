@@ -16,7 +16,7 @@ from select import select
 from mpd import MPDClient
 from random import randint
 import logging
-from settings import *
+from input import dev
 
 # logger konfigurieren
 logging.basicConfig(level=logging.INFO)
