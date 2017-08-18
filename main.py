@@ -94,14 +94,20 @@ def main():
 				elif event.value == -1:
 				    os.system("amixer -q sset Master 1%-")
 			elif event.code == 272 and event.value == 1:
+				logger.debug('linkeMaustaste gedrückt')
 				linkeMaustaste()
 			elif event.code == 273 and event.value == 1:
+				logger.debug('linkeMaustaste gedrückt')
 				rechteMaustaste()
 			elif event.code == 274 and event.value == 1:
+				logger.debug('Mausrad gedrückt')
 				os.system("shutdown -h now")
+				logger.info('fahren auf Anforderung herunter')
 			elif event.code == 275 and event.value == 1:
+				logger.debug('linkes aussen gedrückt')
 				linksAussen()
 			elif event.code == 276 and event.value == 1:
+				logger.debug('rechts aussen gedrückt')
 				rechtsAussen()
 
 # und laufen lassen
