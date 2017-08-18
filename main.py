@@ -3,18 +3,20 @@
 # Requirements apt: python-dev
 # Requirements pip: MPDClient, evdev,
 
-from evdev import InputDevice
-from select import select
-from mpd import MPDClient
-from random import randint
-import csv, os
-import logging
-from settings import *
+import csv, os, sys
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
+sys.path.append('./conf')
+
+from evdev import InputDevice
+from select import select
+from mpd import MPDClient
+from random import randint
+import logging
+from settings import *
 
 # logger konfigurieren
 logging.basicConfig(level=logging.INFO)
