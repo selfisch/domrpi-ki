@@ -9,6 +9,7 @@ from mpd import MPDClient
 from random import randint
 import csv
 import os
+from settings.ini import *
 
 # MPDClient config
 client = MPDClient()    # create client object
@@ -35,12 +36,6 @@ def playList():
 	client.clear()
 	client.add(uri)
 	client.play()
-
-# zweite Maus fuer Test an meinem Rechner
-#dev = InputDevice('/dev/input/event15') # This can be any other event number. On$
-
-# Maus an der Aiwa
-dev = InputDevice('/dev/input/event0') # This can be any other event number. On$
 
 while True:
     r,w,x = select([dev], [], [])
