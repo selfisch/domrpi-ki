@@ -115,7 +115,7 @@ def main():
 				rechteMaustaste()
 			elif event.code == 274 and event.value == 1:
 				logger.debug('Mausrad gedrueckt')
-				os.system("shutdown -h now")
+				os.system("sudo shutdown -h now")
 				logger.info('fahren auf Anforderung herunter')
 			elif event.code == 275 and event.value == 1:
 				logger.debug('links aussen gedrueckt')
