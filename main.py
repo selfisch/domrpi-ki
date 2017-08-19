@@ -118,12 +118,15 @@ def main():
 
 # und laufen lassen
 if __name__ == "__main__":
-	try:
-		logger.info('Starte die Anwendung')
-		main()
-	except (SystemExit):
-		logger.info("Anwendung beendet")
-	except (KeyboardInterrupt):
-		logger.info("via Tastatur beendet")
-	except Exception, e:
-		logger.error("main crashed {0}".format(str(e)))
+  try:
+    logger.info('Starte die Anwendung')
+    main()
+  except (SystemExit):
+	logger.info("Anwendung beendet")
+  except (KeyboardInterrupt):
+	logger.info("via Tastatur beendet")
+  except Exception, e:
+	logger.error("main crashed {0}".format(str(e)))
+  except:
+    logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+    raise
