@@ -24,7 +24,7 @@ client.timeout = 10     # network timeout in seconds (floats allowed), default: 
 client.idletimeout = None
 
 # logger konfigurieren
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # create a file handler
