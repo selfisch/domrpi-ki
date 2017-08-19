@@ -126,18 +126,25 @@ def main():
 
 # und laufen lassen
 if __name__ == "__main__":
-  try:
-    logger.info('Starte die Anwendung')
-    main()
-  except (SystemExit):
-	logger.info("Anwendung beendet")
-  except (KeyboardInterrupt):
-	logger.info("via Tastatur beendet")
-  except mpd, m:
-	logger.debug("mpd meldet {0}",format(str(m)))
-	logger.info("mpd meldet {0}",format(str(m)))
-  except Exception, e:
-	logger.error("main crashed {0}".format(str(e)))
-  except:
-    logger.info("Unbekannter Fehler:", sys.exc_info()[0])
-    raise
+	while True:
+		try:
+			logger.info('Starte die Anwendung')
+			main()
+		except (SystemExit):
+			logger.info("Anwendung beendet")
+			exit()
+		except (KeyboardInterrupt):
+			logger.info("via Tastatur beendet")
+			exit()
+		#  except mpd, m:
+		#	logger.debug("mpd meldet {0}",format(str(m)))
+		#	logger.info("mpd meldet {0}",format(str(m)))
+		except Exception as e:
+			logger.error("main crashed {0}".format(str(e)))
+			logger.exception("Error")
+			mpdDisconnect()
+		except:
+			logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+			raise
+		else:
+			pass
