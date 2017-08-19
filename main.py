@@ -24,7 +24,7 @@ client.timeout = 10     # network timeout in seconds (floats allowed), default: 
 client.idletimeout = None
 
 # logger konfigurieren
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 # create a file handler
@@ -55,12 +55,20 @@ def linksAussen():
 	if plist_zahl >= 1:
 		plist_zahl = plist_zahl - 1
 	uri = str(plist[plist_zahl][1])
+	play_mode = str(plist[plist_zahl][2])
 	uri = uri.replace('[','')
 	uri = uri.replace(']','')
 	uri = uri.replace('\'','')
+	logger.debug("URI to pass: " + uri)
+	logger.debug("Playmode: " + play_mode)
 	client.clear()
 	client.add(uri)
-	client.play()
+	if play_mode == 'play':
+		client.random(0)
+		client.play()
+	elif play_mode == 'shuffle':
+		client.random(1)
+		client.play()
 	mpdDisconnect()
 
 def linkeMaustaste():
@@ -110,7 +118,7 @@ def main():
 				os.system("shutdown -h now")
 				logger.info('fahren auf Anforderung herunter')
 			elif event.code == 275 and event.value == 1:
-				logger.debug('linkes aussen gedrueckt')
+				logger.debug('links aussen gedrueckt')
 				linksAussen()
 			elif event.code == 276 and event.value == 1:
 				logger.debug('rechts aussen gedrueckt')
@@ -125,6 +133,9 @@ if __name__ == "__main__":
 	logger.info("Anwendung beendet")
   except (KeyboardInterrupt):
 	logger.info("via Tastatur beendet")
+  except mpd, m:
+	logger.debug("mpd meldet {0}",format(str(m)))
+	logger.info("mpd meldet {0}",format(str(m)))
   except Exception, e:
 	logger.error("main crashed {0}".format(str(e)))
   except:
