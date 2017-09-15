@@ -3,7 +3,7 @@
 # Requirements apt: python-dev
 # Requirements pip: python-mpd2, evdev,
 
-import csv, os, sys
+import csv, os, sys, _thread
 import logging
 from evdev import InputDevice, ecodes
 from select import select
@@ -41,6 +41,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
+thread_x = ''
 
 def mpdConnect():
     client.connect("localhost", 6600)
@@ -50,7 +51,7 @@ def mpdDisconnect():
     client.disconnect()
 
 
-def button_press():
+def button_press(x, y):
     while True:
         r, w, x = select([dev], [], [])
         for event in dev.read():
@@ -92,7 +93,7 @@ def read_card():
     logger.debug('beende read_card')
 
 
-def play_card():
+def play_card(x, y):
     while True:
         logger.debug('starte play_card')
         card = read_card()
@@ -109,7 +110,8 @@ def play_card():
 while True:
     try:
         logger.info('Starte die Anwendung')
-        play_card()
+        _thread.start_new_thread(play_card(thread_x, True))
+        _thread.start_new_thread(button_press(thread_x, True))
     except (SystemExit):
         logger.info("Anwendung beendet")
         exit()
