@@ -1,9 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
 # Requirements apt: python-dev
-# Requirements pip: MPDClient, evdev,
+# Requirements pip: python-mpd2, evdev,
 
 import csv, os, sys
+import logging
+from evdev import InputDevice, ecodes
+from select import select
+from random import randint
+from threading import Thread
+from mpd import MPDClient
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -11,12 +17,8 @@ dname = os.path.dirname(abspath)
 os.chdir(dname)
 sys.path.append('./conf')
 
-from evdev import InputDevice
-from select import select
-from random import randint
-import logging
-from input import dev
-from mpd import MPDClient
+from input import *
+from mouse import *
 
 # MPDClient config
 client = MPDClient()    # create client object
@@ -29,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 # create a file handler
 handler = logging.FileHandler('log/aiwa.log')
-handler.setLevel(logging.DEBUG)
+handler.setLevel(logging.INFO)
 
 # create a logging format
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
@@ -38,113 +40,91 @@ handler.setFormatter(formatter)
 # add the handlers to the logger
 logger.addHandler(handler)
 
+keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
+
 def mpdConnect():
-	client.connect("localhost", 6600)
+    client.connect("localhost", 6600)
+
 
 def mpdDisconnect():
-	client.disconnect()
+    client.disconnect()
 
-# linke Aussentaste an der Maus startet eine random Playliste
-def linksAussen():
-	mpdConnect()
-	uris = csv.reader(open("plist.csv", "r"),delimiter=';')
-	plist = []
-	plist.extend(uris)
 
-	plist_zahl = randint(0, len(plist))
-	if plist_zahl >= 1:
-		plist_zahl = plist_zahl - 1
-	uri = str(plist[plist_zahl][1])
-	play_mode = str(plist[plist_zahl][2])
-	uri = uri.replace('[','')
-	uri = uri.replace(']','')
-	uri = uri.replace('\'','')
-	logger.debug("URI to pass: " + uri)
-	logger.debug("Playmode: " + play_mode)
-	client.clear()
-	client.add(uri)
-	if play_mode == 'play':
-		client.random(0)
-		client.play()
-	elif play_mode == 'shuffle':
-		client.random(1)
-		client.play()
-	mpdDisconnect()
+def button_press():
+    while True:
+        r, w, x = select([dev], [], [])
+        for event in dev.read():
+            if event.code == 8:
+                if event.value == 1:
+                    os.system("amixer -q sset Master 1%+")
+                elif event.value == -1:
+                    os.system("amixer -q sset Master 1%-")
+            elif event.code == 272 and event.value == 1:
+                logger.debug('linkeMaustaste gedrueckt')
+                linkeMaustaste()
+            elif event.code == 273 and event.value == 1:
+                logger.debug('linkeMaustaste gedrueckt')
+                rechteMaustaste()
+            elif event.code == 274 and event.value == 1:
+                logger.debug('Mausrad gedrueckt')
+                os.system("sudo shutdown -h now")
+                logger.info('fahren auf Anforderung herunter')
+            elif event.code == 275 and event.value == 1:
+                logger.debug('links aussen gedrueckt')
+                linksAussen()
+            elif event.code == 276 and event.value == 1:
+                logger.debug('rechts aussen gedrueckt')
+                rechtsAussen()
 
-def linkeMaustaste():
-  mpdConnect()
-  state = client.status()['state'].split(":")
-  if 'play' in state:
-    client.pause()
-  elif 'pause' in state:
-    client.play()
-  mpdDisconnect()
 
-def rechteMaustaste():
-  mpdConnect()
-  state = client.status()['state'].split(":")
-  if 'play' in state:
-    client.stop()
-  else:
-    client.stop()
-  mpdDisconnect()
+def read_card():
+    logger.debug('starte read_card')
+    stri = ''
+    key = ''
+    while key != 'KEY_ENTER':
+        r, w, x = select([reader], [], [])
+        for event in reader.read():
+            if event.type == 1 and event.value == 1:
+                stri += keys[event.code]
+#                print( keys[ event.code ] )
+                key = ecodes.KEY[event.code]
+    return stri[:-1]
+    logger.debug('beende read_card')
 
-def rechtsAussen():
-  mpdConnect()
-  client.stop()
-  client.clear()
-  client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
-  client.play()
-  mpdDisconnect()
 
-def main():
-	while True:
-	    r,w,x = select([dev], [], [])
-	    for event in dev.read():
-			if event.code == 8:
-				#print "wheel"
-				if event.value == 1:
-				    os.system("amixer -q sset Master 1%+")
-				elif event.value == -1:
-				    os.system("amixer -q sset Master 1%-")
-			elif event.code == 272 and event.value == 1:
-				logger.debug('linkeMaustaste gedrueckt')
-				linkeMaustaste()
-			elif event.code == 273 and event.value == 1:
-				logger.debug('linkeMaustaste gedrueckt')
-				rechteMaustaste()
-			elif event.code == 274 and event.value == 1:
-				logger.debug('Mausrad gedrueckt')
-				os.system("sudo shutdown -h now")
-				logger.info('fahren auf Anforderung herunter')
-			elif event.code == 275 and event.value == 1:
-				logger.debug('links aussen gedrueckt')
-				linksAussen()
-			elif event.code == 276 and event.value == 1:
-				logger.debug('rechts aussen gedrueckt')
-				rechtsAussen()
+def play_card():
+    while True:
+        logger.debug('starte play_card')
+        card = read_card()
+        rows = csv.reader(open("plist.csv", "r"), delimiter=';')
+        plist = []
+        plist.extend(rows)
+        #print(plist)
+        for row in plist:
+            if row[3] == card:
+                uri = row[1]
 
-# und laufen lassen
-if __name__ == "__main__":
-	while True:
-		try:
-			logger.info('Starte die Anwendung')
-			main()
-		except (SystemExit):
-			logger.info("Anwendung beendet")
-			exit()
-		except (KeyboardInterrupt):
-			logger.info("via Tastatur beendet")
-			exit()
-		#  except mpd, m:
-		#	logger.debug("mpd meldet {0}",format(str(m)))
-		#	logger.info("mpd meldet {0}",format(str(m)))
-		except Exception as e:
-			logger.error("main crashed {0}".format(str(e)))
-			logger.exception("Error")
-			mpdDisconnect()
-		except:
-			logger.info("Unbekannter Fehler:", sys.exc_info()[0])
-			raise
-		else:
-			pass
+
+#if __name__ == "__main__":
+while True:
+    try:
+        logger.info('Starte die Anwendung')
+        play_card()
+    except (SystemExit):
+        logger.info("Anwendung beendet")
+        exit()
+    except (KeyboardInterrupt):
+        logger.info("via Tastatur beendet")
+        exit()
+#       except mpd, m:
+#       logger.debug("mpd meldet {0}",format(str(m)))
+#       logger.info("mpd meldet {0}",format(str(m)))
+    except Exception as e:
+        logger.error("main crashed {0}".format(str(e)))
+        logger.exception("Error")
+        mpdDisconnect()
+    except:
+        logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+        raise
+    else:
+        pass
