@@ -142,7 +142,7 @@ def play_card(x, y):
         for row in plist:
             if row[3] == card:
                 uri = row[1]
-        print(uri)
+        print(card)
 
 
 #if __name__ == "__main__":
