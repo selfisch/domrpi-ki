@@ -2,5 +2,5 @@ plist.csv
 settings.py
 *.log
 *.pyc
-input.py
-./conf/*
+reader.py
+mouse.py

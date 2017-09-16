@@ -5,10 +5,9 @@
 
 import csv, os, sys, _thread
 import logging
-from evdev import InputDevice, ecodes
+from evdev import InputDevice, ecodes, list_devices
 from select import select
 from random import randint
-from threading import Thread
 from mpd import MPDClient
 
 # in das Verzeichnis des Skript wechseln
@@ -16,9 +15,6 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 sys.path.append('./conf')
-
-from input import *
-from mouse import *
 
 # MPDClient config
 client = MPDClient()    # create client object
@@ -42,6 +38,48 @@ logger.addHandler(handler)
 
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
 thread_x = ''
+#global reader
+#global mouse
+
+def init():
+    path = os.path.dirname(os.path.realpath(__file__))
+    if not os.path.isfile(path + '/conf/reader.py'):
+        logger.error('Please run config-reader.py first')
+        sys.exit()
+    elif not os.path.isfile(path + '/conf/mouse.py'):
+        logger.error('Please run config-mouse.py first')
+        sys.exit()
+    else:
+        # Maus konfigurieren
+        with open(path + '/conf/mouse.py','r') as f:
+            deviceName = f.read()
+        devices = [InputDevice(fn) for fn in list_devices()]
+        for device in devices:
+            if device.name == deviceName:
+                global mouse
+                mouse = device
+                break
+        try:
+            mouse
+        except:
+            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
+            sys.exit()
+
+        # Cardreader konfigurieren
+        with open(path + '/conf/reader.py','r') as f:
+            deviceName = f.read()
+        devices = [InputDevice(fn) for fn in list_devices()]
+        for device in devices:
+            if device.name == deviceName:
+                global reader
+                reader = device
+                break
+        try:
+            reader
+        except:
+            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
+            sys.exit()
+
 
 def mpdConnect():
     client.connect("localhost", 6600)
@@ -110,6 +148,7 @@ def play_card(x, y):
 while True:
     try:
         logger.info('Starte die Anwendung')
+        init()
         _thread.start_new_thread(play_card(thread_x, True))
         _thread.start_new_thread(button_press(thread_x, True))
     except (SystemExit):
