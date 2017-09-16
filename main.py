@@ -38,8 +38,7 @@ logger.addHandler(handler)
 
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
 thread_x = ''
-#global reader
-#global mouse
+
 
 def init():
     path = os.path.dirname(os.path.realpath(__file__))
