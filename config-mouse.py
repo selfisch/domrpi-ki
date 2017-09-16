@@ -13,6 +13,6 @@ for dev in devices:
 
 dev_id = int(input('Device Number: '))
 
-with open(path + 'conf/mouse.py','w') as f:
+with open(path + '/conf/mouse.py','w') as f:
 	f.write(devices[dev_id].name)
 	f.close()
