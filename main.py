@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-# Requirements apt: python-dev
-# Requirements pip: python-mpd2, evdev,
+# Requirements apt: sudo apt-get install -y mopidy git python3 python3-dev python3-pip
+# Requirements pip: sudo pip3 install evdev python-mpd2 evdev Mopidy-Iris
+# git clone git@github.com:selfisch/domrpi-ki.git
 
 import csv, os, sys, _thread
 import logging
