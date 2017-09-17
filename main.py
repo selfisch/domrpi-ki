@@ -15,6 +15,15 @@ from mpd import MPDClient
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
+
+# lege das conf Verzeichnis an, falls es nicht existiert
+if not os.path.exists('conf'):
+    os.mkdir('conf')
+
+if not os.path.exists('/log'):
+    os.mkdir('/conf')
+
+
 sys.path.append('./conf')
 
 # MPDClient config
