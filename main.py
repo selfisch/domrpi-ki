@@ -20,8 +20,8 @@ os.chdir(dname)
 if not os.path.exists('conf'):
     os.mkdir('conf')
 
-if not os.path.exists('/log'):
-    os.mkdir('/conf')
+if not os.path.exists('log'):
+    os.mkdir('log')
 
 
 sys.path.append('./conf')
