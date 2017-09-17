@@ -43,28 +43,28 @@ thread_x = ''
 
 def init():
     path = os.path.dirname(os.path.realpath(__file__))
-    if not os.path.isfile(path + '/conf/reader.py'):
-        logger.error('Please run config-reader.py first')
-        sys.exit()
-    elif not os.path.isfile(path + '/conf/mouse.py'):
-        logger.error('Please run config-mouse.py first')
-        sys.exit()
-    else:
-        # Maus konfigurieren
-        with open(path + '/conf/mouse.py','r') as f:
-            deviceName = f.read()
-        devices = [InputDevice(fn) for fn in list_devices()]
-        for device in devices:
-            if device.name == deviceName:
-                global mouse
-                mouse = device
-                break
-        try:
-            mouse
-        except:
-            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
-            sys.exit()
+    # lege das conf Verzeichnis an, falls es nicht existiert
+    if not os.path.exists(path + '/conf'):
+        os.mkdir(path + '/conf')
 
+    if not os.path.exists(path + '/log'):
+        os.mkdir(path + '/conf')
+
+    # prüfe Reader und richte ihn ein
+    if not os.path.isfile(path + '/conf/reader.py'):
+        devices = [InputDevice(fn) for fn in list_devices()]
+        i = 0
+        print("Choose the reader from list")
+        for dev in devices:
+        	print(i, dev.name)
+        	i += 1
+
+        dev_id = int(input('Device Number: '))
+
+        with open(path + '/conf/reader.py','w') as f:
+        	f.write(devices[dev_id].name)
+        	f.close()
+    else:
         # Cardreader konfigurieren
         with open(path + '/conf/reader.py','r') as f:
             deviceName = f.read()
@@ -76,6 +76,36 @@ def init():
                 break
         try:
             reader
+        except:
+            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
+            sys.exit()
+
+    # prüfe die Buttons und richte sie ein
+    if not os.path.isfile(path + '/conf/buttons.py'):
+        devices = [InputDevice(fn) for fn in list_devices()]
+        i = 0
+        print("Choose button input from list")
+        for dev in devices:
+        	print(i, dev.name)
+        	i += 1
+
+        dev_id = int(input('Device Number: '))
+
+        with open(path + '/conf/buttons.py','w') as f:
+        	f.write(devices[dev_id].name)
+        	f.close()
+    else:
+        # Maus konfigurieren
+        with open(path + '/conf/buttons.py','r') as f:
+            deviceName = f.read()
+        devices = [InputDevice(fn) for fn in list_devices()]
+        for device in devices:
+            if device.name == deviceName:
+                global buttons
+                buttons = device
+                break
+        try:
+            buttons
         except:
             logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
             sys.exit()
@@ -116,6 +146,13 @@ def button_press(x, y):
                 rechtsAussen()
 
 
+def button():
+    while True:
+        r, w, x = select([buttons], [], [])
+        for button in buttons.read():
+            print(button)
+
+
 def read_card():
     logger.debug('starte read_card')
     stri = ''
@@ -133,6 +170,7 @@ def read_card():
 
 def play_card(x, y):
     while True:
+        uri = ''
         logger.debug('starte play_card')
         card = read_card()
         rows = csv.reader(open("plist.csv", "r"), delimiter=';')
@@ -142,7 +180,9 @@ def play_card(x, y):
         for row in plist:
             if row[3] == card:
                 uri = row[1]
-        print(card)
+
+        if not
+
 
 
 #if __name__ == "__main__":
