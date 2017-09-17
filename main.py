@@ -181,7 +181,7 @@ def play_card(x, y):
             if row[3] == card:
                 uri = row[1]
 
-        if not
+        #if not
 
 
 
