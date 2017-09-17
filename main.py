@@ -73,21 +73,6 @@ def init():
         with open(path + '/conf/reader.py','w') as f:
         	f.write(devices[dev_id].name)
         	f.close()
-    else:
-        # Cardreader konfigurieren
-        with open(path + '/conf/reader.py','r') as f:
-            deviceName = f.read()
-        devices = [InputDevice(fn) for fn in list_devices()]
-        for device in devices:
-            if device.name == deviceName:
-                global reader
-                reader = device
-                break
-        try:
-            reader
-        except:
-            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
-            sys.exit()
 
     # prüfe die Buttons und richte sie ein
     if not os.path.isfile(path + '/conf/buttons.py'):
@@ -103,21 +88,36 @@ def init():
         with open(path + '/conf/buttons.py','w') as f:
         	f.write(devices[dev_id].name)
         	f.close()
-    else:
-        # Maus konfigurieren
-        with open(path + '/conf/buttons.py','r') as f:
-            deviceName = f.read()
-        devices = [InputDevice(fn) for fn in list_devices()]
-        for device in devices:
-            if device.name == deviceName:
-                global buttons
-                buttons = device
-                break
-        try:
-            buttons
-        except:
-            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
-            sys.exit()
+
+    # Maus konfigurieren
+    with open(path + '/conf/buttons.py','r') as f:
+        deviceName = f.read()
+    devices = [InputDevice(fn) for fn in list_devices()]
+    for device in devices:
+        if device.name == deviceName:
+            global buttons
+            buttons = device
+            break
+    try:
+        buttons
+    except:
+        logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
+        sys.exit()
+
+    # Cardreader konfigurieren
+    with open(path + '/conf/reader.py','r') as f:
+        deviceName = f.read()
+    devices = [InputDevice(fn) for fn in list_devices()]
+    for device in devices:
+        if device.name == deviceName:
+            global reader
+            reader = device
+            break
+    try:
+        reader
+    except:
+        logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
+        sys.exit()
 
 
 def mpdConnect():
