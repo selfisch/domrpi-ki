@@ -155,7 +155,7 @@ def button_press(x, y):
                 rechtsAussen()
 
 
-def button():
+def buttons():
     while True:
         r, w, x = select([buttons], [], [])
         for button in buttons.read():
