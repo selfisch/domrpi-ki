@@ -28,11 +28,18 @@ Falls jemand etwas derartiges schon gemacht hat, ich bin für Vorschläge offen 
 Update: 18.08.17
 - die Spotify Playlisten funktionieren endlich, es funktionieren aber nur persönliche Playlisten, öffentliche Spotify Playlisten lassen sich nicht hinzufügen
 
+Update: 12.10.17
+- der alte RPi2 wird durch einen neuen RPi3 ersetzt. Dieser ist bereits im Testeinsatz. Außerdem wurde ein Buttoninterface und ein Kartenleser angebunden, für die nächste Ausbaustufe.
+Eigentlich hätte ich die LEDs für die Knöpfe auf der Front auch gerne noch eingebaut bevor das ganze aufgestellt wird, das würde aber eine Inbetriebnahme enorm in Zeitverzug bringen, da ich aktuell keine Zeit für die Lötarbeiten an der Platine habe.
+
 ToDo:
+- Skript läuft nach der Installation soweit bis auf:
+  - es ist keine plist.csv vorhanden, woraufhin ein harter Fehler erscheint
+  - die Grundkonfiguration von Mopidy muss noch erstellt und hinterlegt werden
+
 - Stromverbrauch messen
-- geeignete USB Lösung für die Realisierung der Buttons suchen
 - geeignetes Display suchen
-- Lötarbeiten um Buttons und LEDs anzubinden
+- Lötarbeiten LEDs anzubinden
 - Skript weiter ausfeilen um auf die LEDs entsprechend anzusteuern
 - nach einer Möglich suchen die Beleuchtung via Proximity zu aktivieren
 - ...
