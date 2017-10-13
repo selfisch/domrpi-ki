@@ -54,7 +54,7 @@ else
  echo ""
 fi
 
-if [ ! -f $cur_dir/plist.csv ]:
+if [ !f plist.csv ]:
 then
  echo ""
  echo "Bitte plist.template beachten!"
