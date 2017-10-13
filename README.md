@@ -62,6 +62,7 @@ Zu gegebener Zeit kann ich diese hier gerne mit dokumentieren.
 
 
 ToDo:
+- logrotate muss eingebaut werden
 - Skript läuft nach der Installation:
   - es wird noch eine Abfrage während der Installation benötigt, ob ein Reader oder Buttons vorhanden sind
 - Stromverbrauch messen
