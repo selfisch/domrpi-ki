@@ -16,6 +16,10 @@ cur_dir=`pwd`
  apt-get purge -y python python-dev python-pip
 
  sleep 5
+ 
+ apt-get -y dist-upgrade
+
+ sleep 5
 
  apt-get clean
  apt-get autoclean
