@@ -185,9 +185,18 @@ def play_card(x, y):
         for row in plist:
             if row[3] == card:
                 uri = row[1]
-        logger.info(uri)
-        #if not
-
+                play_mode = row[2]
+    	logger.debug("URI to pass: " + uri)
+    	logger.debug("Playmode: " + play_mode)
+    	client.clear()
+    	client.add(uri)
+    	if play_mode == 'play':
+    		client.random(0)
+    		client.play()
+    	elif play_mode == 'shuffle':
+    		client.random(1)
+    		client.play()
+    	mpdDisconnect()
 
 
 #if __name__ == "__main__":
