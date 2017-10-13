@@ -1,24 +1,5 @@
 #!/usr/bin/python3
 
-## Requirements
-
-    # wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
-    # sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
-
-# apt & pip:
-    # sudo apt-get update
-    # sudo apt-get purge -y python python-dev python-pip
-    # sudo apt-get clean
-    # sudo apt-get autoclean
-    # sudo apt-get -y autoremove
-    # sudo apt-get install -y mopidy libspotify12 libspotify-dev \
-    # git python3 python3-dev python3-pip libffi-dev python3-spotify
-    # sudo pip3 install evdev python-mpd2 \
-    # Mopidy-Iris pyspotify mopidy-spotify
-
-# git clone https://github.com/selfisch/domrpi-ki.git
-#
-
 import csv, os, sys, _thread
 import logging
 from evdev import InputDevice, ecodes, list_devices
