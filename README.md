@@ -3,7 +3,18 @@
 <img src='/pic/3.jpg' alt='aktueller Stand'>
 
 # RPi Media Player Projekt
-Projekt Aiwa Kompaktanlage
+## if someone is interested in an english version, please let me know
+### Info
+Hi,
+ich hatte zuhause noch eine alte Aiwa Kompaktanlage stehen, welche ich aber aufgrund der
+Boxen zu schade zum entsorgen fand. Kurz um, das Innere entleert und einen Raspberry Pi2
+eingebaut. Und so hat das Projekt begonnen.
+Jetzt mag sich der ein oder andere frage, wieso kauft der sich nicht eine fertige Kompaktanlage
+mit WLAN und Spotify Anbindung beim einem Elektronik Fachmarkt?
+Ganz einfach. Auch wenn es viel Arbeit und womöglich Pflegeaufwand im Nachhinein bedeutet,
+setze ich solche Sachen gerne selber um, um genau zu wissen was drin ist und was ich eventuell
+noch machen kann. Außerdem wollte ich gerne eine NFC Lösung mit verbauen, da die Anlage für das Kinderzimmer gedacht ist und die Kinder eine CD Hülle mit NFC Aufkleber bekommen und diese nur über die Anlage halten brauchen um das Hörspiel oder die Musik ihrer Wahl zu hören.
+Einfacher als jeder Touchscreen und ich kann den RPi noch mit vielen anderen Sachen ausrüsten und womöglich noch mit in meine SmartHome Lösung integrieren.
 
 Hardware:
 - Aiwa Kompaktanlage(komplett ausgeschlachtet)
