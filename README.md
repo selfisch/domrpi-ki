@@ -25,7 +25,7 @@ Hardware:
 - NFC Reader - https://www.amazon.de/gp/product/B01LY6NVHN/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1
 
 Software:
-- RaspBian Lite
+- RaspBian Jessie(Stretch hatte noch Probleme mit ein paar python und spotify libs)
 - Mopidy
 - Mopidy-Spotify
 - Mopidy Iris Webextension
@@ -40,9 +40,26 @@ Falls jemand etwas derartiges schon gemacht hat, ich bin für Vorschläge offen 
 ### Update: 18.08.17
 - die Spotify Playlisten funktionieren endlich, es funktionieren aber nur persönliche Playlisten, öffentliche Spotify Playlisten lassen sich nicht hinzufügen
 
+### Update: 07.09.17
+- eine Lösung für die Buttons wurde gefunden und angebunden(siehe Hardwareliste)
+- ein NFC Reader wurde ebenfalls bestellt und angebunden(siehe Hardwareliste)
+
 ### Update: 12.10.17
 - der alte RPi2 wird durch einen neuen RPi3 ersetzt. Dieser ist bereits im Testeinsatz. Außerdem wurde ein Buttoninterface und ein Kartenleser angebunden, für die nächste Ausbaustufe.
 Eigentlich hätte ich die LEDs für die Knöpfe auf der Front auch gerne noch eingebaut bevor das ganze aufgestellt wird, das würde aber eine Inbetriebnahme enorm in Zeitverzug bringen, da ich aktuell keine Zeit für die Lötarbeiten an der Platine habe.
+
+
+## Installation
+Die Installation gestaltet sich(hoffentlich für jeden) relativ einfach.
+1. das Repository an einen Ort der Wahle clonen
+2. soll Spotify mit Mopidy genutzt werden, bitte conf/spotify.template beachten
+3. plist.template beachten und entsprechend anlegen
+4. setup.sh ausführen ACHTUNG: hier werden diverse Pakete installiert und deinstalliert, man sollte dies also nicht achtlos auf seinem Desktop Linux Rechner machen, da man sich einiges kaputt machen könnte, am besten einen Raspberry Pi verwenden
+5. main.py ausführen
+
+Möchte man die Python Applikation beim Systemstart automatisch anschmeißen, so muss dies noch konfiguriert werden.
+Zu gegebener Zeit kann ich diese hier gerne mit dokumentieren.
+
 
 ToDo:
 - Skript läuft nach der Installation soweit bis auf:
