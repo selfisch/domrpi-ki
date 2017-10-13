@@ -185,7 +185,7 @@ def play_card(x, y):
         for row in plist:
             if row[3] == card:
                 uri = row[1]
-
+        logger.info(uri)
         #if not
 
 
