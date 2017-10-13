@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Important
+# this is only a template file.
+# Please configure your settings and rename the file to spotify.conf
+
+# setup.sh will recognize this automatically and run the conf file
+# if the spotify.conf does not exist when setup.sh executes, you can also create
+# and execute it manually.
+
+echo "[spotify_web]
+username = <spotify-user>
+password = <spotify-password>
+client_id = <client-id>
+client_secret = <client-secret>
+
+[spotify]
+username = <spotify-user>
+password = <spotify-password>
+client_id = <client-id>
+client_secret = <client-secret>" >> /etc/mopidy/mopidy.conf
