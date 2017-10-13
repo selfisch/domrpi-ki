@@ -175,7 +175,6 @@ def read_card():
 
 def play_card(x, y):
     while True:
-        mpdConnect()
         uri = ''
         logger.debug('starte play_card')
         card = read_card()
@@ -189,6 +188,7 @@ def play_card(x, y):
                 play_mode = row[2]
         logger.debug("URI to pass: " + uri)
         logger.debug("Playmode: " + play_mode)
+        mpdConnect()
         client.clear()
         client.add(uri)
         if play_mode == 'play':
