@@ -42,7 +42,7 @@ cur_dir=`pwd`
 
  sudo conf/mopidy.conf
 
-if [ -f conf/spotify.conf ]:
+if [ -f conf/spotify.conf ]
 then
  echo $cur_dir
  sudo conf/spotify.conf
@@ -54,7 +54,7 @@ else
  echo ""
 fi
 
-if [ !f plist.csv ]:
+if [ !f plist.csv ]
 then
  echo ""
  echo "Bitte plist.template beachten!"
