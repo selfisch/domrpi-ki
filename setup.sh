@@ -81,3 +81,4 @@ if [ ! -f $cur_dir/plist.csv ] then
 fi
 
 systemctl enable mopidy
+service mopidy restart
