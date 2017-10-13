@@ -4,7 +4,7 @@
 
 # RPi Media Player Projekt
 ## if someone is interested in an english version, please let me know
-### Info
+
 Hi,
 ich hatte zuhause noch eine alte Aiwa Kompaktanlage stehen, welche ich aber aufgrund der
 Boxen zu schade zum entsorgen fand. Kurz um, das Innere entleert und einen Raspberry Pi2
@@ -17,11 +17,12 @@ noch machen kann. Außerdem wollte ich gerne eine NFC Lösung mit verbauen, da d
 Einfacher als jeder Touchscreen und ich kann den RPi noch mit vielen anderen Sachen ausrüsten und womöglich noch mit in meine SmartHome Lösung integrieren.
 
 Hardware:
-- Aiwa Kompaktanlage(komplett ausgeschlachtet)
-- raspberry Pi 2 B+
+- Aiwa Kompaktanlage(komplett entleert)
+- raspberry Pi 3
 - Hifiberry Amp
-- Edimax WLAN USB Dongle
 - Microsoft 5 Button USB Maus
+- Buttons - https://www.amazon.de/gp/product/B01IQTN1NO/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1
+- NFC Reader - https://www.amazon.de/gp/product/B01LY6NVHN/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1
 
 Software:
 - RaspBian Lite
