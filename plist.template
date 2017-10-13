@@ -1,0 +1,14 @@
+## Diese Playlist gestaltet sich wie folgt:
+## NAME;SPOTIFY-URI;PLAYMODE;NFC-CARD-NUMBER
+
+## hier ein paar Beispiele
+Radio Favoriten;spotify:user:selfisch:playlist:6bF4ZErgiDnX6t7Dj5HMeS;shuffle;0848656644
+Lexer;spotify:user:selfisch:playlist:6R7dExy2YkJzzovch0DHPX;shuffle;0848654852
+Rock 70s;spotify:user:selfisch:playlist:7CBeqnUqiSC8GKcznJwK1e;shuffle;0
+Joris - Hoffnungslos Hoffnungsvoll;spotify:user:selfisch:playlist:5yVumzADvoyR8331MZka30;play;0
+Joris - Spotify Sessions;spotify:user:selfisch:playlist:5F7tSQKl7nItj3fxVAS647;play;0
+Bibi Blocksberg - Folge 3: Die Zauberlimonade;spotify:user:junoroe:playlist:3eGXjTarqzEiVKkXfIjqea;play;0
+
+## Man sieht, das Trennzeichen ist ein ;
+## aktuell existieren 4 Spalten, von denen auch jede vorhanden sein "muss"
+## es dürfen nur die reinen Einträge in der plist.csv vorhanden sein, keine Kommentare o.ä.

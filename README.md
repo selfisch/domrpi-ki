@@ -62,13 +62,11 @@ Zu gegebener Zeit kann ich diese hier gerne mit dokumentieren.
 
 
 ToDo:
-- Skript läuft nach der Installation soweit bis auf:
-  - es ist keine plist.csv vorhanden, woraufhin ein harter Fehler erscheint
-  - die Grundkonfiguration von Mopidy muss noch erstellt und hinterlegt werden
-
+- Skript läuft nach der Installation:
+  - es wird noch eine Abfrage während der Installation benötigt, ob ein Reader oder Buttons vorhanden sind
 - Stromverbrauch messen
 - geeignetes Display suchen
 - Lötarbeiten LEDs anzubinden
 - Skript weiter ausfeilen um auf die LEDs entsprechend anzusteuern
-- nach einer Möglich suchen die Beleuchtung via Proximity zu aktivieren
+- nach einer Möglichkeit suchen die Beleuchtung via Proximity zu steuern
 - ...
