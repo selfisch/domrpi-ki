@@ -11,31 +11,32 @@ cur_dir=`pwd`
 #  wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
 #  sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
 #
-# # apt
-#  sudo apt-get update
+
+# apt
+ sudo apt-get update
 #  sudo apt-get purge -y python python-dev python-pip
-#
-#  sleep 5
-#
-#  sudo apt-get -y dist-upgrade
-#
-#  sudo sleep 5
-#
-#  sudo apt-get clean
-#  sudo apt-get autoclean
-#  sudo apt-get -y autoremove
-#
-#  sleep 5
-#
-#  sudo apt-get install -y mopidy libspotify12 libspotify-dev \
-#  git python3 python3-dev python3-pip libffi-dev python3-spotify \
-#  python-pip python-dev libpython-dev
-#
-#  sleep 5
-#
-# # pip
-  sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
-  sudo pip install Mopidy-Iris
+
+ sleep 5
+
+ sudo apt-get -y dist-upgrade
+
+ sudo sleep 5
+
+ sudo apt-get clean
+ sudo apt-get autoclean
+ sudo apt-get -y autoremove
+
+ sleep 5
+
+ sudo apt-get install -y mopidy libspotify12 libspotify-dev \
+ git python3 python3-dev python3-pip libffi-dev python3-spotify \
+ python-pip python-dev libpython-dev
+
+ sleep 5
+
+# pip
+ sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
+ sudo pip install Mopidy-Iris
 
 # mopidy config
  sudo mv /etc/mopidy/mopidy.conf /etc/mopidy/mopidy.bak
@@ -44,12 +45,10 @@ cur_dir=`pwd`
 
  sudo conf/mopidy.conf
 
-if [ -f conf/spotify.conf ]
+if [ -f $cur_dir/conf/spotify.conf ]
 then
- echo $cur_dir
  sudo conf/spotify.conf
 else
- echo $cur_dir
  echo ""
  echo "Wenn Spotify in Mopidy genutzt werden soll, bitte die Datei
  $cur_dir/conf/spotify.template beachten."
