@@ -5,7 +5,7 @@ hostname=`cat /etc/hostname`
 cur_dir=`pwd`
 
 # check sudo
- sudo ls -al
+ sudo ls -al >> /dev/null
 
 # # Mopidy sources
 #  wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
