@@ -49,6 +49,7 @@ else
  echo ""
  echo "Wenn Spotify in Mopidy genutzt werden soll, bitte die Datei
  $cur_dir/conf/spotify.template beachten."
+fi
 
 if [ ! -f $cur_dir/plist.csv ]:
 then
