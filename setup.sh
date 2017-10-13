@@ -47,6 +47,7 @@ then
  print($cur_dir)
  sudo $cur_dir/conf/spotify.conf
 else
+ print($cur_dir)
  echo ""
  echo "Wenn Spotify in Mopidy genutzt werden soll, bitte die Datei
  $cur_dir/conf/spotify.template beachten."
