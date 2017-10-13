@@ -42,10 +42,10 @@ cur_dir=`pwd`
 
  sudo conf/mopidy.conf
 
-if [ -f $cur_dir/conf/spotify.conf ]:
+if [ -f conf/spotify.conf ]:
 then
  echo $cur_dir
- sudo $cur_dir/conf/spotify.conf
+ sudo conf/spotify.conf
 else
  echo $cur_dir
  echo ""
