@@ -28,12 +28,14 @@ cur_dir=`pwd`
 #  sleep 5
 #
 #  sudo apt-get install -y mopidy libspotify12 libspotify-dev \
-#  git python3 python3-dev python3-pip libffi-dev python3-spotify
+#  git python3 python3-dev python3-pip libffi-dev python3-spotify \
+#  python-pip python-dev libpython-dev
 #
 #  sleep 5
 #
 # # pip
   sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
+  sudo pip install Mopidy-Iris
 
 # mopidy config
  sudo mv /etc/mopidy/mopidy.conf /etc/mopidy/mopidy.bak
