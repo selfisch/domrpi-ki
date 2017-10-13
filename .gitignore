@@ -4,3 +4,4 @@ settings.py
 *.pyc
 reader.py
 mouse.py
+spotify.conf
