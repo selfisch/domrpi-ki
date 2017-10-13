@@ -42,14 +42,16 @@ cur_dir=`pwd`
 
  sudo conf/mopidy.conf
 
-if [ -f $cur_dir/conf/spotify.conf ] then
+if [ -f $cur_dir/conf/spotify.conf ]:
+then
  sudo $cur_dir/conf/spotify.conf
 else
  echo ""
  echo "Wenn Spotify in Mopidy genutzt werden soll, bitte die Datei
  $cur_dir/conf/spotify.template beachten."
 
-if [ ! -f $cur_dir/plist.csv ] then
+if [ ! -f $cur_dir/plist.csv ]:
+then
  echo ""
  echo "Bitte plist.template beachten!"
 fi
