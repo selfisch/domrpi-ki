@@ -156,6 +156,7 @@ def buttons(x, y):
         r, w, x = select([buttons], [], [])
         for button in buttons.read():
             logger.info(button)
+            print(button)
 
 
 def read_card():
