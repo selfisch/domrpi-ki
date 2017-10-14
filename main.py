@@ -155,10 +155,10 @@ def buttons(x, y):
     logger.info('starte Buttons')
     while True:
         r, w, x = select([buttons], [], [])
-        for button in buttons.read():
+        for event in buttons.read():
             logger.info('Button wurde gedrückt.')
-            logger.info(button)
-            print(button)
+            logger.info(event)
+            print(event)
 
 
 def read_card():
