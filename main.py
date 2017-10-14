@@ -178,10 +178,10 @@ def read_card():
 
 
 def play_card(x, y):
+    logger.info('starte play_card')
     while True:
         uri = ''
         play_mode = ''
-        logger.info('starte play_card')
         card = read_card()
         rows = csv.reader(open("plist.csv", "r"), delimiter=';')
         plist = []
