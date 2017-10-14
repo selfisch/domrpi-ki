@@ -151,11 +151,11 @@ def button_press(x, y):
                 rechtsAussen()
 
 
-def buttons():
+def buttons(x, y):
     while True:
         r, w, x = select([buttons], [], [])
         for button in buttons.read():
-            print(button)
+            logger.info(button)
 
 
 def read_card():
@@ -209,6 +209,7 @@ while True:
         init()
         _thread.start_new_thread(play_card(thread_x, True))
         _thread.start_new_thread(button_press(thread_x, True))
+        _thread.start_new_thread(buttons(thread_x, True))
     except (SystemExit):
         logger.info("Anwendung beendet")
         exit()
