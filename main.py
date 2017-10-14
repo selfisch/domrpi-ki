@@ -161,7 +161,7 @@ def buttons(x, y):
 
 
 def read_card():
-    logger.debug('starte read_card')
+    logger.info('starte read_card')
     stri = ''
     key = ''
     while key != 'KEY_ENTER':
@@ -180,7 +180,7 @@ def play_card(x, y):
     while True:
         uri = ''
         play_mode = ''
-        logger.debug('starte play_card')
+        logger.info('starte play_card')
         card = read_card()
         rows = csv.reader(open("plist.csv", "r"), delimiter=';')
         plist = []
