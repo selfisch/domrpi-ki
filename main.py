@@ -210,7 +210,7 @@ while True:
         logger.info('Starte die Anwendung')
         init()
         _thread.start_new_thread(play_card(thread_x, True))
-        _thread.start_new_thread(button_press(thread_x, True))
+        #_thread.start_new_thread(button_press(thread_x, True))
         _thread.start_new_thread(buttons(thread_x, True))
     except (SystemExit):
         logger.info("Anwendung beendet")
