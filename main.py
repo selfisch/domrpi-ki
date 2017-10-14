@@ -176,6 +176,7 @@ def read_card():
 def play_card(x, y):
     while True:
         uri = ''
+        play_mode = ''
         logger.debug('starte play_card')
         card = read_card()
         rows = csv.reader(open("plist.csv", "r"), delimiter=';')
@@ -186,18 +187,18 @@ def play_card(x, y):
             if row[3] == card:
                 uri = row[1]
                 play_mode = row[2]
-        logger.debug("URI to pass: " + uri)
-        logger.debug("Playmode: " + play_mode)
-        mpdConnect()
-        client.clear()
-        client.add(uri)
-        if play_mode == 'play':
-        	client.random(0)
-        	client.play()
-        elif play_mode == 'shuffle':
-        	client.random(1)
-        	client.play()
-        mpdDisconnect()
+                logger.debug("URI to pass: " + uri)
+                logger.debug("Playmode: " + play_mode)
+                mpdConnect()
+                client.clear()
+                client.add(uri)
+                if play_mode == 'play':
+                    client.random(0)
+                    client.play()
+                elif play_mode == 'shuffle':
+                    client.random(1)
+                    client.play()
+                mpdDisconnect()
 
 
 #if __name__ == "__main__":
