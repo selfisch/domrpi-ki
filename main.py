@@ -152,6 +152,7 @@ def button_press(x, y):
 
 
 def buttons(x, y):
+    logger.info('starte Buttons')
     while True:
         r, w, x = select([buttons], [], [])
         for button in buttons.read():
