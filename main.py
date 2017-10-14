@@ -155,6 +155,7 @@ def buttons(x, y):
     while True:
         r, w, x = select([buttons], [], [])
         for button in buttons.read():
+            logger.info('Button wurde gedrückt.')
             logger.info(button)
             print(button)
 
