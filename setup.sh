@@ -7,14 +7,14 @@ cur_dir=`pwd`
 # check sudo
  sudo ls -al >> /dev/null
 
-# # Mopidy sources
-#  wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
-#  sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
-#
+# Mopidy sources
+ wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+ sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
+
 
 # apt
  sudo apt-get update
-#  sudo apt-get purge -y python python-dev python-pip
+ sudo apt-get purge -y python python-dev python-pip
 
  sleep 5
 
