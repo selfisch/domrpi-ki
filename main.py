@@ -170,6 +170,7 @@ def read_card():
 #                print( keys[ event.code ] )
                 key = ecodes.KEY[event.code]
     return stri[:-1]
+    logger.debug(stri)
     logger.debug('beende read_card')
 
 
