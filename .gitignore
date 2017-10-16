@@ -5,3 +5,6 @@ settings.py
 reader.py
 mouse.py
 spotify.conf
+if_mouse*
+if_cardreader*
+if_usbbtn*
