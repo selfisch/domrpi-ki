@@ -9,6 +9,9 @@ from select import select
 sys.path.append('./conf')
 
 import log
+logger = log.setup_custom_logger('main')
+
+from func_mopidy import mopidy
 from func_cardreader import cardreader
 #from func_usbbtn import usbbtn
 from func_mousebtn import mouse
@@ -25,28 +28,6 @@ if not os.path.exists('conf'):
 if not os.path.exists('log'):
     os.mkdir('log')
 
-# MPDClient config
-client = MPDClient()    # create client object
-client.timeout = 10     # network timeout in seconds (floats allowed), default: None
-client.idletimeout = None
-
-# logger konfigurieren
-#logging.basicConfig(level=logging.INFO)
-#logger = logging.getLogger(__name__)
-
-# create a file handler
-#handler = logging.FileHandler('log/aiwa.log')
-#handler.setLevel(logging.INFO)
-
-# create a logging format
-#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
-#handler.setFormatter(formatter)
-
-# add the handlers to the logger
-#logger.addHandler(handler)
-
-logger = log.setup_custom_logger('main')
-
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
 
 path = os.path.dirname(os.path.realpath(__file__))
@@ -59,17 +40,6 @@ check_reader = cardreader.check_reader()
 mouse = mouse()
 check_mouse = mouse.check_mouse()
 
-
-def mpdConnect():
-    client.connect("localhost", 6600)
-
-
-def mpdDisconnect():
-    client.disconnect()
-
-
-#if __name__ == "__main__":
-#while True:
 try:
     logger.info('Starte die Anwendung')
     if not check_reader == 'n':
