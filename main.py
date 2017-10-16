@@ -46,16 +46,14 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
-thread_x = ''
 
-
-logger.info('Starte main __init__')
 path = os.path.dirname(os.path.realpath(__file__))
 
 # lade die Class cardreader in die Variable cardreader
 cardreader = cardreader()
 check_reader = cardreader.check_reader()
 
+# lade die Class mouse in die Variable mouse
 mouse = mouse()
 check_mouse = mouse.check_mouse()
 
@@ -68,54 +66,26 @@ def mpdDisconnect():
     client.disconnect()
 
 
-def play_card(x, y):
-    logger.info('starte play_card')
-    while True:
-        uri = ''
-        play_mode = ''
-        card = cardreader.read_card()
-        rows = csv.reader(open("plist.csv", "r"), delimiter=';')
-        plist = []
-        plist.extend(rows)
-        #print(plist)
-        for row in plist:
-            if row[3] == card:
-                uri = row[1]
-                play_mode = row[2]
-                logger.debug("URI to pass: " + uri)
-                logger.debug("Playmode: " + play_mode)
-                mpdConnect()
-                client.clear()
-                client.add(uri)
-                if play_mode == 'play':
-                    client.random(0)
-                    client.play()
-                elif play_mode == 'shuffle':
-                    client.random(1)
-                    client.play()
-                mpdDisconnect()
-
-
 #if __name__ == "__main__":
 #while True:
-    try:
-        logger.info('Starte die Anwendung')
-        if not check_reader == 'n':
-            _thread.start_new_thread(play_card(play_card, True))
-#        _thread.start_new_thread(buttons(thread_x, True))
-#        _thread.start_new_thread(button_press(thread_x, True))
-    except (SystemExit):
-        logger.info("Anwendung beendet")
-        exit()
-    except (KeyboardInterrupt):
-        logger.info("via Tastatur beendet")
-        exit()
-    except Exception as e:
-        logger.error("main crashed {0}".format(str(e)))
-        logger.exception("Error")
-        raise
-    except:
-        logger.info("Unbekannter Fehler:", sys.exc_info()[0])
-        raise
+try:
+    logger.info('Starte die Anwendung')
+    if not check_reader == 'n':
+        _thread.start_new_thread(cardreader.read_card('read_card', True, ) )
+    if not check_mouse == 'n':
+        _thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
+except (SystemExit):
+    logger.info("Anwendung beendet")
+    exit()
+except (KeyboardInterrupt):
+    logger.info("via Tastatur beendet")
+    exit()
+except Exception as e:
+    logger.error("main crashed {0}".format(str(e)))
+    logger.exception("Error")
+    raise
+except:
+    logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+    raise
 #    else:
 #        pass

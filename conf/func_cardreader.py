@@ -71,3 +71,31 @@ class cardreader:
         return stri[:-1]
         #logger.debug(stri)
         #logger.debug('beende read_card')
+
+
+    def play_card(x, y):
+        #logger.info('starte play_card')
+        while True:
+            uri = ''
+            play_mode = ''
+            card = cardreader.read_card()
+            rows = csv.reader(open("plist.csv", "r"), delimiter=';')
+            plist = []
+            plist.extend(rows)
+            #print(plist)
+            for row in plist:
+                if row[3] == card:
+                    uri = row[1]
+                    play_mode = row[2]
+                    logger.debug("URI to pass: " + uri)
+                    logger.debug("Playmode: " + play_mode)
+                    mpdConnect()
+                    client.clear()
+                    client.add(uri)
+                    if play_mode == 'play':
+                        client.random(0)
+                        client.play()
+                    elif play_mode == 'shuffle':
+                        client.random(1)
+                        client.play()
+                    mpdDisconnect()

@@ -56,15 +56,18 @@ class mouse:
         return deviceName
 
 
-    def mouse_press(x, y):
+    def mouse_press(self, theadName, bool):
+        #logger.info('Starte mouse_press')
         while True:
-            r, w, x = select([dev], [], [])
-            for event in dev.read():
+            r, w, x = select([if_mouse], [], [])
+            for event in if_mouse.read():
                 if event.code == 8:
                     if event.value == 1:
-                        os.system("amixer -q sset Master 1%+")
+                        print('vol up')
+                        #os.system("amixer -q sset Master 1%+")
                     elif event.value == -1:
-                        os.system("amixer -q sset Master 1%-")
+                        print('vol down')
+                        #os.system("amixer -q sset Master 1%-")
                 elif event.code == 272 and event.value == 1:
                     logger.debug('linkeMaustaste gedrueckt')
                     linkeMaustaste()
