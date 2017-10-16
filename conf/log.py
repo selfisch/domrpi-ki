@@ -2,6 +2,9 @@ import logging
 
 def setup_custom_logger(name):
 
+    if not os.path.exists('log'):
+        os.mkdir('log')
+
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
 
     handler = logging.FileHandler('log/aiwa.log')
