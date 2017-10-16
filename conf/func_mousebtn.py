@@ -68,11 +68,9 @@ class mouse:
             for event in if_mouse.read():
                 if event.code == 8:
                     if event.value == 1:
-                        print('vol up')
-                        #os.system("amixer -q sset Master 1%+")
+                        os.system("amixer -q sset Master 1%+")
                     elif event.value == -1:
-                        print('vol down')
-                        #os.system("amixer -q sset Master 1%-")
+                        os.system("amixer -q sset Master 1%-")
                 elif event.code == 272 and event.value == 1:
                     logger.debug('linkeMaustaste gedrueckt')
                     linkeMaustaste()
@@ -89,3 +87,56 @@ class mouse:
                 elif event.code == 276 and event.value == 1:
                     logger.debug('rechts aussen gedrueckt')
                     rechtsAussen()
+
+    # linke Aussentaste an der Maus startet eine random Playliste
+    def linksAussen(self):
+    	mpdConnect()
+    	uris = csv.reader(open("plist.csv", "r"),delimiter=';')
+    	plist = []
+    	plist.extend(uris)
+
+    	plist_zahl = randint(0, len(plist))
+    	if plist_zahl >= 1:
+    		plist_zahl = plist_zahl - 1
+    	uri = str(plist[plist_zahl][1])
+    	play_mode = str(plist[plist_zahl][2])
+    	uri = uri.replace('[','')
+    	uri = uri.replace(']','')
+    	uri = uri.replace('\'','')
+    	logger.debug("URI to pass: " + uri)
+    	logger.debug("Playmode: " + play_mode)
+    	client.clear()
+    	client.add(uri)
+    	if play_mode == 'play':
+    		client.random(0)
+    		client.play()
+    	elif play_mode == 'shuffle':
+    		client.random(1)
+    		client.play()
+    	mpdDisconnect()
+
+    def linkeMaustaste(self):
+      mpdConnect()
+      state = client.status()['state'].split(":")
+      if 'play' in state:
+        client.pause()
+      elif 'pause' in state:
+        client.play()
+      mpdDisconnect()
+
+    def rechteMaustaste(self):
+      mpdConnect()
+      state = client.status()['state'].split(":")
+      if 'play' in state:
+        client.stop()
+      else:
+        client.stop()
+      mpdDisconnect()
+
+    def rechtsAussen(self):
+      mpdConnect()
+      client.stop()
+      client.clear()
+      client.add('http://ndr-ndr2-niedersachsen.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3')
+      client.play()
+      mpdDisconnect()

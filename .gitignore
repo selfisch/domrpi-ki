@@ -2,8 +2,6 @@ plist.csv
 settings.py
 *.log
 *.pyc
-reader.py
-mouse.py
 spotify.conf
 if_mouse*
 if_cardreader*
