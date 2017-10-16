@@ -2,8 +2,7 @@
 
 import csv, os, sys, _thread
 import logging
-from evdev import InputDevice, ecodes, list_devices
-from select import select
+import func-cardreader, func-usbbtn
 from random import randint
 from mpd import MPDClient
 
@@ -55,20 +54,6 @@ def init():
     if not os.path.exists(path + '/log'):
         os.mkdir(path + '/conf')
 
-    # prüfe Reader und richte ihn ein
-    if not os.path.isfile(path + '/conf/reader.py'):
-        devices = [InputDevice(fn) for fn in list_devices()]
-        i = 0
-        print("Choose the reader from list")
-        for dev in devices:
-        	print(i, dev.name)
-        	i += 1
-
-        dev_id = int(input('Device Number: '))
-
-        with open(path + '/conf/reader.py','w') as f:
-        	f.write(devices[dev_id].name)
-        	f.close()
 
     # prüfe die Buttons und richte sie ein
     if not os.path.isfile(path + '/conf/buttons.py'):
@@ -88,7 +73,7 @@ def init():
     # Maus konfigurieren
     with open(path + '/conf/buttons.py','r') as f:
         deviceName = f.read()
-    devices = [InputDevice(fn) for fn in list_devices()]
+        devices = [InputDevice(fn) for fn in list_devices()]
     for device in devices:
         if device.name == deviceName:
             global buttons
@@ -96,21 +81,6 @@ def init():
             break
     try:
         buttons
-    except:
-        logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
-        sys.exit()
-
-    # Cardreader konfigurieren
-    with open(path + '/conf/reader.py','r') as f:
-        deviceName = f.read()
-    devices = [InputDevice(fn) for fn in list_devices()]
-    for device in devices:
-        if device.name == deviceName:
-            global reader
-            reader = device
-            break
-    try:
-        reader
     except:
         logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
         sys.exit()
