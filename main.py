@@ -2,9 +2,15 @@
 
 import csv, os, sys, _thread
 import logging
-import func-cardreader, func-usbbtn
 from random import randint
 from mpd import MPDClient
+from select import select
+
+# conf Unterverzeichnis mit durchsuchen
+sys.path.append('./conf')
+
+from func_cardreader import cardreader
+#from func_usbbtn import usbbtn
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -17,9 +23,6 @@ if not os.path.exists('conf'):
 
 if not os.path.exists('log'):
     os.mkdir('log')
-
-
-sys.path.append('./conf')
 
 # MPDClient config
 client = MPDClient()    # create client object
@@ -45,46 +48,12 @@ keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXX
 thread_x = ''
 
 
-def init():
-    path = os.path.dirname(os.path.realpath(__file__))
-    # lege das conf Verzeichnis an, falls es nicht existiert
-    if not os.path.exists(path + '/conf'):
-        os.mkdir(path + '/conf')
+logger.info('Starte main __init__')
+path = os.path.dirname(os.path.realpath(__file__))
 
-    if not os.path.exists(path + '/log'):
-        os.mkdir(path + '/conf')
-
-
-    # prüfe die Buttons und richte sie ein
-    if not os.path.isfile(path + '/conf/buttons.py'):
-        devices = [InputDevice(fn) for fn in list_devices()]
-        i = 0
-        print("Choose button input from list")
-        for dev in devices:
-        	print(i, dev.name)
-        	i += 1
-
-        dev_id = int(input('Device Number: '))
-
-        with open(path + '/conf/buttons.py','w') as f:
-        	f.write(devices[dev_id].name)
-        	f.close()
-
-    # Maus konfigurieren
-    with open(path + '/conf/buttons.py','r') as f:
-        deviceName = f.read()
-        devices = [InputDevice(fn) for fn in list_devices()]
-    for device in devices:
-        if device.name == deviceName:
-            global buttons
-            buttons = device
-            break
-    try:
-        buttons
-    except:
-        logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
-        sys.exit()
-
+# lade die Class cardreader in die Variable cardreader
+cardreader = cardreader()
+check_reader = cardreader.check_reader()
 
 def mpdConnect():
     client.connect("localhost", 6600)
@@ -94,65 +63,12 @@ def mpdDisconnect():
     client.disconnect()
 
 
-def button_press(x, y):
-    while True:
-        r, w, x = select([dev], [], [])
-        for event in dev.read():
-            if event.code == 8:
-                if event.value == 1:
-                    os.system("amixer -q sset Master 1%+")
-                elif event.value == -1:
-                    os.system("amixer -q sset Master 1%-")
-            elif event.code == 272 and event.value == 1:
-                logger.debug('linkeMaustaste gedrueckt')
-                linkeMaustaste()
-            elif event.code == 273 and event.value == 1:
-                logger.debug('linkeMaustaste gedrueckt')
-                rechteMaustaste()
-            elif event.code == 274 and event.value == 1:
-                logger.debug('Mausrad gedrueckt')
-                os.system("sudo shutdown -h now")
-                logger.info('fahren auf Anforderung herunter')
-            elif event.code == 275 and event.value == 1:
-                logger.debug('links aussen gedrueckt')
-                linksAussen()
-            elif event.code == 276 and event.value == 1:
-                logger.debug('rechts aussen gedrueckt')
-                rechtsAussen()
-
-
-def buttons(x, y):
-    logger.info('starte Buttons')
-    while True:
-        r, w, x = select([buttons], [], [])
-        for event in buttons.read():
-            logger.info('Button wurde gedrückt.')
-            logger.info(event)
-            print(event)
-
-
-def read_card():
-    logger.info('starte read_card')
-    stri = ''
-    key = ''
-    while key != 'KEY_ENTER':
-        r, w, x = select([reader], [], [])
-        for event in reader.read():
-            if event.type == 1 and event.value == 1:
-                stri += keys[event.code]
-#                print( keys[ event.code ] )
-                key = ecodes.KEY[event.code]
-    return stri[:-1]
-    logger.debug(stri)
-    logger.debug('beende read_card')
-
-
 def play_card(x, y):
     logger.info('starte play_card')
     while True:
         uri = ''
         play_mode = ''
-        card = read_card()
+        card = cardreader.read_card()
         rows = csv.reader(open("plist.csv", "r"), delimiter=';')
         plist = []
         plist.extend(rows)
@@ -179,25 +95,23 @@ def play_card(x, y):
 while True:
     try:
         logger.info('Starte die Anwendung')
-        init()
-        _thread.start_new_thread(buttons(thread_x, True))
-        _thread.start_new_thread(play_card(thread_x, True))
-        #_thread.start_new_thread(button_press(thread_x, True))
+        print(check_reader)
+        if not check_reader == 'n':
+            _thread.start_new_thread(play_card(thread_x, True))
+#        _thread.start_new_thread(buttons(thread_x, True))
+#        _thread.start_new_thread(button_press(thread_x, True))
     except (SystemExit):
         logger.info("Anwendung beendet")
         exit()
     except (KeyboardInterrupt):
         logger.info("via Tastatur beendet")
         exit()
-#       except mpd, m:
-#       logger.debug("mpd meldet {0}",format(str(m)))
-#       logger.info("mpd meldet {0}",format(str(m)))
     except Exception as e:
         logger.error("main crashed {0}".format(str(e)))
         logger.exception("Error")
-        mpdDisconnect()
+        raise
     except:
         logger.info("Unbekannter Fehler:", sys.exc_info()[0])
         raise
-    else:
-        pass
+#    else:
+#        pass
