@@ -3,8 +3,8 @@ from os import mkdir, path
 
 def setup_custom_logger(name):
 
-    if not os.path.exists('log'):
-        os.mkdir('log')
+    if not path.exists('log'):
+        mkdir('log')
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
 
