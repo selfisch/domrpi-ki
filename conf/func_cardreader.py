@@ -13,7 +13,6 @@ class cardreader:
             # Frage, ob ein Kartenleser verwendet werden soll
             auswahl = ''
             while auswahl != 'j' and auswahl != 'n':
-                print(auswahl)
                 auswahl = input('Möchten Sie einen Kartenleser verwenden?(j/n): ')
 
             if auswahl == 'j':
