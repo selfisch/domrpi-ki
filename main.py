@@ -11,6 +11,7 @@ sys.path.append('./conf')
 
 from func_cardreader import cardreader
 #from func_usbbtn import usbbtn
+from func_mousebtn import mouse
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -55,6 +56,10 @@ path = os.path.dirname(os.path.realpath(__file__))
 cardreader = cardreader()
 check_reader = cardreader.check_reader()
 
+mouse = mouse()
+check_mouse = mouse.check_mouse()
+
+
 def mpdConnect():
     client.connect("localhost", 6600)
 
@@ -92,12 +97,11 @@ def play_card(x, y):
 
 
 #if __name__ == "__main__":
-while True:
+#while True:
     try:
         logger.info('Starte die Anwendung')
-        print(check_reader)
         if not check_reader == 'n':
-            _thread.start_new_thread(play_card(thread_x, True))
+            _thread.start_new_thread(play_card(play_card, True))
 #        _thread.start_new_thread(buttons(thread_x, True))
 #        _thread.start_new_thread(button_press(thread_x, True))
     except (SystemExit):
