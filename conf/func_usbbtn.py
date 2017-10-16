@@ -1,5 +1,9 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
+import os.path, sys, logging
+
+logger = logging.getLogger('root')
+
 
 class usbbtn:
     def __init__():

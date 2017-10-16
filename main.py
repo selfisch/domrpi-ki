@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import csv, os, sys, _thread
-import logging
 from random import randint
 from mpd import MPDClient
 from select import select
@@ -9,6 +8,7 @@ from select import select
 # conf Unterverzeichnis mit durchsuchen
 sys.path.append('./conf')
 
+import log
 from func_cardreader import cardreader
 #from func_usbbtn import usbbtn
 from func_mousebtn import mouse
@@ -31,19 +31,21 @@ client.timeout = 10     # network timeout in seconds (floats allowed), default: 
 client.idletimeout = None
 
 # logger konfigurieren
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+#logging.basicConfig(level=logging.INFO)
+#logger = logging.getLogger(__name__)
 
 # create a file handler
-handler = logging.FileHandler('log/aiwa.log')
-handler.setLevel(logging.INFO)
+#handler = logging.FileHandler('log/aiwa.log')
+#handler.setLevel(logging.INFO)
 
 # create a logging format
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
-handler.setFormatter(formatter)
+#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
+#handler.setFormatter(formatter)
 
 # add the handlers to the logger
-logger.addHandler(handler)
+#logger.addHandler(handler)
+
+logger = log.setup_custom_logger('main')
 
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
 

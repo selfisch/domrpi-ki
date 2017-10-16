@@ -1,0 +1,13 @@
+import logging
+
+def setup_custom_logger(name):
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(lineno)d')
+
+    handler = logging.FileHandler('log/aiwa.log')
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(handler)
+    return logger

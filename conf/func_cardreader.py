@@ -1,6 +1,9 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path
+import os.path, sys, logging
+
+logger = logging.getLogger('main')
+
 
 class cardreader:
     def __init__(self):
