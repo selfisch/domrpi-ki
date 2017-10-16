@@ -23,8 +23,8 @@ class mopidy:
     def randomPlaylist():
         mpdConnect()
     	uris = csv.reader(open("plist.csv", "r"),delimiter=';')
-    	plist = []
-    	plist.extend(uris)
+        plist = []
+        plist.extend(uris)
 
     	plist_zahl = randint(0, len(plist))
     	if plist_zahl >= 1:

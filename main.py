@@ -25,9 +25,6 @@ os.chdir(dname)
 if not os.path.exists('conf'):
     os.mkdir('conf')
 
-if not os.path.exists('log'):
-    os.mkdir('log')
-
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
 
 path = os.path.dirname(os.path.realpath(__file__))
