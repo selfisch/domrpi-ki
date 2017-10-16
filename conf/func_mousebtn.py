@@ -48,7 +48,9 @@ class mouse:
                 try:
                     if_mouse
                 except:
-                    logger.error('Kann das Gerät nicht finden %s\n. Bitte sicherstellen, dass es verbunden ist' % deviceName)
+                    logger.error('Kann das Gerät nicht finden:')
+                    logger.error(deviceName)
+                    logger.error('Bitte sicherstellen, dass es verbunden ist')
                     sys.exit()
 
 
