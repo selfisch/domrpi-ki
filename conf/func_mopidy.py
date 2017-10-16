@@ -4,23 +4,22 @@ from mpd import MPDClient
 
 
 class mopidy:
-
-    def __init__(self):
-        # MPDClient config
-        client = MPDClient()    # create client object
-        client.timeout = 10     # network timeout in seconds (floats allowed), default: None
-        client.idletimeout = None
-
-
-    def mpdConnect(self):
-        client.connect("localhost", 6600)
+		def __init__(self):
+				# MPDClient config
+				client = MPDClient()    # create client object
+				client.timeout = 10     # network timeout in seconds (floats allowed), default: None
+				client.idletimeout = None
 
 
-    def mpdDisconnect(self):
-        client.disconnect()
+		def mpdConnect(self):
+				client.connect("localhost", 6600)
 
 
-    def randomPlaylist():
+		def mpdDisconnect(self):
+				client.disconnect()
+
+
+		def randomPlaylist():
 				mpdConnect()
 				uris = csv.reader(open("plist.csv", "r"),delimiter=';')
 				plist = []
