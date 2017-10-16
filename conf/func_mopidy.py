@@ -12,11 +12,11 @@ class mopidy:
         client.idletimeout = None
 
 
-    def mpdConnect():
+    def mpdConnect(self):
         client.connect("localhost", 6600)
 
 
-    def mpdDisconnect():
+    def mpdDisconnect(self):
         client.disconnect()
 
 
