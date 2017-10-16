@@ -22,26 +22,26 @@ class mopidy:
 
     def randomPlaylist():
         mpdConnect()
-    	uris = csv.reader(open("plist.csv", "r"),delimiter=';')
+				uris = csv.reader(open("plist.csv", "r"),delimiter=';')
         plist = []
         plist.extend(uris)
 
-    	plist_zahl = randint(0, len(plist))
-    	if plist_zahl >= 1:
-    		plist_zahl = plist_zahl - 1
-    	uri = str(plist[plist_zahl][1])
-    	play_mode = str(plist[plist_zahl][2])
-    	uri = uri.replace('[','')
-    	uri = uri.replace(']','')
-    	uri = uri.replace('\'','')
-    	logger.debug("URI to pass: " + uri)
-    	logger.debug("Playmode: " + play_mode)
-    	client.clear()
-    	client.add(uri)
-    	if play_mode == 'play':
-    		client.random(0)
-    		client.play()
-    	elif play_mode == 'shuffle':
-    		client.random(1)
-    		client.play()
-    	mpdDisconnect()
+				plist_zahl = randint(0, len(plist))
+				if plist_zahl >= 1:
+					plist_zahl = plist_zahl - 1
+				uri = str(plist[plist_zahl][1])
+				play_mode = str(plist[plist_zahl][2])
+				uri = uri.replace('[','')
+				uri = uri.replace(']','')
+				uri = uri.replace('\'','')
+				logger.debug("URI to pass: " + uri)
+				logger.debug("Playmode: " + play_mode)
+				client.clear()
+				client.add(uri)
+				if play_mode == 'play':
+					client.random(0)
+					client.play()
+				elif play_mode == 'shuffle':
+					client.random(1)
+					client.play()
+				mpdDisconnect()
