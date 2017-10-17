@@ -75,7 +75,7 @@ class cardreader:
                 play_mode = row[2]
                 logger.debug("URI to pass: " + uri)
                 logger.debug("Playmode: " + play_mode)
-                mopidy.play(uri, play_mode)
+                mopidy.playList(uri, play_mode)
         if uri == '':
             logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
 

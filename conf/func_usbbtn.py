@@ -1,9 +1,10 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path, sys, logging, csv, time
+import os.path, os.system, sys, logging, csv, time
 
 logger = logging.getLogger('main')
 
+from func_mopidy import mopidy
 
 class usbbtn:
     def __init__(self):
@@ -49,7 +50,31 @@ class usbbtn:
     def buttons(val):
         if val == 589827:
             print('vol up')
+            os.system("amixer -q sset Master 1%+")
         elif val == 589825:
+            print('vol down')
+            os.system("amixer -q sset Master 1%-")
+        elif val == 589826:
+            print('next track')
+            mopidy.next()
+        elif val == 589829:
+            print('prev track')
+            mopidy.previous()
+        elif val == 589831:
+            print('play/pause')
+            mopidy.play()
+        elif val == 589830:
+            print('stop')
+            mopidy.stop()
+        elif val == 589835:
+            print('tuner')
+        elif val == 589834:
+            print('aux')
+        elif val == 589836:
+            print('cd')
+        elif val == :
+            print('vol down')
+        elif val == :
             print('vol down')
 
 
