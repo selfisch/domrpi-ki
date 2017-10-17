@@ -59,7 +59,7 @@ class cardreader:
         return deviceName
 
 
-    def read_card():
+    def read_card(self, threadName, bool):
         #logger.info('starte read_card')
         stri = ''
         key = ''
