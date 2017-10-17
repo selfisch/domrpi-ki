@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, _thread
+import os, sys, _thread, threading
 from random import randint
 from mpd import MPDClient
 from select import select
@@ -42,12 +42,19 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 try:
     logger.info('Starte die Anwendung')
-    #if check_usbbtn != 'n':
-    _thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
-    #if check_reader != 'n':
-    _thread.start_new_thread(cardreader.read_card('read_card', True, ) )
+    button_press_thread = threading.Thread(name='button_press', target=button_press)
+    read_card_thread = threading.Thread(name='read_card', target=read_card)
+    mouse_press_thread = threading.Thread(name='mouse_press', target=mouse_press)
+
+    if check_usbbtn != 'n':
+        #_thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
+        button_press_thread.start()
+    if check_reader != 'n':
+        #_thread.start_new_thread(cardreader.read_card('read_card', True, ) )
+        read_card_thread.start()
     if check_mouse != 'n':
-        _thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
+        #_thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
+        mouse_press_thread.start()
 except (SystemExit):
     logger.info("Anwendung beendet")
     exit()
