@@ -65,6 +65,5 @@ class usbbtn:
                     if (time_now - time_stamp) >= 0.5:
                         logger.debug('Button wurde gedrückt.')
                         logger.info(event)
-                        print(event)
                         usbbtn.buttons(event.value)
                     time_stamp = time_now
