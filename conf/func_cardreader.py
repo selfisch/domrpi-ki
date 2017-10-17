@@ -64,22 +64,26 @@ class cardreader:
         logger.info('starte read_card')
         stri = ''
         key = ''
-        while key != 'KEY_ENTER':
-            r, w, x = select([if_cardreader], [], [])
-            for event in if_cardreader.read():
-                if event.type == 1 and event.value == 1:
-                    stri += keys[event.code]
-    #                print( keys[ event.code ] )
-                    key = ecodes.KEY[event.code]
-        return stri[:-1]
+        while True:
+            while key != 'KEY_ENTER':
+                r, w, x = select([if_cardreader], [], [])
+                for event in if_cardreader.read():
+                    if event.type == 1 and event.value == 1:
+                        stri += keys[event.code]
+#                        print( keys[ event.code ] )
+                        key = ecodes.KEY[event.code]
+                        stri = stri[:-1]
+            if stri != '':
+                play_card(stri)
+#        return stri[:-1]
 
 
-    def play_card(x, y):
+    def play_card(plist_id):
         #logger.info('starte play_card')
         while True:
             uri = ''
             play_mode = ''
-            card = cardreader.read_card()
+            card = plist_id
             rows = csv.reader(open("plist.csv", "r"), delimiter=';')
             plist = []
             plist.extend(rows)
