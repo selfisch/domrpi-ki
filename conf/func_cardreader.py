@@ -60,7 +60,7 @@ class cardreader:
 
 
     def read_card(self, threadName, bool):
-        #logger.info('starte read_card')
+        logger.info('starte read_card')
         stri = ''
         key = ''
         while key != 'KEY_ENTER':
@@ -71,8 +71,6 @@ class cardreader:
     #                print( keys[ event.code ] )
                     key = ecodes.KEY[event.code]
         return stri[:-1]
-        #logger.debug(stri)
-        #logger.debug('beende read_card')
 
 
     def play_card(x, y):
