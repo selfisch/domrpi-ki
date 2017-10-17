@@ -62,7 +62,7 @@ class mouse:
 
 
     def mouse_press(self, theadName, bool):
-        #logger.info('Starte mouse_press')
+        logger.debug('Starte mouse_press')
         while True:
             r, w, x = select([if_mouse], [], [])
             for event in if_mouse.read():
