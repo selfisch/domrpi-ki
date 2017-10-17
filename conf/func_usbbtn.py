@@ -79,16 +79,24 @@ class usbbtn:
 
 
     def button_press(self):
-        logger.debug('starte USB Buttons')
-        global time_stamp
-        time_stamp = time.time()
-        while True:
-            r, w, x = select([if_usbbtn], [], [])
-            for event in if_usbbtn.read():
-                if event.code == 4:
-                    time_now = time.time()
-                    if (time_now - time_stamp) >= 0.5:
-                        logger.debug('Button wurde gedrückt.')
-                        logger.info(event)
-                        usbbtn.buttons(event.value)
-                    time_stamp = time_now
+        try:
+            logger.debug('starte USB Buttons')
+            global time_stamp
+            time_stamp = time.time()
+            while True:
+                r, w, x = select([if_usbbtn], [], [])
+                for event in if_usbbtn.read():
+                    if event.code == 4:
+                        time_now = time.time()
+                        if (time_now - time_stamp) >= 0.5:
+                            logger.debug('Button wurde gedrückt.')
+                            logger.info(event)
+                            usbbtn.buttons(event.value)
+                        time_stamp = time_now
+        except Exception as e:
+            logger.error("main crashed {0}".format(str(e)))
+            logger.exception("Error")
+            raise
+        except:
+            logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+            raise
