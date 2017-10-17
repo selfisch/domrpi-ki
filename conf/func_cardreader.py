@@ -62,32 +62,30 @@ class cardreader:
 
     def play_card(plist_id):
         logger.debug('play_card wurde mit folgender plist_id aufgerufen: ' + plist_id)
-        while True:
-            uri = ''
-            play_mode = ''
-            card = plist_id
-            rows = csv.reader(open("plist.csv", "r"), delimiter=';')
-            plist = []
-            plist.extend(rows)
-            for row in plist:
-                if row[3] == card:
-                    uri = row[1]
-                    play_mode = row[2]
-                    logger.debug("URI to pass: " + uri)
-                    logger.debug("Playmode: " + play_mode)
-                    mpdConnect()
-                    client.clear()
-                    client.add(uri)
-                    if play_mode == 'play':
-                        client.random(0)
-                        client.play()
-                    elif play_mode == 'shuffle':
-                        client.random(1)
-                        client.play()
-                    mpdDisconnect()
-                else:
-                    logger.info('Card ' + plist_id + ' scheint noch nicht mit einer Playlist verknüpft.')
-                    break
+        uri = ''
+        play_mode = ''
+        card = plist_id
+        rows = csv.reader(open("plist.csv", "r"), delimiter=';')
+        plist = []
+        plist.extend(rows)
+        for row in plist:
+            if row[3] == card:
+                uri = row[1]
+                play_mode = row[2]
+                logger.debug("URI to pass: " + uri)
+                logger.debug("Playmode: " + play_mode)
+                mpdConnect()
+                client.clear()
+                client.add(uri)
+                if play_mode == 'play':
+                    client.random(0)
+                    client.play()
+                elif play_mode == 'shuffle':
+                    client.random(1)
+                    client.play()
+                mpdDisconnect()
+            else:
+                logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
 
 
     def read_card(self, threadName, bool):
