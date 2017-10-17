@@ -61,7 +61,7 @@ class cardreader:
 
 
     def play_card(plist_id):
-        #logger.info('starte play_card')
+        logger.debug('play_card wurde mit folgender plist_id aufgerufen: ' + plist_id)
         while True:
             uri = ''
             play_mode = ''
@@ -91,7 +91,7 @@ class cardreader:
 
 
     def read_card(self, threadName, bool):
-        logger.info('starte read_card')
+        logger.debug('starte read_card')
         stri = ''
         key = ''
         while True:
@@ -104,5 +104,6 @@ class cardreader:
                         key = ecodes.KEY[event.code]
                         stri = stri[:-1]
             if stri != '':
+                logger.debug('read_card hat folgende plist_id empfangen: ' + stri)
                 play_card(stri)
 #        return stri[:-1]
