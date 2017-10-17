@@ -30,11 +30,11 @@ class mouse:
                 	f.close()
 
             if auswahl == 'n':
-                with open(path + '/if_mouses.py','w') as f:
+                with open(path + '/if_mouse.py','w') as f:
                 	f.write(auswahl)
                 	f.close()
 
-        # Cardreader konfigurieren
+        # Maus konfigurieren
         with open(path + '/if_mouse.py','r') as f:
             deviceName = f.read()
             if not deviceName == 'n':
