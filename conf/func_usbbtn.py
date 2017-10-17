@@ -1,6 +1,6 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path, os.system, sys, logging, csv, time
+import os, sys, logging, csv, time
 
 logger = logging.getLogger('main')
 
