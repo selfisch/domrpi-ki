@@ -5,9 +5,6 @@ from mpd import MPDClient
 client = MPDClient()    # create client object
 
 class mopidy:
-	def __init__(self):
-		print('init')
-
 	def mpdConnect():
 		# MPDClient config
 		client.timeout = 10     # network timeout in seconds (floats allowed), default: None
