@@ -59,7 +59,7 @@ class usbbtn:
             r, w, x = select([if_usbbtn], [], [])
             for event in if_usbbtn.read():
                 if event.code == 4:
-                    global time_stamp
+                    global time_stamp = time.time()
                     time_now = time.time()
                     if (time_now - time_stamp) >= 0.3:
                         logger.debug('Button wurde gedrückt.')
