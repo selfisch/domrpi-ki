@@ -86,25 +86,25 @@ class mopidy:
 
 
 	def mpdConnect(self):
-        try:
-            delay = 0
-            while True:
-                if delay <= 30:
-                    logger.debug('mpdConnect delay: ' + delay)
-                    delay = delay + 1
-                elif delay > 30:
-                    # MPDClient config
-                    #client.timeout = 10     # network timeout in seconds (floats allowed), default: None
-                    #client.idletimeout = None
-                    #client.connect("localhost", 6600)
-                    logger.debug('mpdConnect ping')
-                    client.ping()
-                    delay = 0
-        except Exception as e:
-            logger.error("main crashed {0}".format(str(e)))
-            logger.exception("Error")
-            raise
-        except:
-            logger.info("Unbekannter Fehler:", sys.exc_info()[0])
-            raise
-        pass
+		try:
+			delay = 0
+      # MPDClient config
+      client.timeout = 10
+      client.idletimeout = None
+      client.connect("localhost", 6600)
+			while True:
+				if delay <= 30:
+				  logger.debug('mpdConnect delay: ' + delay)
+				  delay = delay + 1
+				elif delay > 30:
+				  logger.debug('mpdConnect ping')
+				  client.ping()
+				  delay = 0
+		except Exception as e:
+				logger.error("main crashed {0}".format(str(e)))
+				logger.exception("Error")
+				raise
+		except:
+				logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+				raise
+		pass
