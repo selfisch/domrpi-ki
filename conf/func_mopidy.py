@@ -56,35 +56,35 @@ class mopidy:
 		mopidy.mpdDisconnect()
 
 
-    def play():
-        mopidy.mpdConnect()
-        state = client.status()['state'].split(":")
-        if 'play' in state:
-            client.pause()
-        elif 'pause' in state:
-            client.play()
-        mopidy.mpdDisconnect()
+	def play():
+		mopidy.mpdConnect()
+		state = client.status()['state'].split(":")
+		if 'play' in state:
+				client.pause()
+		elif 'pause' in state:
+				client.play()
+		mopidy.mpdDisconnect()
 
 
-    def stop():
-        mopidy.mpdConnect()
-        state = client.status()['state'].split(":")
-        if 'play' in state:
-            client.stop()
-        mopidy.mpdDisconnect()
+	def stop():
+		mopidy.mpdConnect()
+		state = client.status()['state'].split(":")
+		if 'play' in state:
+				client.stop()
+		mopidy.mpdDisconnect()
 
 
-    def next():
-        mopidy.mpdConnect()
-        state = client.status()['state'].split(":")
-        if 'play' in state:
-            client.next()
-        mopidy.mpdDisconnect()
+def next():
+		mopidy.mpdConnect()
+		state = client.status()['state'].split(":")
+		if 'play' in state:
+				client.next()
+		mopidy.mpdDisconnect()
 
 
-    def previous():
-        mopidy.mpdConnect()
-        state = client.status()['state'].split(":")
-        if 'play' in state:
-            client.previous()
-        mopidy.mpdDisconnect()
+def previous():
+		mopidy.mpdConnect()
+		state = client.status()['state'].split(":")
+		if 'play' in state:
+				client.previous()
+		mopidy.mpdDisconnect()
