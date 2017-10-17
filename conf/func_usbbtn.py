@@ -72,10 +72,10 @@ class usbbtn:
             print('aux')
         elif val == 589836:
             print('cd')
-        elif val == :
-            print('vol down')
-        elif val == :
-            print('vol down')
+        # elif val == :
+        #     print('vol down')
+        # elif val == :
+        #     print('vol down')
 
 
     def button_press(self):
