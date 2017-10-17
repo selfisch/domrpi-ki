@@ -8,6 +8,8 @@ logger = logging.getLogger('main')
 class cardreader:
     def __init__(self):
         path = os.path.dirname(os.path.realpath(__file__))
+        keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
+
         # prüfe Reader und richte ihn ein
         if not os.path.isfile(path + '/if_cardreader.py'):
             # Frage, ob ein Kartenleser verwendet werden soll
