@@ -6,7 +6,7 @@ logger = logging.getLogger('main')
 
 
 class usbbtn:
-    def __init__():
+    def __init__(self):
         # prüfe die Buttons und richte sie ein
         if not os.path.isfile(path + '/if_usbbtn.py'):
             devices = [InputDevice(fn) for fn in list_devices()]
