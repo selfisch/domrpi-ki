@@ -42,6 +42,7 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 try:
     logger.info('Starte die Anwendung')
+    logger.debug(check_usbbtn)
     if not check_reader == 'n':
         _thread.start_new_thread(cardreader.read_card('read_card', True, ) )
     if not check_mouse == 'n':
