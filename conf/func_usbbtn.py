@@ -55,11 +55,12 @@ class usbbtn:
 
     def button_press(self):
         logger.debug('starte USB Buttons')
+        time_stamp = time.time()
         while True:
             r, w, x = select([if_usbbtn], [], [])
             for event in if_usbbtn.read():
                 if event.code == 4:
-                    global time_stamp = time.time()
+                    global time_stamp
                     time_now = time.time()
                     if (time_now - time_stamp) >= 0.3:
                         logger.debug('Button wurde gedrückt.')
