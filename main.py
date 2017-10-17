@@ -42,13 +42,13 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 try:
     logger.info('Starte die Anwendung')
-    logger.debug(check_usbbtn)
-    if not check_reader == 'n':
-        _thread.start_new_thread(cardreader.read_card('read_card', True, ) )
-    if not check_mouse == 'n':
-        _thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
-    if not check_usbbtn == 'n':
+    logger.debug('check_usbbtn: ' + check_usbbtn)
+    if check_usbbtn != 'n':
         _thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
+    if check_reader != 'n':
+        _thread.start_new_thread(cardreader.read_card('read_card', True, ) )
+    if check_mouse != 'n':
+        _thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
 except (SystemExit):
     logger.info("Anwendung beendet")
     exit()
