@@ -1,7 +1,8 @@
 import csv, os
-from random import randint
+from random import randint, logging
 from mpd import MPDClient
 
+logger = logging.getLogger('main')
 client = MPDClient()    # create client object
 
 class mopidy:
