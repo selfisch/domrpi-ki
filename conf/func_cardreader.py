@@ -92,9 +92,9 @@ class cardreader:
 
     def read_card(self, threadName, bool):
         logger.debug('starte read_card')
-        stri = ''
-        key = ''
         while True:
+            stri = ''
+            key = ''
             logger.debug('erste read_card while Schleife')
             while key != 'KEY_ENTER':
                 logger.debug('zweite read_card while Schleife')
@@ -102,7 +102,6 @@ class cardreader:
                 for event in if_cardreader.read():
                     if event.type == 1 and event.value == 1:
                         stri += keys[event.code]
-#                        print( keys[ event.code ] )
                         key = ecodes.KEY[event.code]
                         stri = stri[:-1]
             if stri != '':
