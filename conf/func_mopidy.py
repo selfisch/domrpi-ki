@@ -77,7 +77,7 @@ class mopidy:
 		# state = client.status()['state'].split(":")
 		# if 'play' in state:
 		client.next()
-	    mopidy.mpdDisconnect()
+		mopidy.mpdDisconnect()
 
 
 	def previous():
