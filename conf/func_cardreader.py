@@ -109,6 +109,6 @@ class cardreader:
             stri = stri[:-1]
             logger.debug(stri)
             if stri != '':
-                logger.debug('read_card hat folgende plist_id empfangen: stri')
-                mouse.play_card(stri)
+                logger.debug('read_card hat folgende plist_id empfangen: ' + stri)
+                cardreader.play_card(stri)
 #        return stri[:-1]
