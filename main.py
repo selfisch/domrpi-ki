@@ -46,7 +46,7 @@ try:
     read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
     mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 
-    mpd_connect_thread.start()
+    #mpd_connect_thread.start()
 
     if check_usbbtn != 'n':
         #_thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
