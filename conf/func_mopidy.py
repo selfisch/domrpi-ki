@@ -4,6 +4,9 @@ from mpd import MPDClient
 
 logger = logging.getLogger('main')
 
+global client
+client = MPDClient()    # create client object
+
 class mopidy:
 	def mpdDisconnect():
 		client.disconnect()
