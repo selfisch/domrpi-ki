@@ -11,11 +11,11 @@ class mopidy:
 				client.idletimeout = None
 
 
-		def mpdConnect(self):
+		def mpdConnect():
 				client.connect("localhost", 6600)
 
 
-		def mpdDisconnect(self):
+		def mpdDisconnect():
 				client.disconnect()
 
 
@@ -47,7 +47,7 @@ class mopidy:
 
 
 		def play(uri, play_mode):
-				mopidy.mpdConnect(x)
+				mopidy.mpdConnect()
 				client.clear()
 				client.add(uri)
 				if play_mode == 'play':
@@ -56,4 +56,4 @@ class mopidy:
 				elif play_mode == 'shuffle':
 					client.random(1)
 					client.play()
-				mopidy.mpdDisconnect(x)
+				mopidy.mpdDisconnect()
