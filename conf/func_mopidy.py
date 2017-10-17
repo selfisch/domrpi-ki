@@ -15,7 +15,7 @@ class mopidy:
 		client.connect("localhost", 6600)
 
 	def mpdDisconnect():
-        client.close()
+		client.close()
 		client.disconnect()
 
 
