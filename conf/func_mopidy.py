@@ -67,7 +67,7 @@ class mopidy:
 		#if 'play' in state:
 		#	client.pause()
 		#elif 'pause' in state:
-			client.play()
+		client.play()
 		mopidy.mpdDisconnect()
 
 
