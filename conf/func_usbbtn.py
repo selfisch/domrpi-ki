@@ -51,6 +51,7 @@ class usbbtn:
         while True:
             r, w, x = select([if_usbbtn], [], [])
             for event in if_usbbtn.read():
-                logger.info('Button wurde gedrückt.')
-                logger.info(event)
-                print(event)
+                if event.code == 4:
+                    logger.info('Button wurde gedrückt.')
+                    logger.info(event)
+                    print(event)
