@@ -62,4 +62,4 @@ class usbbtn:
                     logger.debug('Button wurde gedrückt.')
                     logger.info(event)
                     print(event)
-                    usbbtn.buttons(event.val)
+                    usbbtn.buttons(event.value)
