@@ -88,10 +88,10 @@ class mopidy:
 	def mpdConnect(self):
 		try:
 			delay = 0
-      # MPDClient config
-      client.timeout = 10
-      client.idletimeout = None
-      client.connect("localhost", 6600)
+			# MPDClient config
+			client.timeout = 10
+			client.idletimeout = None
+			client.connect("localhost", 6600)
 			while True:
 				if delay <= 30:
 				  logger.debug('mpdConnect delay: ' + delay)
