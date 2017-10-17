@@ -26,6 +26,7 @@ check_mouse = mouse.check_mouse()
 mopidy = mopidy()
 # lade die Class usbbtn in die Variable usbbtn
 usbbtn = usbbtn()
+check_usbbtn = usbbtn.check_usbbtn()
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)

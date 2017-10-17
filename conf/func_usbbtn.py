@@ -38,6 +38,13 @@ class usbbtn:
             sys.exit()
 
 
+    def check_usbbtn(self):
+        path = os.path.dirname(os.path.realpath(__file__))
+        with open(path + '/if_mouse.py','r') as f:
+            deviceName = f.read()
+        return deviceName
+
+
     def button_press(self, threadName, bool):
         logger.info('starte USB Buttons')
         while True:
