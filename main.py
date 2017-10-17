@@ -16,6 +16,7 @@ from func_cardreader import cardreader
 from func_usbbtn import usbbtn
 from func_mousebtn import mouse
 from func_mopidy import mopidy
+from persistMPDclient import PersistentMPDClient
 # lade die Class cardreader in die Variable cardreader
 cardreader = cardreader()
 check_reader = cardreader.check_reader()
@@ -27,6 +28,8 @@ mopidy = mopidy()
 # lade die Class usbbtn in die Variable usbbtn
 usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
+
+persistMPDclient = PersistentMPDClient()
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
