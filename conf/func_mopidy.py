@@ -15,11 +15,12 @@ class mopidy:
 		client.connect("localhost", 6600)
 
 	def mpdDisconnect():
+        client.close()
 		client.disconnect()
 
 
 	def randomPlaylist():
-		#mpdConnect()
+		mopidy.mpdConnect()
 		uris = csv.reader(open("plist.csv", "r"),delimiter=';')
 		plist = []
 		plist.extend(uris)
@@ -42,7 +43,7 @@ class mopidy:
 		elif play_mode == 'shuffle':
 			client.random(1)
 			client.play()
-		m#pdDisconnect()
+		mopidy.mpdDisconnect()
 
 
 	def playList(uri, play_mode):
@@ -62,10 +63,10 @@ class mopidy:
 		mopidy.mpdConnect()
 		#mpd_status = client.ping()
 		#logger.debug('mpd status: ' + str(mpd_status))
-		state = client.status()['state'].split(":")
-		if 'play' in state:
-			client.pause()
-		elif 'pause' in state:
+		#state = client.status()['state'].split(":")
+		#if 'play' in state:
+		#	client.pause()
+		#elif 'pause' in state:
 			client.play()
 		mopidy.mpdDisconnect()
 
