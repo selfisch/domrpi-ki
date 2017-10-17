@@ -2,6 +2,7 @@ import csv, os
 from random import randint
 from mpd import MPDClient
 
+client = MPDClient()    # create client object
 
 class mopidy:
 	def __init__(self):
@@ -9,7 +10,6 @@ class mopidy:
 
 	def mpdConnect():
 		# MPDClient config
-		client = MPDClient()    # create client object
 		client.timeout = 10     # network timeout in seconds (floats allowed), default: None
 		client.idletimeout = None
 		client.connect("localhost", 6600)
