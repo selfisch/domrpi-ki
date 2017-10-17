@@ -5,14 +5,14 @@ from mpd import MPDClient
 
 class mopidy:
 		def __init__(self):
-            print('init')
+                print('init')
 
 		def mpdConnect():
-			# MPDClient config
-			client = MPDClient()    # create client object
-			client.timeout = 10     # network timeout in seconds (floats allowed), default: None
-			client.idletimeout = None
-			client.connect("localhost", 6600)
+    			# MPDClient config
+    			client = MPDClient()    # create client object
+    			client.timeout = 10     # network timeout in seconds (floats allowed), default: None
+    			client.idletimeout = None
+    			client.connect("localhost", 6600)
 
 
 		def mpdDisconnect():
