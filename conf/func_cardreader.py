@@ -95,7 +95,9 @@ class cardreader:
         stri = ''
         key = ''
         while True:
+            logger.debug('erste read_card while Schleife')
             while key != 'KEY_ENTER':
+                logger.debug('zweite read_card while Schleife')
                 r, w, x = select([if_cardreader], [], [])
                 for event in if_cardreader.read():
                     if event.type == 1 and event.value == 1:
