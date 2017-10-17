@@ -60,24 +60,6 @@ class cardreader:
         return deviceName
 
 
-    def read_card(self, threadName, bool):
-        logger.info('starte read_card')
-        stri = ''
-        key = ''
-        while True:
-            while key != 'KEY_ENTER':
-                r, w, x = select([if_cardreader], [], [])
-                for event in if_cardreader.read():
-                    if event.type == 1 and event.value == 1:
-                        stri += keys[event.code]
-#                        print( keys[ event.code ] )
-                        key = ecodes.KEY[event.code]
-                        stri = stri[:-1]
-            if stri != '':
-                play_card(stri)
-#        return stri[:-1]
-
-
     def play_card(plist_id):
         #logger.info('starte play_card')
         while True:
@@ -106,3 +88,21 @@ class cardreader:
                     mpdDisconnect()
                 else:
                     logger.info('Card scheint noch nicht mit einer Playlist verknüpft.')
+
+
+    def read_card(self, threadName, bool):
+        logger.info('starte read_card')
+        stri = ''
+        key = ''
+        while True:
+            while key != 'KEY_ENTER':
+                r, w, x = select([if_cardreader], [], [])
+                for event in if_cardreader.read():
+                    if event.type == 1 and event.value == 1:
+                        stri += keys[event.code]
+#                        print( keys[ event.code ] )
+                        key = ecodes.KEY[event.code]
+                        stri = stri[:-1]
+            if stri != '':
+                play_card(stri)
+#        return stri[:-1]
