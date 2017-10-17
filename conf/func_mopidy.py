@@ -97,7 +97,7 @@ class mopidy:
 			client.connect("localhost", 6600)
 			while True:
 				if delay <= 30:
-				  logger.debug('mpdConnect delay: ' + delay)
+				  logger.debug('mpdConnect delay: ' + str(delay))
 				  delay = delay + 1
 				elif delay > 30:
 				  logger.debug('mpdConnect ping')
