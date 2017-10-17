@@ -80,7 +80,7 @@ class cardreader:
             logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
 
 
-    def read_card(self, threadName, bool):
+    def read_card(self):
         logger.debug('starte read_card')
         while True:
             stri = ''

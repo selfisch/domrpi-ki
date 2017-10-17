@@ -46,7 +46,7 @@ class usbbtn:
         return deviceName
 
 
-    def button_press(self, threadName, bool):
+    def button_press(self):
         logger.debug('starte USB Buttons')
         while True:
             r, w, x = select([if_usbbtn], [], [])

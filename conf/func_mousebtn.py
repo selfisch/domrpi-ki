@@ -61,7 +61,7 @@ class mouse:
         return deviceName
 
 
-    def mouse_press(self, theadName, bool):
+    def mouse_press(self):
         logger.debug('Starte mouse_press')
         while True:
             r, w, x = select([if_mouse], [], [])
