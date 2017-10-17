@@ -1,6 +1,6 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path, sys, logging, csv
+import os.path, sys, logging, csv, time
 
 logger = logging.getLogger('main')
 
@@ -59,7 +59,11 @@ class usbbtn:
             r, w, x = select([if_usbbtn], [], [])
             for event in if_usbbtn.read():
                 if event.code == 4:
-                    logger.debug('Button wurde gedrückt.')
-                    logger.info(event)
-                    print(event)
-                    usbbtn.buttons(event.value)
+                    global time_stamp
+                    time_now = time.time()
+                    if (time_now - time_stamp) >= 0.3:
+                        logger.debug('Button wurde gedrückt.')
+                        logger.info(event)
+                        print(event)
+                        usbbtn.buttons(event.value)
+                    time_stamp = time_now
