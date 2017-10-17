@@ -1,5 +1,5 @@
-import csv, os
-from random import randint, logging
+import csv, os, logging
+from random import randint
 from mpd import MPDClient
 
 logger = logging.getLogger('main')
