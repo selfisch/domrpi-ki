@@ -1,7 +1,7 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
 import os.path, sys, logging, csv
-from func_mopidy import play
+from func_mopidy import mopidy
 
 logger = logging.getLogger('main')
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
@@ -75,7 +75,7 @@ class cardreader:
                 play_mode = row[2]
                 logger.debug("URI to pass: " + uri)
                 logger.debug("Playmode: " + play_mode)
-                play(uri, play_mode)
+                mopidy.play(uri, play_mode)
         if uri == '':
             logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
 
