@@ -46,7 +46,7 @@ class mopidy:
 				mpdDisconnect()
 
 
-	def play(uri, play_mode):
+		def play(uri, play_mode):
 				mopidy.mpdConnect()
 				client.clear()
 				client.add(uri)
@@ -56,4 +56,4 @@ class mopidy:
 				elif play_mode == 'shuffle':
 					client.random(1)
 					client.play()
-				mpdDisconnect()
+				mopidy.mpdDisconnect()
