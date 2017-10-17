@@ -52,7 +52,7 @@ class mopidy:
 		#mopidy.mpdDisconnect()
 
 
-	def play(self):
+	def play():
 		#mopidy.mpdConnect()
 		#mpd_status = client.ping()
 		#logger.debug('mpd status: ' + str(mpd_status))
@@ -64,7 +64,7 @@ class mopidy:
 		#mopidy.mpdDisconnect()
 
 
-	def stop(self):
+	def stop():
 		#mopidy.mpdConnect()
 		state = client.status()['state'].split(":")
 		if 'play' in state:
@@ -72,7 +72,7 @@ class mopidy:
 		#mopidy.mpdDisconnect()
 
 
-	def next(self):
+	def next():
 		#mopidy.mpdConnect()
 		state = client.status()['state'].split(":")
 		if 'play' in state:
