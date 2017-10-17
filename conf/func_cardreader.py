@@ -103,7 +103,9 @@ class cardreader:
                     if event.type == 1 and event.value == 1:
                         stri += keys[event.code]
                         key = ecodes.KEY[event.code]
+                        logger.debug(stri)
                         stri = stri[:-1]
+                        logger.debug(stri)
             if stri != '':
                 logger.debug('read_card hat folgende plist_id empfangen: stri')
                 play_card(stri)
