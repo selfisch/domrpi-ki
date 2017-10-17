@@ -39,13 +39,18 @@ if not os.path.exists('conf'):
 
 path = os.path.dirname(os.path.realpath(__file__))
 
+global client
+client = MPDClient()    # create client object
 
 try:
     logger.info('Starte die Anwendung')
+    mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
     button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
     read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
     mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 
+    mpd_connect_thread.start()
+    
     if check_usbbtn != 'n':
         #_thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
         button_press_thread.start()

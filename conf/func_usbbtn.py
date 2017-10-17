@@ -100,3 +100,4 @@ class usbbtn:
         except:
             logger.info("Unbekannter Fehler:", sys.exc_info()[0])
             raise
+        pass

@@ -3,22 +3,14 @@ from random import randint
 from mpd import MPDClient
 
 logger = logging.getLogger('main')
-client = MPDClient()    # create client object
 
 class mopidy:
-	def mpdConnect():
-		# MPDClient config
-		client.timeout = 10     # network timeout in seconds (floats allowed), default: None
-		client.idletimeout = None
-		client.connect("localhost", 6600)
-
-
 	def mpdDisconnect():
 		client.disconnect()
 
 
 	def randomPlaylist():
-		mpdConnect()
+		#mpdConnect()
 		uris = csv.reader(open("plist.csv", "r"),delimiter=';')
 		plist = []
 		plist.extend(uris)
@@ -41,11 +33,11 @@ class mopidy:
 		elif play_mode == 'shuffle':
 			client.random(1)
 			client.play()
-		mpdDisconnect()
+		m#pdDisconnect()
 
 
 	def playList(uri, play_mode):
-		mopidy.mpdConnect()
+		#mopidy.mpdConnect()
 		client.clear()
 		client.add(uri)
 		if play_mode == 'play':
@@ -54,40 +46,65 @@ class mopidy:
 		elif play_mode == 'shuffle':
 			client.random(1)
 			client.play()
-		mopidy.mpdDisconnect()
+		#mopidy.mpdDisconnect()
 
 
 	def play():
-		mopidy.mpdConnect()
-		mpd_status = client.ping()
-		logger.debug('mpd status: ' + str(mpd_status))
+		#mopidy.mpdConnect()
+		#mpd_status = client.ping()
+		#logger.debug('mpd status: ' + str(mpd_status))
 		state = client.status()['state'].split(":")
 		if 'play' in state:
-				client.pause()
+			client.pause()
 		elif 'pause' in state:
-				client.play()
-		mopidy.mpdDisconnect()
+			client.play()
+		#mopidy.mpdDisconnect()
 
 
 	def stop():
-		mopidy.mpdConnect()
+		#mopidy.mpdConnect()
 		state = client.status()['state'].split(":")
 		if 'play' in state:
-				client.stop()
-		mopidy.mpdDisconnect()
+			client.stop()
+		#mopidy.mpdDisconnect()
 
 
 	def next():
-		mopidy.mpdConnect()
+		#mopidy.mpdConnect()
 		state = client.status()['state'].split(":")
 		if 'play' in state:
-				client.next()
-		mopidy.mpdDisconnect()
+			client.next()
+		#mopidy.mpdDisconnect()
 
 
 	def previous():
-		mopidy.mpdConnect()
+		#mopidy.mpdConnect()
 		state = client.status()['state'].split(":")
 		if 'play' in state:
-				client.previous()
-		mopidy.mpdDisconnect()
+			client.previous()
+		#mopidy.mpdDisconnect()
+
+
+	def mpdConnect(self):
+        try:
+            delay = 0
+            while True:
+                if delay <= 30:
+                    logger.debug('mpdConnect delay: ' + delay)
+                    delay = delay + 1
+                elif delay > 30:
+                    # MPDClient config
+                    #client.timeout = 10     # network timeout in seconds (floats allowed), default: None
+                    #client.idletimeout = None
+                    #client.connect("localhost", 6600)
+                    logger.debug('mpdConnect ping')
+                    client.ping()
+                    delay = 0
+        except Exception as e:
+            logger.error("main crashed {0}".format(str(e)))
+            logger.exception("Error")
+            raise
+        except:
+            logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+            raise
+        pass
