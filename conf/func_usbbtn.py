@@ -46,12 +46,20 @@ class usbbtn:
         return deviceName
 
 
+    def buttons(val):
+        if val = 589827:
+            print('vol up')
+        elif val = 589825:
+            print('vol down')
+
+
     def button_press(self):
         logger.debug('starte USB Buttons')
         while True:
             r, w, x = select([if_usbbtn], [], [])
             for event in if_usbbtn.read():
                 if event.code == 4:
-                    logger.info('Button wurde gedrückt.')
+                    logger.debug('Button wurde gedrückt.')
                     logger.info(event)
                     print(event)
+                    usbbtn.buttons(event.val)
