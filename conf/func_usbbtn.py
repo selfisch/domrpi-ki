@@ -47,9 +47,9 @@ class usbbtn:
 
 
     def buttons(val):
-        if val = 589827:
+        if val == 589827:
             print('vol up')
-        elif val = 589825:
+        elif val == 589825:
             print('vol down')
 
 
