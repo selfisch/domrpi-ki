@@ -74,16 +74,7 @@ class cardreader:
                 play_mode = row[2]
                 logger.debug("URI to pass: " + uri)
                 logger.debug("Playmode: " + play_mode)
-                mpdConnect()
-                client.clear()
-                client.add(uri)
-                if play_mode == 'play':
-                    client.random(0)
-                    client.play()
-                elif play_mode == 'shuffle':
-                    client.random(1)
-                    client.play()
-                mpdDisconnect()
+                mopidy.play(uri, play_mode)
         if uri == '':
             logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
 
@@ -93,7 +84,6 @@ class cardreader:
         while True:
             stri = ''
             key = ''
-            logger.debug('erste read_card while Schleife')
             while key != 'KEY_ENTER':
                 r, w, x = select([if_cardreader], [], [])
                 for event in if_cardreader.read():

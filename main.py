@@ -35,6 +35,9 @@ check_reader = cardreader.check_reader()
 mouse = mouse()
 check_mouse = mouse.check_mouse()
 
+# lade die Class mopidy in die Variable mopidy
+mopidy = mopidy()
+
 try:
     logger.info('Starte die Anwendung')
     if not check_reader == 'n':
