@@ -61,7 +61,7 @@ class cardreader:
 
 
     def play_card(plist_id):
-        logger.debug('play_card wurde mit folgender plist_id aufgerufen: ')
+        logger.debug('play_card wurde mit folgender plist_id aufgerufen: ' + plist_id)
         while True:
             uri = ''
             play_mode = ''
@@ -87,7 +87,7 @@ class cardreader:
                         client.play()
                     mpdDisconnect()
                 else:
-                    logger.info('Card scheint noch nicht mit einer Playlist verknüpft.')
+                    logger.info('Card ' + plist_id + ' scheint noch nicht mit einer Playlist verknüpft.')
 
 
     def read_card(self, threadName, bool):
@@ -106,8 +106,9 @@ class cardreader:
 #                        logger.debug(stri)
 #                        stri = stri[:-1]
 #                        logger.debug(stri)
+            stri = stri[:-1]
             logger.debug(stri)
             if stri != '':
                 logger.debug('read_card hat folgende plist_id empfangen: stri')
-                play_card(stri)
+                mouse.play_card(stri)
 #        return stri[:-1]
