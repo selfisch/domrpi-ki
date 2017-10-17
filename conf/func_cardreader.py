@@ -1,6 +1,6 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path, sys, logging
+import os.path, sys, logging, csv
 
 logger = logging.getLogger('main')
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"

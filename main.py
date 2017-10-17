@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import csv, os, sys, _thread
+import os, sys, _thread
 from random import randint
 from mpd import MPDClient
 from select import select
