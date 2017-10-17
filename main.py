@@ -13,7 +13,7 @@ logger = log.setup_custom_logger('main')
 
 from func_mopidy import mopidy
 from func_cardreader import cardreader
-#from func_usbbtn import usbbtn
+from func_usbbtn import usbbtn
 from func_mousebtn import mouse
 from func_mopidy import mopidy
 # lade die Class cardreader in die Variable cardreader
@@ -24,6 +24,8 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 # lade die Class mopidy in die Variable mopidy
 mopidy = mopidy()
+# lade die Class usbbtn in die Variable usbbtn
+usbbtn = usbbtn()
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -43,6 +45,8 @@ try:
         _thread.start_new_thread(cardreader.read_card('read_card', True, ) )
     if not check_mouse == 'n':
         _thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
+    if not check_usbbtn = 'n':
+        _thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
 except (SystemExit):
     logger.info("Anwendung beendet")
     exit()

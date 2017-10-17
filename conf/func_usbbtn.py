@@ -2,13 +2,13 @@ from evdev import InputDevice, ecodes, list_devices
 from select import select
 import os.path, sys, logging, csv
 
-logger = logging.getLogger('root')
+logger = logging.getLogger('main')
 
 
 class usbbtn:
     def __init__():
         # prüfe die Buttons und richte sie ein
-        if not os.path.isfile(path + '/conf/if-usbbtn.py'):
+        if not os.path.isfile(path + '/if_usbbtn.py'):
             devices = [InputDevice(fn) for fn in list_devices()]
             i = 0
             print("Choose button input from list")
@@ -18,31 +18,31 @@ class usbbtn:
 
             dev_id = int(input('Device Number: '))
 
-            with open(path + '/conf/if-usbbtn.py','w') as f:
+            with open(path + '/if_usbbtn.py','w') as f:
             	f.write(devices[dev_id].name)
             	f.close()
 
-        # Maus konfigurieren
-        with open(path + '/conf/if-usbbtn.py','r') as f:
+        # USB Buttons konfigurieren
+        with open(path + '/if_usbbtn.py','r') as f:
             deviceName = f.read()
             devices = [InputDevice(fn) for fn in list_devices()]
         for device in devices:
             if device.name == deviceName:
-                global usbbtn
-                usbbtn = device
+                global if_usbbtn
+                if_usbbtn = device
                 break
         try:
-            usbbtn
+            if_usbbtn
         except:
             logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
             sys.exit()
 
 
-    def buttons(x, y):
-        logger.info('starte Buttons')
+    def button_press(self, threadName, bool):
+        logger.info('starte USB Buttons')
         while True:
-            r, w, x = select([usbbtn], [], [])
-            for event in usbbtn.read():
+            r, w, x = select([if_usbbtn], [], [])
+            for event in if_usbbtn.read():
                 logger.info('Button wurde gedrückt.')
                 logger.info(event)
                 print(event)
