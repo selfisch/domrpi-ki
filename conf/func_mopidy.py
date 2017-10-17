@@ -1,4 +1,4 @@
-import csv, os, logging
+import csv, os, logging, time
 from random import randint
 from mpd import MPDClient
 
@@ -99,6 +99,7 @@ class mopidy:
 				if delay <= 30:
 				  logger.debug('mpdConnect delay: ' + str(delay))
 				  delay = delay + 1
+                  time.sleep(1)
 				elif delay > 30:
 				  logger.debug('mpdConnect ping')
 				  client.ping()
