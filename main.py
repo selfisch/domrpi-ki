@@ -15,6 +15,15 @@ from func_mopidy import mopidy
 from func_cardreader import cardreader
 #from func_usbbtn import usbbtn
 from func_mousebtn import mouse
+from func_mopidy import mopidy
+# lade die Class cardreader in die Variable cardreader
+cardreader = cardreader()
+check_reader = cardreader.check_reader()
+# lade die Class mouse in die Variable mouse
+mouse = mouse()
+check_mouse = mouse.check_mouse()
+# lade die Class mopidy in die Variable mopidy
+mopidy = mopidy()
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -27,16 +36,6 @@ if not os.path.exists('conf'):
 
 path = os.path.dirname(os.path.realpath(__file__))
 
-# lade die Class cardreader in die Variable cardreader
-cardreader = cardreader()
-check_reader = cardreader.check_reader()
-
-# lade die Class mouse in die Variable mouse
-mouse = mouse()
-check_mouse = mouse.check_mouse()
-
-# lade die Class mopidy in die Variable mopidy
-mopidy = mopidy()
 
 try:
     logger.info('Starte die Anwendung')
