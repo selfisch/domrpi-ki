@@ -69,7 +69,6 @@ class cardreader:
             rows = csv.reader(open("plist.csv", "r"), delimiter=';')
             plist = []
             plist.extend(rows)
-            #print(plist)
             for row in plist:
                 if row[3] == card:
                     uri = row[1]
@@ -88,6 +87,7 @@ class cardreader:
                     mpdDisconnect()
                 else:
                     logger.info('Card ' + plist_id + ' scheint noch nicht mit einer Playlist verknüpft.')
+                    break
 
 
     def read_card(self, threadName, bool):
