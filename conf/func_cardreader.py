@@ -84,8 +84,8 @@ class cardreader:
                     client.random(1)
                     client.play()
                 mpdDisconnect()
-            else:
-                logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
+        if uri == '':
+            logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
 
 
     def read_card(self, threadName, bool):
@@ -95,18 +95,12 @@ class cardreader:
             key = ''
             logger.debug('erste read_card while Schleife')
             while key != 'KEY_ENTER':
-                logger.debug('zweite read_card while Schleife')
                 r, w, x = select([if_cardreader], [], [])
                 for event in if_cardreader.read():
                     if event.type == 1 and event.value == 1:
                         stri += keys[event.code]
                         key = ecodes.KEY[event.code]
-#                        logger.debug(stri)
-#                        stri = stri[:-1]
-#                        logger.debug(stri)
             stri = stri[:-1]
-            logger.debug(stri)
             if stri != '':
-                logger.debug('read_card hat folgende plist_id empfangen: ' + stri)
+                logger.debug('read_card hat folgende plist_id erzeugt: ' + stri)
                 cardreader.play_card(stri)
-#        return stri[:-1]
