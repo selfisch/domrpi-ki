@@ -104,3 +104,5 @@ class cardreader:
                         client.random(1)
                         client.play()
                     mpdDisconnect()
+                else:
+                    logger.info('Card scheint noch nicht mit einer Playlist verknüpft.')
