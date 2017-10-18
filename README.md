@@ -72,6 +72,7 @@ ToDo:
 - logrotate muss eingebaut werden
 - Skript läuft nach der Installation:
   - es wird noch eine Abfrage während der Installation benötigt, ob ein Reader oder Buttons vorhanden sind
+- Wiedergabefunktionen via Source Buttons auswählen(umschalten zwischen Mopidy und Spotify Receiver)
 - Stromverbrauch messen
 - geeignetes Display suchen
 - Lötarbeiten LEDs anzubinden
