@@ -29,8 +29,6 @@ mopidy = mopidy()
 usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
 
-persistMPDclient = PersistentMPDClient()
-
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)

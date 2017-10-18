@@ -8,6 +8,8 @@ logger = logging.getLogger('main')
 global client
 client = MPDClient()    # create client object
 
+persistMPDclient = PersistentMPDClient()
+
 class mopidy:
 	def mpdConnect():
 		# MPDClient config
