@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 import os, sys, _thread, threading
-from random import randint
-from mpd import MPDClient
-from select import select
+#from random import randint
+#from mpd import MPDClient
+#from select import select
 
 # conf Unterverzeichnis mit durchsuchen
 sys.path.append('./conf')
