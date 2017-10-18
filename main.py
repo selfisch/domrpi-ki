@@ -16,7 +16,7 @@ from func_cardreader import cardreader
 from func_usbbtn import usbbtn
 from func_mousebtn import mouse
 from func_mopidy import mopidy
-from persistMPDclient import PersistentMPDClient
+
 # lade die Class cardreader in die Variable cardreader
 cardreader = cardreader()
 check_reader = cardreader.check_reader()
