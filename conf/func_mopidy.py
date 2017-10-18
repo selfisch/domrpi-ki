@@ -1,14 +1,14 @@
 import csv, os, logging, time
 from random import randint
 from mpd import MPDClient
-from persistMPDclient import PersistentMPDClient
+#from persistMPDclient import PersistentMPDClient
 
 logger = logging.getLogger('main')
 
 global client
 client = MPDClient()    # create client object
 
-persistMPDclient = PersistentMPDClient()
+#persistMPDclient = PersistentMPDClient()
 
 class mopidy:
 	def mpdConnect():
