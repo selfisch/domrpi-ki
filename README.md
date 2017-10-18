@@ -48,6 +48,13 @@ Falls jemand etwas derartiges schon gemacht hat, ich bin für Vorschläge offen 
 - der alte RPi2 wird durch einen neuen RPi3 ersetzt. Dieser ist bereits im Testeinsatz. Außerdem wurde ein Buttoninterface und ein Kartenleser angebunden, für die nächste Ausbaustufe.
 Eigentlich hätte ich die LEDs für die Knöpfe auf der Front auch gerne noch eingebaut bevor das ganze aufgestellt wird, das würde aber eine Inbetriebnahme enorm in Zeitverzug bringen, da ich aktuell keine Zeit für die Lötarbeiten an der Platine habe.
 
+### Update: 18.10.17
+- es läuft, im jetzigen Stand gibt es ein Instal Skript währenddessen man auswählen kann, welche Eingabemethode man nutzen möchte. Da ich in Zukunft nur USB-Buttons und Cardreader nutzen möchte, wird die Mausalternative nicht weiter gepflegt.
+Was noch fehlt ist der Test und Einsatz mit dem Hifiberry, da ich hier bisher nur einen besitze und dieser im Einsatz bei der aktuellen Lösung ist. Da der Go-Live aber kurz bevor steht, wird das der nächste Schritt.
+Danach mache ich mir noch ein paar Gedanken zu
+  - Random Playlisten
+  - andere Funktionen wie z.B. auf einen Spotify Reveiver via "Source Buttons" an der Aiwa Anlage umschalten
+  - und mal schauen, was mir noch so in den Sinn kommt :-)
 
 ## Installation
 Die Installation gestaltet sich(hoffentlich für jeden) relativ einfach.
