@@ -95,13 +95,13 @@ class usbbtn:
             print('stop')
             mopidy.stop()
         elif val == 589835:
-            source(tuner)
+            usbbtn.source(tuner)
         elif val == 589834:
-            source(aux)
+            usbbtn.source(aux)
         elif val == 589836:
-            source(cd)
+            usbbtn.source(cd)
         elif val == 589833:
-            source(tape)
+            usbbtn.source(tape)
 
 
     def source(self, source):
