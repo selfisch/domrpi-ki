@@ -5,3 +5,4 @@ spotify.conf
 if_mouse*
 if_cardreader*
 if_usbbtn*
+__pycache__
