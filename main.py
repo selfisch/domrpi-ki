@@ -39,7 +39,7 @@ try:
     if check_usbbtn != 'n':
         button_press_thread.start()
 
-    usbbtn.source('tuner')
+#    usbbtn.source('tuner')
 
 except (SystemExit):
     logger.info("Anwendung beendet")
