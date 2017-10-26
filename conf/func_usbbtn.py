@@ -67,15 +67,29 @@ class usbbtn:
             print('stop')
             mopidy.stop()
         elif val == 589835:
-            print('tuner')
+            self.source(tuner)
         elif val == 589834:
-            print('aux')
+            self.source(aux)
         elif val == 589836:
-            print('cd')
-        # elif val == :
-        #     print('vol down')
-        # elif val == :
-        #     print('vol down')
+            self.source(cd)
+        elif val == 589833:
+            self.source(tape)
+
+
+    def source(self):
+        if source == 'tuner':
+            logger.debug('tuner')
+            if check_reader != 'n':
+                read_card_thread.start()
+            if check_mouse != 'n':
+                mouse_press_thread.start()
+
+        if source == 'aux':
+            logger.debug('aux')
+        if source == 'cd':
+            logger.debug('cd')
+        if source == 'tape':
+            logger.debug('tape')
 
 
     def button_press(self):
