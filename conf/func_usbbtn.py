@@ -104,7 +104,7 @@ class usbbtn:
             self.source(tape)
 
 
-    def source(self, source):
+    def source(source):
         if source == 'tuner':
             logger.debug('tuner')
             if check_reader != 'n':
