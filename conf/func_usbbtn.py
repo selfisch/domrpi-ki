@@ -113,6 +113,8 @@ class usbbtn:
                 mouse_press_thread.start()
 
         if source == 'aux':
+            if read_card_thread.is_alive():
+                read_card_thread.stop()
             logger.debug('aux')
         if source == 'cd':
             logger.debug('cd')
