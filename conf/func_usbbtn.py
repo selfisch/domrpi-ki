@@ -95,16 +95,16 @@ class usbbtn:
             print('stop')
             mopidy.stop()
         elif val == 589835:
-            usbbtn.source('self','tuner')
+            usbbtn.source('tuner')
         elif val == 589834:
-            usbbtn.source(aux)
+            usbbtn.source('aux')
         elif val == 589836:
-            usbbtn.source(cd)
+            usbbtn.source('cd')
         elif val == 589833:
-            usbbtn.source(tape)
+            usbbtn.source('tape')
 
 
-    def source(self, source):
+    def source(source):
         if source == 'tuner':
             logger.debug('tuner')
             if check_reader != 'n':
