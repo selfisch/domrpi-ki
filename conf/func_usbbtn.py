@@ -107,7 +107,7 @@ class usbbtn:
     def source(source):
         if source == 'tuner':
             logger.debug('tuner')
-            if check_reader != 'n' and not check_reader_thread.is_alive():
+            if check_reader != 'n' and not read_card_thread.is_alive():
                 read_card_thread.start()
             if check_mouse != 'n' and not mouse_press_thread.is_alive():
                 mouse_press_thread.start()
