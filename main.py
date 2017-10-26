@@ -50,14 +50,9 @@ try:
     #mpd_connect_thread.start()
 
     if check_usbbtn != 'n':
-        #_thread.start_new_thread(usbbtn.button_press('button_press', True, ) )
         button_press_thread.start()
-    if check_reader != 'n':
-        #_thread.start_new_thread(cardreader.read_card('read_card', True, ) )
-        read_card_thread.start()
-    if check_mouse != 'n':
-        #_thread.start_new_thread(mouse.mouse_press('mouse_press', True, ) )
-        mouse_press_thread.start()
+
+
 except (SystemExit):
     logger.info("Anwendung beendet")
     exit()
