@@ -10,7 +10,6 @@ class mouse:
         path = os.path.dirname(os.path.realpath(__file__))
         # prüfe Reader und richte ihn ein
         if not os.path.isfile(path + '/if_mouse.py'):
-            # Frage, ob ein Kartenleser verwendet werden soll
             auswahl = ''
             while auswahl != 'j' and auswahl != 'n':
                 auswahl = input('Möchten Sie eine Maus verwenden?(j/n): ')

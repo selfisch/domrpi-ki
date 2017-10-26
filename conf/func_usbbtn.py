@@ -1,43 +1,71 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os, sys, logging, csv, time
+import os, sys, logging, csv, time, threading
 
 logger = logging.getLogger('main')
 
 from func_mopidy import mopidy
+
+# lade die Class cardreader in die Variable cardreader
+from func_cardreader import cardreader
+cardreader = cardreader()
+check_reader = cardreader.check_reader()
+
+# lade die Class mouse in die Variable mouse
+from func_mousebtn import mouse
+mouse = mouse()
+check_mouse = mouse.check_mouse()
+
+mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
+read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
+mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 
 class usbbtn:
     def __init__(self):
         path = os.path.dirname(os.path.realpath(__file__))
         # prüfe die Buttons und richte sie ein
         if not os.path.isfile(path + '/if_usbbtn.py'):
-            devices = [InputDevice(fn) for fn in list_devices()]
-            i = 0
-            print("Choose button input from list")
-            for dev in devices:
-            	print(i, dev.name)
-            	i += 1
+            auswahl = ''
+            while auswahl != 'j' and auswahl != 'n':
+                auswahl = input('Möchten Sie ein Button Interface verwenden?(j/n): ')
 
-            dev_id = int(input('Device Number: '))
+            if auswahl == 'j' or auswahl == 'J':
+                devices = [InputDevice(fn) for fn in list_devices()]
+                i = 0
+                print("Wähle das Button Interface aus")
+                for dev in devices:
+                	print(i, dev.name)
+                	i += 1
 
-            with open(path + '/if_usbbtn.py','w') as f:
-            	f.write(devices[dev_id].name)
-            	f.close()
+                dev_id = int(input('Gerätenummer: '))
+
+                with open(path + '/if_usbbtn.py','w') as f:
+                	f.write(devices[dev_id].name)
+                	f.close()
+
+            if auswahl == 'n':
+                with open(path + '/if_usbbtn.py','w') as f:
+                	f.write(auswahl)
+                	f.close()
 
         # USB Buttons konfigurieren
         with open(path + '/if_usbbtn.py','r') as f:
             deviceName = f.read()
-            devices = [InputDevice(fn) for fn in list_devices()]
-        for device in devices:
-            if device.name == deviceName:
-                global if_usbbtn
-                if_usbbtn = device
-                break
-        try:
-            if_usbbtn
-        except:
-            logger.error('Could not find the device %s\n. Make sure is connected' % deviceName)
-            sys.exit()
+            if not deviceName =='n':
+                devices = [InputDevice(fn) for fn in list_devices()]
+
+                for device in devices:
+                    if device.name == deviceName:
+                        global if_usbbtn
+                        if_usbbtn = device
+                        break
+                try:
+                    if_usbbtn
+                except:
+                    logger.error('Kann das Gerät nicht finden:')
+                    logger.error(deviceName)
+                    logger.error('Bitte sicherstellen, dass es verbunden ist')
+                    sys.exit()
 
 
     def check_usbbtn(self):
@@ -76,7 +104,7 @@ class usbbtn:
             self.source(tape)
 
 
-    def source(self):
+    def source(self, source):
         if source == 'tuner':
             logger.debug('tuner')
             if check_reader != 'n':

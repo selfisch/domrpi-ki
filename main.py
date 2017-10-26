@@ -12,17 +12,9 @@ import log
 logger = log.setup_custom_logger('main')
 
 from func_mopidy import mopidy
-from func_cardreader import cardreader
 from func_usbbtn import usbbtn
-from func_mousebtn import mouse
 from func_mopidy import mopidy
 
-# lade die Class cardreader in die Variable cardreader
-cardreader = cardreader()
-check_reader = cardreader.check_reader()
-# lade die Class mouse in die Variable mouse
-mouse = mouse()
-check_mouse = mouse.check_mouse()
 # lade die Class mopidy in die Variable mopidy
 mopidy = mopidy()
 # lade die Class usbbtn in die Variable usbbtn
@@ -42,16 +34,12 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 try:
     logger.info('Starte die Anwendung')
-    mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
     button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
-    read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
-    mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
-
-    #mpd_connect_thread.start()
 
     if check_usbbtn != 'n':
         button_press_thread.start()
 
+    usbbtn.source('tuner')
 
 except (SystemExit):
     logger.info("Anwendung beendet")
