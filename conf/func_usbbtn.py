@@ -114,7 +114,7 @@ class usbbtn:
 
         if source == 'aux':
             if read_card_thread.is_alive():
-                read_card_thread.stop()
+                read_card_thread.exit()
             logger.debug('aux')
         if source == 'cd':
             logger.debug('cd')
