@@ -11,15 +11,23 @@ sys.path.append('./conf')
 import log
 logger = log.setup_custom_logger('main')
 
-from func_mopidy import mopidy
+from func_cardreader import cardreader
 from func_usbbtn import usbbtn
 from func_mopidy import mopidy
+from func_mousebtn import mouse
+
+mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
+read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
+mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
+button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
 
 # lade die Class mopidy in die Variable mopidy
-mopidy = mopidy()
+#mopidy = mopidy()
 # lade die Class usbbtn in die Variable usbbtn
-usbbtn = usbbtn()
+#usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
+check_reader = cardreader.check_reader()
+check_mouse = mouse.check_mouse()
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -34,12 +42,13 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 try:
     logger.info('Starte die Anwendung')
-    button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
 
     if check_usbbtn != 'n':
         button_press_thread.start()
-
-#    usbbtn.source('tuner')
+    if check_reader != 'n':
+        read_card_thread.start()
+    if check_mouse != 'n':
+        mouse_press_thread.start()
 
 except (SystemExit):
     logger.info("Anwendung beendet")
