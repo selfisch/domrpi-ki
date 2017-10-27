@@ -26,7 +26,9 @@ button_press_thread = threading.Thread(name='button_press', target=usbbtn.button
 # lade die Class usbbtn in die Variable usbbtn
 usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
+cardreader = cardreader()
 check_reader = cardreader.check_reader()
+mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 # in das Verzeichnis des Skript wechseln
