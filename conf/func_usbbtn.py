@@ -16,9 +16,6 @@ from func_mousebtn import mouse
 mouse = mouse()
 check_mouse = mouse.check_mouse()
 
-mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
-read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
-mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 
 class usbbtn:
     def __init__(self):
