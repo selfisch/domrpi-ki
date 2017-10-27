@@ -24,7 +24,7 @@ button_press_thread = threading.Thread(name='button_press', target=usbbtn.button
 # lade die Class mopidy in die Variable mopidy
 #mopidy = mopidy()
 # lade die Class usbbtn in die Variable usbbtn
-#usbbtn = usbbtn()
+usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
 check_reader = cardreader.check_reader()
 check_mouse = mouse.check_mouse()
