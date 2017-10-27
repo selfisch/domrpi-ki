@@ -16,11 +16,6 @@ from func_usbbtn import usbbtn
 from func_mopidy import mopidy
 from func_mousebtn import mouse
 
-mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
-read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
-mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
-button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
-
 # lade die Class mopidy in die Variable mopidy
 #mopidy = mopidy()
 # lade die Class usbbtn in die Variable usbbtn
@@ -30,6 +25,12 @@ cardreader = cardreader()
 check_reader = cardreader.check_reader()
 mouse = mouse()
 check_mouse = mouse.check_mouse()
+
+# Threads definieren
+mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
+read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
+mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
+button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
