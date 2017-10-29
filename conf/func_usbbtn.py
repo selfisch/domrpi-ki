@@ -22,7 +22,6 @@ global AuxPin
 TunerPin = 12
 AuxPin = 10
 
-global p
 global source
 source = 'Tuner'
 
@@ -85,27 +84,10 @@ class usbbtn:
     def source_led_blink(self):
         while True:
             logger.debug("source: " + source)
-            if source == 'Tuner':
-                p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
-                p.start(0)                     # Duty Cycle = 0
-            elif source == 'Aux':
-                p = GPIO.PWM(AuxPin, 1000)     # set Frequece to 1KHz
-                p.start(0)                     # Duty Cycle = 0
-
-            for dc in range(0, 101, 4):   # Increase duty cycle: 0~100
-                p.ChangeDutyCycle(dc)     # Change duty cycle
-                time.sleep(0.05)
             time.sleep(1)
-            for dc in range(100, -1, -4): # Decrease duty cycle: 100~0
-                p.ChangeDutyCycle(dc)
-                time.sleep(0.05)
-            time.sleep(1)
-            logger.debug("p: " + str(p))
-            p.stop()
 
 
     def destroy_led_blink():
-        p.stop()
         GPIO.output(TunerPin, GPIO.HIGH)    # turn off all leds
         GPIO.output(AuxPin, GPIO.HIGH)    # turn off all leds
         GPIO.cleanup()
@@ -141,10 +123,14 @@ class usbbtn:
             #usbbtn.source('tuner')
             logger.debug('Tuner')
             source = 'Tuner'
+            GPIO.output(TunerPin, GPIO.LOW) # led on
+            GPIO.output(AuxPin, GPIO.HIGH)  # led off
         elif val == 589834:
             #usbbtn.source('aux')
             logger.debug('Aux')
             source = 'Aux'
+            GPIO.output(TunerPin, GPIO.HIGH) # led on
+            GPIO.output(AuxPin, GPIO.LOW)  # led off
         elif val == 589836:
             #usbbtn.source('cd')
             logger.debug('cd')
