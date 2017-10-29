@@ -23,7 +23,7 @@ AuxPin = 10
 
 global p
 
-def gpio_setup():
+#def gpio_setup():
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
