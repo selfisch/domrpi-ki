@@ -124,12 +124,12 @@ class usbbtn:
             #usbbtn.source('tuner')
             logger.debug('Tuner')
             settings.source = 'Tuner'
-            source_led()
+            usbbtn.source_led()
         elif val == 589834:
             #usbbtn.source('aux')
             logger.debug('Aux')
             settings.source = 'Aux'
-            source_led()
+            usbbtn.source_led()
         elif val == 589836:
             #usbbtn.source('cd')
             logger.debug('cd')
@@ -152,7 +152,7 @@ class usbbtn:
                             logger.info(event)
                             usbbtn.buttons(event.value)
                         time_stamp = time_now
-            destroy_led_blink()
+            usbbtn.destroy_led_blink()
         except Exception as e:
             logger.error("main crashed {0}".format(str(e)))
             logger.exception("Error")
