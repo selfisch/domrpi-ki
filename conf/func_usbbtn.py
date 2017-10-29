@@ -84,7 +84,8 @@ class usbbtn:
 
     def source_led_blink(self):
         while True:
-            print(source)
+            logger.debug("source: " + source)
+            logger.debug("p: " + p)
             if source == 'Tuner':
                 p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
                 p.start(0)                     # Duty Cycle = 0
@@ -137,14 +138,17 @@ class usbbtn:
             mopidy.stop()
         elif val == 589835:
             #usbbtn.source('tuner')
+            logger.debug('Tuner')
             source = 'Tuner'
         elif val == 589834:
             #usbbtn.source('aux')
+            logger.debug('Aux')
             source = 'Aux'
         elif val == 589836:
-            usbbtn.source('cd')
+            #usbbtn.source('cd')
+            logger.debug('cd')
         elif val == 589833:
-            usbbtn.source('tape')
+            logger.debug('tape')
 
 
     def button_press(self):
