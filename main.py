@@ -57,11 +57,15 @@ def gpio_setup():
     GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
     GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
 
-    p = GPIO.PWM(TunerPin, 1000)     # set Frequece to 1KHz
-    p.start(0)                     # Duty Cycle = 0
 
+def loop(source):
+    if source == 'Tuner':
+        p = GPIO.PWM(TunerPin, 1000)     # set Frequece to 1KHz
+        p.start(0)                     # Duty Cycle = 0
+    elif source == 'Aux':
+        p = GPIO.PWM(AuxPin, 1000)     # set Frequece to 1KHz
+        p.start(0)                     # Duty Cycle = 0
 
-def loop():
     while True:
         for dc in range(0, 101, 4):   # Increase duty cycle: 0~100
             p.ChangeDutyCycle(dc)     # Change duty cycle
@@ -83,7 +87,7 @@ def destroy():
 try:
     logger.info('Starte die Anwendung')
     gpio_setup()
-    loop()
+    loop('Tuner')
 
     if check_usbbtn != 'n':
         button_press_thread.start()
