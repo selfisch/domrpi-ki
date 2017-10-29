@@ -87,7 +87,7 @@ def destroy():
 try:
     logger.info('Starte die Anwendung')
     gpio_setup()
-    loop('Tuner')
+    loop('Aux')
 
     if check_usbbtn != 'n':
         button_press_thread.start()
