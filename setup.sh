@@ -29,7 +29,8 @@ cur_dir=`pwd`
 
  sudo apt-get install -y mopidy libspotify12 libspotify-dev \
  git python3 python3-dev python3-pip libffi-dev python3-spotify \
- python-pip python-dev libpython-dev python3-evdev python3-mpd
+ python-pip python-dev libpython-dev python3-evdev python3-mpd \
+ python3-rpi.gpio
 
  sleep 5
 
