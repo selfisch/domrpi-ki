@@ -140,6 +140,7 @@ class usbbtn:
     def button_press(self):
         try:
             logger.debug('starte USB Buttons')
+            usbbtn.source_led()
             global time_stamp
             time_stamp = time.time()
             while True:

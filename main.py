@@ -44,8 +44,6 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 try:
     logger.info('Starte die Anwendung')
-    #gpio_setup()
-    #loop('Aux')
 
     if check_usbbtn != 'n':
         button_press_thread.start()
@@ -53,8 +51,6 @@ try:
         read_card_thread.start()
     if check_mouse != 'n':
         mouse_press_thread.start()
-
-    usbbtn.source_led()
 
 except (SystemExit):
     logger.info("Anwendung beendet")
