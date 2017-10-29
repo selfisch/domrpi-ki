@@ -67,6 +67,12 @@ def loop():
         time.sleep(1)
 
 
+def destroy():
+    p.stop()
+    GPIO.output(LedPin, GPIO.HIGH)    # turn off all leds
+    GPIO.cleanup()
+
+
 try:
     logger.info('Starte die Anwendung')
     gpio_setup()
@@ -81,16 +87,20 @@ try:
 
 except (SystemExit):
     logger.info("Anwendung beendet")
+    destroy()
     exit()
 except (KeyboardInterrupt):
     logger.info("via Tastatur beendet")
+    destroy()
     exit()
 except Exception as e:
     logger.error("main crashed {0}".format(str(e)))
     logger.exception("Error")
+    destroy()
     raise
 except:
     logger.info("Unbekannter Fehler:", sys.exc_info()[0])
+    destroy()
     raise
 #    else:
 #        pass
