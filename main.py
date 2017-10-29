@@ -27,7 +27,6 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 # Threads definieren
-source_led_thread = threading.Thread(name='source_led_thread', target=usbbtn.source_led_blink)
 read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
 mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
