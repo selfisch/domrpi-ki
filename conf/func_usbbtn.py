@@ -77,10 +77,14 @@ class usbbtn:
 
     ## Ende __init__
 
-    def source_led_blink(self):
-        while True:
-            logger.debug("source: " + settings.source)
-            time.sleep(1)
+    def source_led(self):
+        logger.debug("source: " + settings.source)
+        if settings.source == 'Tuner' or self == 'Tuner':
+            GPIO.output(TunerPin, GPIO.LOW) # led on
+            GPIO.output(AuxPin, GPIO.HIGH)  # led off
+        elif settings.source == 'Aux' or self == 'Tuner':
+            GPIO.output(TunerPin, GPIO.HIGH) # led on
+            GPIO.output(AuxPin, GPIO.LOW)  # led off
 
 
     def destroy_led_blink():
@@ -120,14 +124,12 @@ class usbbtn:
             #usbbtn.source('tuner')
             logger.debug('Tuner')
             settings.source = 'Tuner'
-            GPIO.output(TunerPin, GPIO.LOW) # led on
-            GPIO.output(AuxPin, GPIO.HIGH)  # led off
+            source_led()
         elif val == 589834:
             #usbbtn.source('aux')
             logger.debug('Aux')
             settings.source = 'Aux'
-            GPIO.output(TunerPin, GPIO.HIGH) # led on
-            GPIO.output(AuxPin, GPIO.LOW)  # led off
+            source_led()
         elif val == 589836:
             #usbbtn.source('cd')
             logger.debug('cd')

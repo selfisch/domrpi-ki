@@ -54,7 +54,8 @@ try:
         read_card_thread.start()
     if check_mouse != 'n':
         mouse_press_thread.start()
-    source_led_thread.start()
+
+    usbbtn.source_led())
 
 except (SystemExit):
     logger.info("Anwendung beendet")
