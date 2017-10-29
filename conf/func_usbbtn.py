@@ -1,12 +1,11 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os, sys, logging, csv, time, threading, time
+import os, sys, logging, csv, time, threading, time, settings
 import RPi.GPIO as GPIO
 
 logger = logging.getLogger('main')
 
 from func_mopidy import mopidy
-
 # lade die Class cardreader in die Variable cardreader
 from func_cardreader import cardreader
 cardreader = cardreader()
@@ -21,9 +20,6 @@ global TunerPin
 global AuxPin
 TunerPin = 12
 AuxPin = 10
-
-global source
-source = 'Tuner'
 
 #def gpio_setup():
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
@@ -83,11 +79,12 @@ class usbbtn:
 
     def source_led_blink(self):
         while True:
-            logger.debug("source: " + source)
+            logger.debug("source: " + settings.source)
             time.sleep(1)
 
 
     def destroy_led_blink():
+        logger.debug('led destroyed')
         GPIO.output(TunerPin, GPIO.HIGH)    # turn off all leds
         GPIO.output(AuxPin, GPIO.HIGH)    # turn off all leds
         GPIO.cleanup()
@@ -122,13 +119,13 @@ class usbbtn:
         elif val == 589835:
             #usbbtn.source('tuner')
             logger.debug('Tuner')
-            source = 'Tuner'
+            settings.source = 'Tuner'
             GPIO.output(TunerPin, GPIO.LOW) # led on
             GPIO.output(AuxPin, GPIO.HIGH)  # led off
         elif val == 589834:
             #usbbtn.source('aux')
             logger.debug('Aux')
-            source = 'Aux'
+            settings.source = 'Aux'
             GPIO.output(TunerPin, GPIO.HIGH) # led on
             GPIO.output(AuxPin, GPIO.LOW)  # led off
         elif val == 589836:
