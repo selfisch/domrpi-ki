@@ -27,7 +27,7 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 # Threads definieren
-mpd_connect_thread = threading.Thread(name='mpd_connect_thread', target=mopidy.mpdConnect)
+source_led_thread = threading.Thread(name='source_led_thread', target=usbbtn.source_led_blink)
 read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
 mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
@@ -54,6 +54,7 @@ try:
         read_card_thread.start()
     if check_mouse != 'n':
         mouse_press_thread.start()
+    source_led_thread.start()
 
 except (SystemExit):
     logger.info("Anwendung beendet")

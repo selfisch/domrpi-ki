@@ -23,6 +23,8 @@ TunerPin = 12
 AuxPin = 10
 
 global p
+global source
+source = 'Tuner'
 
 #def gpio_setup():
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
@@ -80,17 +82,15 @@ class usbbtn:
 
     ## Ende __init__
 
-    def source_led_blink(source):
-        if source == 'Tuner':
-            #p.stop()
-            p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
-            p.start(0)                     # Duty Cycle = 0
-        elif source == 'Aux':
-            #p.stop()
-            p = GPIO.PWM(AuxPin, 1000)     # set Frequece to 1KHz
-            p.start(0)                     # Duty Cycle = 0
-
+    def source_led_blink():
         while True:
+            if source == 'Tuner':
+                p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
+                p.start(0)                     # Duty Cycle = 0
+            elif source == 'Aux':
+                p = GPIO.PWM(AuxPin, 1000)     # set Frequece to 1KHz
+                p.start(0)                     # Duty Cycle = 0
+
             for dc in range(0, 101, 4):   # Increase duty cycle: 0~100
                 p.ChangeDutyCycle(dc)     # Change duty cycle
                 time.sleep(0.05)
@@ -136,32 +136,14 @@ class usbbtn:
             mopidy.stop()
         elif val == 589835:
             #usbbtn.source('tuner')
-            usbbtn.source_led_blink('Tuner')
+            source = 'Tuner'
         elif val == 589834:
             #usbbtn.source('aux')
-            usbbtn.source_led_blink('Aux')
+            source = 'Aux'
         elif val == 589836:
             usbbtn.source('cd')
         elif val == 589833:
             usbbtn.source('tape')
-
-
-    def source(source):
-        if source == 'tuner':
-            logger.debug('tuner')
-            if check_reader != 'n' and not read_card_thread.is_alive():
-                read_card_thread.start()
-            if check_mouse != 'n' and not mouse_press_thread.is_alive():
-                mouse_press_thread.start()
-
-        if source == 'aux':
-            if read_card_thread.is_alive():
-                read_card_thread.exit()
-            logger.debug('aux')
-        if source == 'cd':
-            logger.debug('cd')
-        if source == 'tape':
-            logger.debug('tape')
 
 
     def button_press(self):
