@@ -55,7 +55,7 @@ try:
     if check_mouse != 'n':
         mouse_press_thread.start()
 
-    usbbtn.source_led())
+    usbbtn.source_led()
 
 except (SystemExit):
     logger.info("Anwendung beendet")
