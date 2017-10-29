@@ -16,6 +16,19 @@ from func_mousebtn import mouse
 mouse = mouse()
 check_mouse = mouse.check_mouse()
 
+global TunerPin
+global AuxPin
+TunerPin = 12
+AuxPin = 10
+
+global p
+
+def gpio_setup():
+GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
+GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
 
 class usbbtn:
     def __init__(self):
@@ -64,6 +77,35 @@ class usbbtn:
                     logger.error('Bitte sicherstellen, dass es verbunden ist')
                     sys.exit()
 
+    ## Ende __init__
+
+    def source_led_blink(source):
+        if source == 'Tuner':
+            p.stop()
+            p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
+            p.start(0)                     # Duty Cycle = 0
+        elif source == 'Aux':
+            p.stop()
+            p = GPIO.PWM(AuxPin, 1000)     # set Frequece to 1KHz
+            p.start(0)                     # Duty Cycle = 0
+
+        while True:
+            for dc in range(0, 101, 4):   # Increase duty cycle: 0~100
+                p.ChangeDutyCycle(dc)     # Change duty cycle
+                time.sleep(0.05)
+            time.sleep(1)
+            for dc in range(100, -1, -4): # Decrease duty cycle: 100~0
+                p.ChangeDutyCycle(dc)
+                time.sleep(0.05)
+            time.sleep(1)
+
+
+    def destroy_led_blink():
+        p.stop()
+        GPIO.output(TunerPin, GPIO.HIGH)    # turn off all leds
+        GPIO.output(AuxPin, GPIO.HIGH)    # turn off all leds
+        GPIO.cleanup()
+
 
     def check_usbbtn(self):
         path = os.path.dirname(os.path.realpath(__file__))
@@ -92,9 +134,11 @@ class usbbtn:
             print('stop')
             mopidy.stop()
         elif val == 589835:
-            usbbtn.source('tuner')
+            #usbbtn.source('tuner')
+            usbbtn.source_led_blink('Tuner')
         elif val == 589834:
-            usbbtn.source('aux')
+            #usbbtn.source('aux')
+            usbbtn.source_led_blink('Aux')
         elif val == 589836:
             usbbtn.source('cd')
         elif val == 589833:
