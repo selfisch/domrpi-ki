@@ -101,6 +101,7 @@ class usbbtn:
                 time.sleep(0.05)
             time.sleep(1)
             logger.debug("p: " + str(p))
+            p.stop()
 
 
     def destroy_led_blink():
