@@ -58,20 +58,20 @@ try:
 
 except (SystemExit):
     logger.info("Anwendung beendet")
-    destroy()
+    usbbtn.destroy_led_blink()
     exit()
 except (KeyboardInterrupt):
     logger.info("via Tastatur beendet")
-    destroy()
+    usbbtn.destroy_led_blink()
     exit()
 except Exception as e:
     logger.error("main crashed {0}".format(str(e)))
     logger.exception("Error")
-    destroy()
+    usbbtn.destroy_led_blink()
     raise
 except:
     logger.info("Unbekannter Fehler:", sys.exc_info()[0])
-    destroy()
+    usbbtn.destroy_led_blink()
     raise
 #    else:
 #        pass
