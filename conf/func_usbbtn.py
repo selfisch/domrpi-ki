@@ -85,7 +85,6 @@ class usbbtn:
     def source_led_blink(self):
         while True:
             logger.debug("source: " + source)
-            logger.debug("p: " + p)
             if source == 'Tuner':
                 p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
                 p.start(0)                     # Duty Cycle = 0
@@ -101,6 +100,7 @@ class usbbtn:
                 p.ChangeDutyCycle(dc)
                 time.sleep(0.05)
             time.sleep(1)
+            logger.debug("p: " + p)
 
 
     def destroy_led_blink():
