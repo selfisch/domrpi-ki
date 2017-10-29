@@ -100,7 +100,7 @@ class usbbtn:
                 p.ChangeDutyCycle(dc)
                 time.sleep(0.05)
             time.sleep(1)
-            logger.debug("p: " + p)
+            logger.debug("p: " + str(p))
 
 
     def destroy_led_blink():
