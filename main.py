@@ -38,8 +38,10 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
-global LedPin
-LedPin = 12
+global TunerPin
+global AuxPin
+TunerPin = 12
+AuxPin = 10
 
 # lege das conf Verzeichnis an, falls es nicht existiert
 if not os.path.exists('conf'):
@@ -50,10 +52,12 @@ path = os.path.dirname(os.path.realpath(__file__))
 def gpio_setup():
     global p
     GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
-    GPIO.setup(LedPin, GPIO.OUT)   # Set LedPin's mode is output
-    GPIO.output(LedPin, GPIO.LOW)  # Set LedPin to low(0V)
+    GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
+    GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+    GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
+    GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
 
-    p = GPIO.PWM(LedPin, 1000)     # set Frequece to 1KHz
+    p = GPIO.PWM(TunerPin, 1000)     # set Frequece to 1KHz
     p.start(0)                     # Duty Cycle = 0
 
 
@@ -71,7 +75,8 @@ def loop():
 
 def destroy():
     p.stop()
-    GPIO.output(LedPin, GPIO.HIGH)    # turn off all leds
+    GPIO.output(TunerPin, GPIO.HIGH)    # turn off all leds
+    GPIO.output(AuxPin, GPIO.HIGH)    # turn off all leds
     GPIO.cleanup()
 
 
