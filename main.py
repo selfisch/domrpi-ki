@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, _thread, threading, time
-import RPi.GPIO as GPIO
+import os, sys, _thread, threading
 #from random import randint
 #from mpd import MPDClient
 #from select import select

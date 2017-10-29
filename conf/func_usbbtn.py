@@ -1,6 +1,7 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os, sys, logging, csv, time, threading
+import os, sys, logging, csv, time, threading, time
+import RPi.GPIO as GPIO
 
 logger = logging.getLogger('main')
 
