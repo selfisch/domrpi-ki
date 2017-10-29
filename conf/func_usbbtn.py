@@ -82,7 +82,7 @@ class usbbtn:
 
     ## Ende __init__
 
-    def source_led_blink():
+    def source_led_blink(self):
         while True:
             if source == 'Tuner':
                 p = GPIO.PWM(TunerPin, 1000)   # set Frequece to 1KHz
