@@ -45,6 +45,7 @@ if not os.path.exists('conf'):
 path = os.path.dirname(os.path.realpath(__file__))
 
 def gpio_setup():
+    LedPin = 12
     global p
     GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
     GPIO.setup(LedPin, GPIO.OUT)   # Set LedPin's mode is output
