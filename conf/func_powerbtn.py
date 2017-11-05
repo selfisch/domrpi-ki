@@ -10,9 +10,9 @@ GPIO.setmode(GPIO.BOARD)
 # use the same pin that is used for the reset button (one button to rule them all!)
 GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
-oldButtonState1 = True
-
 def PowerBTN():
+    oldButtonState1 = True
+    
     while True:
         #grab the current button state
         buttonState1 = GPIO.input(5)
