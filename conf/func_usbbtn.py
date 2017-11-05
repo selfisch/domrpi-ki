@@ -17,16 +17,39 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 global TunerPin
+TunerPin = 36
 global AuxPin
-TunerPin = 12
-AuxPin = 10
+AuxPin = 38
+global CDPin
+CDPin = 40
+global TapePin
+TapePin = 33
+global Test1
+Test1 = 35
+global Test2
+Test2 = 37
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
+
 GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+
 GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
+
+GPIO.setup(CDPin, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
+
+GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
+
+GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.output(Test1, GPIO.LOW)  # Set LedPin to low(0V)
+
+GPIO.setup(Test2, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.output(Test2, GPIO.LOW)  # Set LedPin to low(0V)
+
 
 class usbbtn:
     def __init__(self):
