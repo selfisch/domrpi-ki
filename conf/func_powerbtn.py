@@ -12,7 +12,7 @@ GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
 def PowerBTN():
     oldButtonState1 = True
-    
+
     while True:
         #grab the current button state
         buttonState1 = GPIO.input(5)
@@ -23,4 +23,4 @@ def PowerBTN():
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             oldButtonState1 = buttonState1
 
-        time.sleep(1)
+        time.sleep(.1)
