@@ -8,6 +8,7 @@ import os, sys, _thread, threading
 # conf Unterverzeichnis mit durchsuchen
 sys.path.append('./conf')
 
+import func_powerbtn
 import log
 logger = log.setup_custom_logger('main')
 
@@ -30,6 +31,7 @@ check_mouse = mouse.check_mouse()
 read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
 mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
+power_button_thread = threading.Thread(name='power_button', target=func_powerbtn.PowerBTN)
 
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
@@ -51,6 +53,8 @@ try:
         read_card_thread.start()
     if check_mouse != 'n':
         mouse_press_thread.start()
+
+    power_button_thread.start()
 
 except (SystemExit):
     logger.info("Anwendung beendet")
