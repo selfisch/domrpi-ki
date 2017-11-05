@@ -12,7 +12,7 @@ GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
 oldButtonState1 = True
 
-def PowerBTN:
+def PowerBTN():
     while True:
         #grab the current button state
         buttonState1 = GPIO.input(5)
