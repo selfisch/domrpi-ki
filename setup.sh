@@ -15,7 +15,7 @@ cur_dir=`pwd`
  sudo apt-get update
  sudo apt-get purge -y python python-dev python-pip
 
- sleep 5
+ sudo sleep 5
 
  sudo apt-get -y dist-upgrade
 
@@ -25,14 +25,14 @@ cur_dir=`pwd`
  sudo apt-get autoclean
  sudo apt-get -y autoremove
 
- suod sleep 5
+ sudo sleep 5
 
  sudo apt-get install -y mopidy libspotify12 libspotify-dev \
  git python3 python3-dev python3-pip libffi-dev python3-spotify \
  python-pip python-dev libpython-dev python3-evdev python3-mpd \
  python3-rpi.gpio
 
- suod sleep 5
+ sudo sleep 5
 
 # pip
  sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
