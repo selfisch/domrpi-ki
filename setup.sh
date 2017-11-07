@@ -45,6 +45,9 @@ cur_dir=`pwd`
 
  sudo conf/mopidy.conf
 
+# alsa config anlegen
+ sudo cp conf/asound.conf /etc/asound.conf
+
 if [ -f $cur_dir/conf/spotify.conf ]
 then
  sudo conf/spotify.conf
