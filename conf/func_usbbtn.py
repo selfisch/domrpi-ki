@@ -163,18 +163,22 @@ class usbbtn:
         elif val == 589827:
             logger.debug('tape')
             source = 'tape'
+            time.sleep(1)
             usbbtn.source_led()
         elif val == 589828:
             logger.debug('tuner')
             source = 'tuner'
+            time.sleep(1)
             usbbtn.source_led()
         elif val == 589832:
             logger.debug('aux')
             source = 'aux'
-            usbbtn.source_led()
+            time.sleep(1)
         elif val == 589825:
+            usbbtn.source_led()
             logger.debug('cd')
             source = 'cd'
+            time.sleep(1)
             usbbtn.source_led()
 
     def button_press(self):
