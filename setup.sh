@@ -27,10 +27,20 @@ cur_dir=`pwd`
 
  sudo sleep 5
 
- sudo apt-get install -y mopidy libspotify12 libspotify-dev \
- git python3 python3-dev python3-pip libffi-dev python3-spotify \
- python-pip python-dev libpython-dev mopidy-spotify \
- python3-rpi.gpio
+ sudo apt-get install -y \
+   mopidy \
+   git \
+   python3 \
+   python3-dev \
+   python3-pip \
+   python3-spotify \
+   libffi-dev \
+   python-pip \
+   python-dev \
+   libpython-dev \
+   libspotify12 \
+   libspotify-dev \
+   python3-rpi.gpio
 
  sudo sleep 5
 
