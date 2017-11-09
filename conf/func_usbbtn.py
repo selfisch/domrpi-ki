@@ -176,6 +176,8 @@ class usbbtn:
                             logger.info(event)
                             usbbtn.buttons(event.value)
                         time_stamp = time_now
+                    else:
+                        logger.debug(event)
             usbbtn.destroy_led_blink()
         except (KeyboardInterrupt):
             logger.info("via Tastatur beendet")
