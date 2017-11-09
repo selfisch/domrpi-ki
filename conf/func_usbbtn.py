@@ -126,22 +126,22 @@ class usbbtn:
 
     def buttons(val):
         if val == 589835:
-            print('vol up')
+            logger.debug('vol up')
             os.system("amixer -q sset Master 1%+")
         elif val == 127:
-            print('vol down')
+            logger.debug('vol down')
             os.system("amixer -q sset Master 1%-")
         elif val == 589836:
-            print('next track')
+            logger.debug('next track')
             mopidy.next()
         elif val == 589833:
-            print('prev track')
+            logger.debug('prev track')
             mopidy.previous()
         elif val == 589834:
-            print('play/pause')
+            logger.debug('play/pause')
             mopidy.play()
         elif val == 589831:
-            print('stop')
+            logger.debug('stop')
             mopidy.stop()
         elif val == 589827:
             logger.debug('tape')
