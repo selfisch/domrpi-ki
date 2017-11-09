@@ -30,6 +30,8 @@ Test1 = 35
 global Test2
 Test2 = 37
 
+source = settings.source
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 
@@ -46,7 +48,7 @@ GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
 
 GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(Test1, GPIO.LOW)  # Set LedPin to low(0V)
+GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
 
 GPIO.setup(Test2, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(Test2, GPIO.LOW)  # Set LedPin to low(0V)
@@ -102,14 +104,14 @@ class usbbtn:
     ## Ende __init__
 
     def source_led():
-        logger.debug("source: " + settings.source)
-        if settings.source == 'tape':
+        logger.debug("source: " + source)
+        if source == 'tape':
             GPIO.output(TapePin, GPIO.HIGH) # led on
-        elif settings.source == 'tuner':
+        elif source == 'tuner':
             GPIO.output(TunerPin, GPIO.HIGH) # led on
-        elif settings.source == 'aux':
+        elif source == 'aux':
             GPIO.output(AuxPin, GPIO.HIGH) # led on
-        elif settings.source == 'cd':
+        elif source == 'cd':
             GPIO.output(CDPin, GPIO.HIGH) # led on
 
 
@@ -148,19 +150,19 @@ class usbbtn:
             mopidy.stop()
         elif val == 589827:
             logger.debug('tape')
-            settings.source = 'tape'
+            source = 'tape'
             usbbtn.source_led()
         elif val == 589828:
             logger.debug('tuner')
-            settings.source = 'tuner'
+            source = 'tuner'
             usbbtn.source_led()
         elif val == 589832:
             logger.debug('aux')
-            settings.source = 'aux'
+            source = 'aux'
             usbbtn.source_led()
         elif val == 589825:
             logger.debug('cd')
-            settings.source = 'cd'
+            source = 'cd'
             usbbtn.source_led()
 
     def button_press(self):
