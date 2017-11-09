@@ -1,6 +1,6 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os, sys, logging, csv, time, threading, time, settings
+import os, sys, logging, csv, time, threading, time
 import RPi.GPIO as GPIO
 
 logger = logging.getLogger('main')
@@ -31,7 +31,7 @@ global Test2
 Test2 = 37
 
 global source
-source = settings.source
+source = 'tuner'
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
