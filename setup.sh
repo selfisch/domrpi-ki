@@ -40,13 +40,14 @@ cur_dir=`pwd`
    libpython-dev \
    libspotify12 \
    libspotify-dev \
-   python3-rpi.gpio
+   python3-rpi.gpio \
+   mopidy-spotify
 
  sudo sleep 5
 
 # pip
- sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
- sudo pip install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
+ sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify
+ sudo pip install evdev python-mpd2 Mopidy-Iris pyspotify
 
 # mopidy config
  sudo mv /etc/mopidy/mopidy.conf /etc/mopidy/mopidy.bak
