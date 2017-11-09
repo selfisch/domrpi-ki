@@ -51,7 +51,7 @@ class mopidy:
 
 	def playList(uri, play_mode):
 		mopidy.mpdConnect()
-		MPDClientclient.clear()
+		MPDClient.clear()
 		MPDClient.add(uri)
 		if play_mode == 'play':
 			client.random(0)
