@@ -206,10 +206,10 @@ class usbbtn:
         except Exception as e:
             logger.error("main crashed {0}".format(str(e)))
             logger.exception("Error")
-            destroy_led_blink()
+            usbbtn.destroy_led_blink()
             raise
         except:
             logger.info("Unbekannter Fehler:", sys.exc_info()[0])
-            destroy_led_blink()
+            usbbtn.destroy_led_blink()
             raise
         pass
