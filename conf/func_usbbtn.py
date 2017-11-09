@@ -177,7 +177,13 @@ class usbbtn:
                             usbbtn.buttons(event.value)
                         time_stamp = time_now
                     if event.code == 0 and event.value == 127:
-                        logger.info('push')
+                        time_now = time.time()
+                        if (time_now - time_stamp) >= 0.5:
+                            logger.debug('Button wurde gedrückt.')
+                            logger.info(event)
+                            usbbtn.buttons(event.value)
+                        time_stamp = time_now
+
 #                    else:
 #                        logger.debug(event)
             usbbtn.destroy_led_blink()
