@@ -160,25 +160,22 @@ class usbbtn:
             mopidy.stop()
         elif val == 589827:
             logger.debug('tape')
-            source = 'tape'
-            time.sleep(1)
-            usbbtn.source_led()
+            usbbtn.source_led('tape')
         elif val == 589828:
             logger.debug('tuner')
-            source = 'tuner'
-            time.sleep(1)
-            usbbtn.source_led()
+            usbbtn.source_led('tuner')
         elif val == 589832:
             logger.debug('aux')
-            usbbtn.source_led(aux)
+            usbbtn.source_led('aux')
         elif val == 589825:
             logger.debug('cd')
-            usbbtn.source_led(cd)
+            usbbtn.source_led('cd')
+
 
     def button_press(self):
         try:
             logger.debug('starte USB Buttons')
-            usbbtn.source_led(cd)
+            usbbtn.source_led('tuner')
             global time_stamp
             time_stamp = time.time()
             while True:
