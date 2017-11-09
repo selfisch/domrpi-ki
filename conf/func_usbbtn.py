@@ -176,7 +176,7 @@ class usbbtn:
                             logger.info(event)
                             usbbtn.buttons(event.value)
                         time_stamp = time_now
-                    if event.code == 0 and event.val == 127:
+                    if event.code == 0 and event.value == 127:
                         logger.info('push')
                     else:
                         logger.debug(event)
