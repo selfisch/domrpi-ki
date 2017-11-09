@@ -24,6 +24,7 @@ global CDPin
 CDPin = 40
 global TapePin
 TapePin = 33
+
 global Test1
 Test1 = 35
 global Test2
@@ -32,17 +33,17 @@ Test2 = 37
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 
-GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(TunerPin, GPIO.HIGH)  # Set LedPin to low(0V)
-
-GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(AuxPin, GPIO.HIGH)  # Set LedPin to low(0V)
-
-GPIO.setup(CDPin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(CDPin, GPIO.HIGH)  # Set LedPin to low(0V)
-
-GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(TapePin, GPIO.HIGH)  # Set LedPin to low(0V)
+# GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
+# GPIO.output(TunerPin, GPIO.HIGH)  # Set LedPin to low(0V)
+#
+# GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
+# GPIO.output(AuxPin, GPIO.HIGH)  # Set LedPin to low(0V)
+#
+# GPIO.setup(CDPin, GPIO.OUT)   # Set LedPin's mode is output
+# GPIO.output(CDPin, GPIO.HIGH)  # Set LedPin to low(0V)
+#
+# GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
+# GPIO.output(TapePin, GPIO.HIGH)  # Set LedPin to low(0V)
 
 GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
