@@ -23,8 +23,23 @@ from func_usbbtn import usbbtn
 from func_mopidy import mopidy
 from func_mousebtn import mouse
 
-# lade die Class mopidy in die Variable mopidy
-#mopidy = mopidy()
+
+def PowerBTN():
+    oldButtonState1 = True
+
+    while True:
+        #grab the current button state
+        buttonState1 = GPIO.input(5)
+
+        # check to see if button has been pushed
+        if buttonState1 != oldButtonState1 and buttonState1 == False:
+            subprocess.call("shutdown -h now", shell=True,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            oldButtonState1 = buttonState1
+
+        time.sleep(.1)
+
+
 # lade die Class usbbtn in die Variable usbbtn
 usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
@@ -49,23 +64,6 @@ if not os.path.exists('conf'):
     os.mkdir('conf')
 
 path = os.path.dirname(os.path.realpath(__file__))
-
-
-def PowerBTN():
-    oldButtonState1 = True
-
-    while True:
-        #grab the current button state
-        buttonState1 = GPIO.input(5)
-
-        # check to see if button has been pushed
-        if buttonState1 != oldButtonState1 and buttonState1 == False:
-            subprocess.call("shutdown -h now", shell=True,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            oldButtonState1 = buttonState1
-
-        time.sleep(.1)
-
 
 try:
     logger.info('Starte die Anwendung')
