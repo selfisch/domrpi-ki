@@ -12,6 +12,11 @@ GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 #from mpd import MPDClient
 #from select import select
 
+# in das Verzeichnis des Skript wechseln
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+
 # conf Unterverzeichnis mit durchsuchen
 sys.path.append('./conf')
 
@@ -53,11 +58,6 @@ read_card_thread = threading.Thread(name='read_card', target=cardreader.read_car
 mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
 power_button_thread = threading.Thread(name='power_button', target=PowerBTN)
-
-# in das Verzeichnis des Skript wechseln
-abspath = os.path.abspath(__file__)
-dname = os.path.dirname(abspath)
-os.chdir(dname)
 
 # lege das conf Verzeichnis an, falls es nicht existiert
 if not os.path.exists('conf'):
