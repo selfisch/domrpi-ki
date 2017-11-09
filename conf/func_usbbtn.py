@@ -30,6 +30,7 @@ Test1 = 33
 global Test2
 Test2 = 37
 
+global source
 source = settings.source
 
 GPIO.setwarnings(False)
