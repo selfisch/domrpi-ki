@@ -31,6 +31,7 @@ global Test2
 Test2 = 37
 
 global source
+source = ''
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
