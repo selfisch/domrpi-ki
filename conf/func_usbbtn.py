@@ -23,10 +23,10 @@ AuxPin = 38
 global CDPin
 CDPin = 40
 global TapePin
-TapePin = 33
+TapePin = 35
 
 global Test1
-Test1 = 35
+Test1 = 33
 global Test2
 Test2 = 37
 
@@ -107,12 +107,24 @@ class usbbtn:
         logger.debug("source: " + source)
         if source == 'tape':
             GPIO.output(TapePin, GPIO.HIGH) # led on
+            GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+            GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
+            GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
         elif source == 'tuner':
-            GPIO.output(TunerPin, GPIO.HIGH) # led on
+            GPIO.output(TapePin, GPIO.LOW) # led on
+            GPIO.output(TunerPin, GPIO.HIGH)  # Set LedPin to low(0V)
+            GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
+            GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
         elif source == 'aux':
-            GPIO.output(AuxPin, GPIO.HIGH) # led on
+            GPIO.output(TapePin, GPIO.LOW) # led on
+            GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+            GPIO.output(AuxPin, GPIO.HIGH)  # Set LedPin to low(0V)
+            GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
         elif source == 'cd':
-            GPIO.output(CDPin, GPIO.HIGH) # led on
+            GPIO.output(TapePin, GPIO.LOW) # led on
+            GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+            GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
+            GPIO.output(CDPin, GPIO.HIGH)  # Set LedPin to low(0V)
 
 
     def destroy_led_blink():
