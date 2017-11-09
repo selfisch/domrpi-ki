@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os, sys, _thread, threading, time, subprocess
 import RPi.GPIO as GPIO
