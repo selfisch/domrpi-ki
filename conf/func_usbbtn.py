@@ -104,6 +104,7 @@ class usbbtn:
     def source_led():
         logger.debug("source: " + settings.source)
         if settings.source == 'tape':
+            logger.debug('schalte auf tape')
             GPIO.output(TapePin, GPIO.HIGH) # led on
             GPIO.output(TapePin, GPIO.LOW)  # led off
         elif settings.source == 'tuner':
