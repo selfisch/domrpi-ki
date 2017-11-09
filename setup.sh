@@ -36,7 +36,7 @@ cur_dir=`pwd`
 
 # pip
  sudo pip3 install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
- sudo pip install evdev mpd Mopidy-Iris mopidy-spotify
+ sudo pip install evdev python-mpd2 Mopidy-Iris pyspotify mopidy-spotify
 
 # mopidy config
  sudo mv /etc/mopidy/mopidy.conf /etc/mopidy/mopidy.bak
