@@ -101,7 +101,7 @@ class usbbtn:
 
     ## Ende __init__
 
-    def source_led():
+    def source_led(self, source):
         logger.debug("source: " + source)
         if source == 'tape':
             GPIO.output(TapePin, GPIO.HIGH) # led on
@@ -170,21 +170,15 @@ class usbbtn:
             usbbtn.source_led()
         elif val == 589832:
             logger.debug('aux')
-            source = 'aux'
-            time.sleep(1)
+            usbbtn.source_led(aux)
         elif val == 589825:
-            usbbtn.source_led()
             logger.debug('cd')
-            source = 'cd'
-            time.sleep(1)
-            usbbtn.source_led()
+            usbbtn.source_led(cd)
 
     def button_press(self):
         try:
             logger.debug('starte USB Buttons')
-            global source
-            source = 'tuner'
-            usbbtn.source_led()
+            usbbtn.source_led(cd)
             global time_stamp
             time_stamp = time.time()
             while True:
