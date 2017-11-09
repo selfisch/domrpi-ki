@@ -125,40 +125,40 @@ class usbbtn:
 
 
     def buttons(val):
-        if val == 589827:
+        if val == 589835:
             print('vol up')
             os.system("amixer -q sset Master 1%+")
-        elif val == 589825:
+        elif val == 127:
             print('vol down')
             os.system("amixer -q sset Master 1%-")
-        elif val == 589826:
+        elif val == 589836:
             print('next track')
             mopidy.next()
-        elif val == 589829:
+        elif val == 589833:
             print('prev track')
             mopidy.previous()
-        elif val == 589831:
+        elif val == 589834:
             print('play/pause')
             mopidy.play()
-        elif val == 589830:
+        elif val == 589831:
             print('stop')
             mopidy.stop()
-        elif val == 589835:
-            #usbbtn.source('tuner')
-            logger.debug('Tuner')
-            settings.source = 'Tuner'
-            usbbtn.source_led()
-        elif val == 589834:
-            #usbbtn.source('aux')
-            logger.debug('Aux')
-            settings.source = 'Aux'
-            usbbtn.source_led()
-        elif val == 589836:
-            #usbbtn.source('cd')
-            logger.debug('cd')
-        elif val == 589833:
+        elif val == 589827:
             logger.debug('tape')
-
+            settings.source = 'tape'
+            usbbtn.source_led()
+        elif val == 589828:
+            logger.debug('tuner')
+            settings.source = 'tuner'
+            usbbtn.source_led()
+        elif val == 589832:
+            logger.debug('aux')
+            settings.source = 'aux'
+            usbbtn.source_led()
+        elif val == 589825:
+            logger.debug('cd')
+            settings.source = 'cd'
+            usbbtn.source_led()
 
     def button_press(self):
         try:
