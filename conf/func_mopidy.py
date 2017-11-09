@@ -5,12 +5,14 @@ from mpd import MPDClient
 
 logger = logging.getLogger('main')
 
-global client
-client = MPDClient()    # create client object
 
 #persistMPDclient = PersistentMPDClient()
 
 class mopidy:
+    global client
+    client = MPDClient()    # create client object
+
+
 	def mpdConnect():
 		# MPDClient config
 		client.timeout = 10
@@ -51,8 +53,8 @@ class mopidy:
 
 	def playList(uri, play_mode):
 		mopidy.mpdConnect()
-		MPDClient.clear()
-		MPDClient.add(uri)
+		client.clear()
+		client.add(uri)
 		if play_mode == 'play':
 			client.random(0)
 			client.play()
