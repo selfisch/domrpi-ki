@@ -31,7 +31,6 @@ global Test2
 Test2 = 37
 
 global source
-source = 'tuner'
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
@@ -185,6 +184,7 @@ class usbbtn:
     def button_press(self):
         try:
             logger.debug('starte USB Buttons')
+            source = 'tuner'
             usbbtn.source_led()
             global time_stamp
             time_stamp = time.time()
