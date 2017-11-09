@@ -46,7 +46,7 @@ GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
 
 GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(Test1, GPIO.LOW)  # Set LedPin to low(0V)
+GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
 
 GPIO.setup(Test2, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(Test2, GPIO.HIGH)  # Set LedPin to low(0V)
