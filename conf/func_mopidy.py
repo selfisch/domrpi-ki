@@ -52,18 +52,18 @@ class mopidy:
 
 
     def playList(uri, play_mode):
-            logging.debug('mopidy.playList uri: ' + uri)
-            logging.debug('mopidy.playList play_mode: ' + play_mode)
-            mopidy.mpdConnect()
-            client.clear()
-            client.add(uri)
-            if play_mode == 'play':
-                    client.random(0)
-                    client.play()
-            elif play_mode == 'shuffle':
-                    client.random(1)
-                    client.play()
-            mopidy.mpdDisconnect()
+        logging.debug('mopidy.playList uri: ' + uri)
+        logging.debug('mopidy.playList play_mode: ' + play_mode)
+        mopidy.mpdConnect()
+        client.clear()
+        client.add(uri)
+        if play_mode == 'play':
+                client.random(0)
+                client.play()
+        elif play_mode == 'shuffle':
+                client.random(1)
+                client.play()
+        mopidy.mpdDisconnect()
 
 
     def play():
