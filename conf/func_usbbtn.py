@@ -101,7 +101,7 @@ class usbbtn:
 
     ## Ende __init__
 
-    def source_led(self, source):
+    def source_led(source):
         logger.debug("source: " + source)
         if source == 'tape':
             GPIO.output(TapePin, GPIO.HIGH) # led on
