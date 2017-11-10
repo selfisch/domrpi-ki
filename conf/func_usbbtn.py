@@ -170,9 +170,12 @@ class usbbtn:
         elif val == 589825:
             logger.debug('cd')
             usbbtn.source_led('cd')
-        elif val == 589826:
+        elif val == 589830:
             logger.debug('randomPlaylist')
             mopidy.randomPlaylist()
+        elif val == 589826:
+            logger.debug('randomPlaylist')
+            os.system('sudo shutdown -h now')
 
 
     def button_press(self):
