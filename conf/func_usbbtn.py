@@ -170,6 +170,9 @@ class usbbtn:
         elif val == 589825:
             logger.debug('cd')
             usbbtn.source_led('cd')
+        elif val == 589826:
+            logger.debug('randomPlaylist')
+            mopidy.randomPlaylist()
 
 
     def button_press(self):
