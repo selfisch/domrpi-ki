@@ -174,7 +174,6 @@ class usbbtn:
             logger.debug('randomPlaylist')
             mopidy.randomPlaylist()
         elif val == 589826:
-            logger.debug('randomPlaylist')
             os.system('sudo shutdown -h now')
 
 
