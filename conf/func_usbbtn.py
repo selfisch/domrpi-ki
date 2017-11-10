@@ -16,19 +16,19 @@ from func_mousebtn import mouse
 mouse = mouse()
 check_mouse = mouse.check_mouse()
 
-global TunerPin
-TunerPin = 36
-global AuxPin
-AuxPin = 40
-global CDPin
-CDPin = 38
 global TapePin
-TapePin = 35
+TapePin = 7
+global TunerPin
+TunerPin = 11
+global AuxPin
+AuxPin = 13
+global CDPin
+CDPin = 15
 
 global Test1
-Test1 = 33
+Test1 = 16
 global Test2
-Test2 = 37
+Test2 = 18
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
