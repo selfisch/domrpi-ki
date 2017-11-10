@@ -3,15 +3,6 @@
 import os, sys, _thread, threading, time, subprocess
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD)
-
-# use the same pin that is used for the reset button (one button to rule them all!)
-GPIO.setup(5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-
-#from random import randint
-#from mpd import MPDClient
-#from select import select
-
 # in das Verzeichnis des Skript wechseln
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
@@ -28,23 +19,6 @@ from func_usbbtn import usbbtn
 from func_mopidy import mopidy
 from func_mousebtn import mouse
 
-
-def PowerBTN():
-    oldButtonState1 = True
-
-    while True:
-        #grab the current button state
-        buttonState1 = GPIO.input(5)
-
-        # check to see if button has been pushed
-        if buttonState1 != oldButtonState1 and buttonState1 == False:
-            subprocess.call("shutdown -h now", shell=True,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            oldButtonState1 = buttonState1
-
-        time.sleep(.1)
-
-
 # lade die Class usbbtn in die Variable usbbtn
 usbbtn = usbbtn()
 check_usbbtn = usbbtn.check_usbbtn()
@@ -57,7 +31,6 @@ check_mouse = mouse.check_mouse()
 read_card_thread = threading.Thread(name='read_card', target=cardreader.read_card)
 mouse_press_thread = threading.Thread(name='mouse_press', target=mouse.mouse_press)
 button_press_thread = threading.Thread(name='button_press', target=usbbtn.button_press)
-power_button_thread = threading.Thread(name='power_button', target=PowerBTN)
 
 # lege das conf Verzeichnis an, falls es nicht existiert
 if not os.path.exists('conf'):
@@ -74,8 +47,6 @@ try:
         read_card_thread.start()
     if check_mouse != 'n':
         mouse_press_thread.start()
-
-    power_button_thread.start()
 
 except (SystemExit):
     logger.info("Anwendung beendet")
