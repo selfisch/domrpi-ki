@@ -13,7 +13,7 @@ cur_dir=`pwd`
 
 # apt
  sudo apt-get update
- sudo apt-get purge -y python python-dev python-pip
+# sudo apt-get purge -y python python-dev python-pip
 
  sudo sleep 5
 
