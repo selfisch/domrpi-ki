@@ -199,6 +199,7 @@ class usbbtn:
         try:
             logger.debug('starte USB Buttons')
             usbbtn.source_led('tuner')
+            source = 'tuner'
             global time_stamp
             time_stamp = time.time()
             while True:
