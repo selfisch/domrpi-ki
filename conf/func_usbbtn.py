@@ -170,10 +170,10 @@ class usbbtn:
             logger.debug('vol down')
             os.system("amixer -q sset Master 1%-")
 
-        if source == 'tape':
-            logger.debug('tape source aktiv')
-        elif source == 'tuner':
-            logger.debug('tuner source aktiv')
+        #if source == 'tape':
+        #    logger.debug('tape source aktiv')
+        #elif source == 'tuner':
+        #    logger.debug('tuner source aktiv')
 
         # Tuner/Mopidy Knöpfe
         if val == 589836:
