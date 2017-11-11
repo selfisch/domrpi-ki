@@ -175,6 +175,8 @@ class usbbtn:
             mopidy.randomPlaylist()
         elif val == 589826:
             os.system('sudo shutdown -h now')
+        elif val == 589829:
+            logger.debug('random')
 
 
     def button_press(self):
