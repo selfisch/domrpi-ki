@@ -18,7 +18,7 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 global source
-source = ''
+source = 'tuner'
 
 global TapePin
 TapePin = 7
