@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 logger = logging.getLogger('main')
 
 from func_mopidy import mopidy
+
 # lade die Class cardreader in die Variable cardreader
 from func_cardreader import cardreader
 cardreader = cardreader()
@@ -15,6 +16,9 @@ check_reader = cardreader.check_reader()
 from func_mousebtn import mouse
 mouse = mouse()
 check_mouse = mouse.check_mouse()
+
+global source
+source = ''
 
 global TapePin
 TapePin = 7
@@ -140,13 +144,39 @@ class usbbtn:
 
 
     def buttons(val):
-        if val == 589835:
+        # allgemeine Knöpfe
+        if val == 589827:
+            logger.debug('tape')
+            usbbtn.source_led('tape')
+            source = 'tape'
+        elif val == 589828:
+            logger.debug('tuner')
+            usbbtn.source_led('tuner')
+            source = 'tuner'
+        elif val == 589832:
+            logger.debug('aux')
+            usbbtn.source_led('aux')
+            source = 'aux'
+        elif val == 589825:
+            logger.debug('cd')
+            usbbtn.source_led('cd')
+            source = 'cd'
+        elif val == 589826:
+            os.system('sudo shutdown -h now')
+        elif val == 589835:
             logger.debug('vol up')
             os.system("amixer -q sset Master 1%+")
         elif val == 127:
             logger.debug('vol down')
             os.system("amixer -q sset Master 1%-")
-        elif val == 589836:
+
+        if source == 'tape':
+            logger.debug('tape source aktiv')
+        elif source == 'tuner':
+            logger.debug('tuner source aktiv')
+
+        # Tuner/Mopidy Knöpfe
+        if val == 589836:
             logger.debug('next track')
             mopidy.next()
         elif val == 589833:
@@ -158,23 +188,9 @@ class usbbtn:
         elif val == 589831:
             logger.debug('stop')
             mopidy.stop()
-        elif val == 589827:
-            logger.debug('tape')
-            usbbtn.source_led('tape')
-        elif val == 589828:
-            logger.debug('tuner')
-            usbbtn.source_led('tuner')
-        elif val == 589832:
-            logger.debug('aux')
-            usbbtn.source_led('aux')
-        elif val == 589825:
-            logger.debug('cd')
-            usbbtn.source_led('cd')
         elif val == 589830:
             logger.debug('randomPlaylist')
             mopidy.randomPlaylist()
-        elif val == 589826:
-            os.system('sudo shutdown -h now')
         elif val == 589829:
             logger.debug('random')
 
