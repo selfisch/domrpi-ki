@@ -69,7 +69,6 @@ class mopidy:
 
     def play():
         mopidy.mpdConnect()
-        mpd_status = client.ping()
         logger.debug('mpd status: ' + str(mpd_status))
         state = client.status()['state'].split(":")
         if 'play' in state:
@@ -80,24 +79,33 @@ class mopidy:
 
 
     def stop():
-        mopidy.mpdConnect()
-        #state = client.status()['state'].split(":")
-        #if 'play' in state:
-        client.stop()
-        mopidy.mpdDisconnect()
+        state = client.status()['state'].split(":")
+        if 'play' in state:
+            mopidy.mpdConnect()
+            client.stop()
+            mopidy.mpdDisconnect()
 
 
     def next():
-        mopidy.mpdConnect()
-        # state = client.status()['state'].split(":")
-        # if 'play' in state:
-        client.next()
-        mopidy.mpdDisconnect()
+        state = client.status()['state'].split(":")
+        if 'play' in state:
+            mopidy.mpdConnect()
+            client.next()
+            mopidy.mpdDisconnect()
 
 
     def previous():
-        mopidy.mpdConnect()
-        #state = client.status()['state'].split(":")
-        #if 'play' in state:
-        client.previous()
-        mopidy.mpdDisconnect()
+        state = client.status()['state'].split(":")
+        if 'play' in state:
+            mopidy.mpdConnect()
+            client.previous()
+            mopidy.mpdDisconnect()
+
+
+    def repeat():
+        state = client.status()['random'].split(":")
+        if 0 in random:
+            mopidy.mpdConnect()
+            client.random(1)
+        elif 1 in random:
+            client.random(0)
