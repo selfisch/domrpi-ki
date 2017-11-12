@@ -1,6 +1,7 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path, sys, logging, csv, random
+import os.path, sys, logging, csv
+import random as r
 from func_mopidy import mopidy
 
 logger = logging.getLogger('main')
