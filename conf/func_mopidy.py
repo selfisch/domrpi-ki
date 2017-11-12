@@ -80,33 +80,34 @@ class mopidy:
 
 
     def stop():
+        mopidy.mpdConnect()
         state = client.status()['state'].split(":")
         if 'play' in state:
-            mopidy.mpdConnect()
             client.stop()
-            mopidy.mpdDisconnect()
+        mopidy.mpdDisconnect()
 
 
     def next():
+        mopidy.mpdConnect()
         state = client.status()['state'].split(":")
         if 'play' in state:
-            mopidy.mpdConnect()
             client.next()
-            mopidy.mpdDisconnect()
+        mopidy.mpdDisconnect()
 
 
     def previous():
+        mopidy.mpdConnect()
         state = client.status()['state'].split(":")
         if 'play' in state:
-            mopidy.mpdConnect()
             client.previous()
-            mopidy.mpdDisconnect()
+        mopidy.mpdDisconnect()
 
 
     def repeat():
+        mopidy.mpdConnect()
         state = client.status()['random'].split(":")
         if 0 in random:
-            mopidy.mpdConnect()
             client.random(1)
         elif 1 in random:
             client.random(0)
+        mopidy.mpdDisconnect()
