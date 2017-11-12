@@ -61,6 +61,27 @@ class cardreader:
         return deviceName
 
 
+    def check_card(plist_id):
+        logger.debug('check_card')
+        rows = csv.reader(open("plist.csv", "r"), delimiter=';')
+        uri = ''
+        plist = []
+        plist.extend(rows)
+        for row in plist:
+            if row[3] == plist_id:
+                uri = row[1]
+                play_mode = row[2]
+                logger.debug("URI to pass: " + uri)
+                logger.debug("Playmode: " + play_mode)
+                mopidy.playList(uri, play_mode)
+            elif row[4] == plist_id:
+                uri = row[1]
+                play_mode = 'play'
+                mopidy.playList(uri, play_mode)
+        if uri == '':
+            logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
+
+
     def play_card(plist_id):
         logger.debug('play_card wurde mit folgender plist_id aufgerufen: ' + plist_id)
         uri = ''
