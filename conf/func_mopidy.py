@@ -70,7 +70,6 @@ class mopidy:
 
     def play():
         mopidy.mpdConnect()
-        logger.debug('mpd status: ' + str(mpd_status))
         state = client.status()['state'].split(":")
         if 'play' in state:
             client.pause()
