@@ -81,7 +81,7 @@ class cardreader:
             mopidy.play_list(uri, play_mode)
         elif uri != '':
             mopidy.play_list(uri, play_mode)
-        else
+        else:
             logger.debug('check_card - card ist noch nicht in der Liste vorhanden')
 
 
