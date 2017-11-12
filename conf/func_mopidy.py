@@ -105,6 +105,7 @@ class mopidy:
     def repeat():
         mopidy.mpdConnect()
         state = client.status()['repeat'].split(":")
+        logger.debug(state)
         if 0 in state:
             client.repeat(1)
             logger.debug('repeat an')
