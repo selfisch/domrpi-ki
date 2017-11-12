@@ -1,6 +1,6 @@
 from evdev import InputDevice, ecodes, list_devices
 from select import select
-import os.path, sys, logging, csv
+import os.path, sys, logging, csv, random
 from func_mopidy import mopidy
 
 logger = logging.getLogger('main')
@@ -61,44 +61,26 @@ class cardreader:
         return deviceName
 
 
-    def check_card(plist_id):
+    def check_card(card):
         logger.debug('check_card')
         rows = csv.reader(open("plist.csv", "r"), delimiter=';')
         uri = ''
         plist = []
         plist.extend(rows)
-        for row in plist:
-            if row[3] == plist_id:
-                uri = row[1]
-                play_mode = row[2]
-                logger.debug("URI to pass: " + uri)
-                logger.debug("Playmode: " + play_mode)
-                mopidy.playList(uri, play_mode)
-            elif row[4] == plist_id:
-                uri = row[1]
-                play_mode = 'play'
-                mopidy.playList(uri, play_mode)
-        if uri == '':
-            logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
-
-
-    def play_card(plist_id):
-        logger.debug('play_card wurde mit folgender plist_id aufgerufen: ' + plist_id)
-        uri = ''
-        play_mode = ''
-        card = plist_id
-        rows = csv.reader(open("plist.csv", "r"), delimiter=';')
-        plist = []
-        plist.extend(rows)
+        artist_uri_list = []
         for row in plist:
             if row[3] == card:
                 uri = row[1]
                 play_mode = row[2]
-                logger.debug("URI to pass: " + uri)
-                logger.debug("Playmode: " + play_mode)
-                mopidy.playList(uri, play_mode)
-        if uri == '':
-            logger.info('Card ' + plist_id + ' ist noch nicht mit einer Playlist verknüpft.')
+            elif row[4] == card:
+                artist_uri_list.append(row[1])
+                play_mode = 'play'
+
+        if len(artist_uri_list) >= 1 and uri == '':
+            mopidy.play_list(uri, play_mode)
+
+        elif uri != '':
+            mopidy.play_list(uri, play_mode)
 
 
     def read_card(self):
@@ -115,4 +97,4 @@ class cardreader:
             stri = stri[:-1]
             if stri != '':
                 logger.debug('read_card hat folgende plist_id erzeugt: ' + stri)
-                cardreader.play_card(stri)
+                cardreader.check_card(stri)
