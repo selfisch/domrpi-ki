@@ -106,7 +106,7 @@ class usbbtn:
     ## Ende __init__
 
     def source_led(source):
-        logger.debug("source: " + source)
+        logger.debug("source_led: " + source)
         if source == 'tape':
             GPIO.output(TapePin, GPIO.HIGH) # led on
             GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
@@ -130,9 +130,11 @@ class usbbtn:
 
 
     def destroy_led_blink():
-        logger.debug('led destroyed')
-        GPIO.output(TunerPin, GPIO.HIGH)    # turn off all leds
-        GPIO.output(AuxPin, GPIO.HIGH)    # turn off all leds
+        logger.debug('destroy_led_blink')
+        GPIO.output(TunerPin, GPIO.LOW)
+        GPIO.output(AuxPin, GPIO.LOW)
+        GPIO.output(CDPin, GPIO.LOW)
+        GPIO.output(TapePin, GPIO.LOW)
         GPIO.cleanup()
 
 
@@ -192,7 +194,8 @@ class usbbtn:
             logger.debug('randomPlaylist')
             mopidy.randomPlaylist()
         elif val == 589829:
-            logger.debug('random')
+            logger.debug('repeat')
+            mopidy.repeat()
 
 
     def button_press(self):
