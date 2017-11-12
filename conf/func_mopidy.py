@@ -52,9 +52,10 @@ class mopidy:
         mopidy.mpdDisconnect()
 
 
-    def playList(uri, play_mode):
-        logger.debug('mopidy.playList uri: ' + uri)
-        logger.debug('mopidy.playList play_mode: ' + play_mode)
+    def play_list(uri, play_mode):
+        logger.debug('play_list')
+        logger.debug('mopidy.play_list uri: ' + uri)
+        logger.debug('mopidy.play_list play_mode: ' + play_mode)
         mopidy.mpdConnect()
         client.clear()
         client.add(uri)
