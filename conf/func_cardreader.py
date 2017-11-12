@@ -79,9 +79,10 @@ class cardreader:
         if len(artist_uri_list) >= 1 and uri == '':
             uri = artist_uri_list[r.randint(0, len(artist_uri_list) - 1)]
             mopidy.play_list(uri, play_mode)
-
         elif uri != '':
             mopidy.play_list(uri, play_mode)
+        else
+            logger.debug('check_card - card ist noch nicht in der Liste vorhanden')
 
 
     def read_card(self):
