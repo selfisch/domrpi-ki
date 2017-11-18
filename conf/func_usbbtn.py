@@ -18,40 +18,40 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 global source
-source = 'tuner'
-
-global TapePin
-TapePin = 7
-global TunerPin
-TunerPin = 11
-global AuxPin
-AuxPin = 13
-global CDPin
-CDPin = 15
-
-global Test1
-Test1 = 16
-global Test2
-Test2 = 18
+#source = 'tuner'
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 
+global TunerPin
+TunerPin = 11
 GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
 
+global AuxPin
+AuxPin = 13
 GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
 
+global CDPin
+CDPin = 15
 GPIO.setup(CDPin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
 
+global TapePin
+TapePin = 7
 GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
 
+global Test1
+Test1 = 16
 GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
+#GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
+Test1PWM = GPIO.PWM(Test1, 100)
+Test1PWM.start(50)
 
+global Test2
+Test2 = 18
 GPIO.setup(Test2, GPIO.OUT)   # Set LedPin's mode is output
 GPIO.output(Test2, GPIO.LOW)  # Set LedPin to low(0V)
 
