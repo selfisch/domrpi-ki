@@ -48,7 +48,7 @@ Test1 = 16
 GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
 #GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
 Test1PWM = GPIO.PWM(Test1, 100)
-Test1PWM.start(50)
+Test1PWM.start(10)
 
 global Test2
 Test2 = 18
