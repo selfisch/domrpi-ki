@@ -26,34 +26,43 @@ GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 global TunerPin
 TunerPin = 11
 GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+#GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
+TunerPWM = GPIO.PWM(TunerPin, 100)
+TunerPWM.start(0)
 
 global AuxPin
 AuxPin = 13
 GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
+#GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
+AuxPWM = GPIO.PWM(AuxPin, 100)
+AuxPWM.start(0)
 
 global CDPin
 CDPin = 15
 GPIO.setup(CDPin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
+#GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
+CDPWM = GPIO.PWM(CDPin, 100)
+CDPWM.start(0)
 
 global TapePin
 TapePin = 7
 GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
+#GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
+TapePWM = GPIO.PWM(TapePin, 100)
+TapePWM.start(0)
 
 global Test1
 Test1 = 16
 GPIO.setup(Test1, GPIO.OUT)   # Set LedPin's mode is output
-#GPIO.output(Test1, GPIO.HIGH)  # Set LedPin to low(0V)
 Test1PWM = GPIO.PWM(Test1, 100)
 Test1PWM.start(10)
 
 global Test2
 Test2 = 18
 GPIO.setup(Test2, GPIO.OUT)   # Set LedPin's mode is output
-GPIO.output(Test2, GPIO.LOW)  # Set LedPin to low(0V)
+#GPIO.output(Test2, GPIO.LOW)  # Set LedPin to low(0V)
+Test2PWM = GPIO.PWM(Test2Pin, 100)
+Test2PWM.start(0)
 
 
 class usbbtn:
@@ -108,25 +117,25 @@ class usbbtn:
     def source_led(source):
         logger.debug("source_led: " + source)
         if source == 'tape':
-            GPIO.output(TapePin, GPIO.HIGH) # led on
-            GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
-            GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
-            GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
+            TapePWM.start(10)
+            TunerPWM.start(0)
+            AuxPWM.start(0)
+            CDPWM.start(0)
         elif source == 'tuner':
-            GPIO.output(TapePin, GPIO.LOW) # led on
-            GPIO.output(TunerPin, GPIO.HIGH)  # Set LedPin to low(0V)
-            GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
-            GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
+            TapePWM.start(0)
+            TunerPWM.start(10)
+            AuxPWM.start(0)
+            CDPWM.start(0)
         elif source == 'aux':
-            GPIO.output(TapePin, GPIO.LOW) # led on
-            GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
-            GPIO.output(AuxPin, GPIO.HIGH)  # Set LedPin to low(0V)
-            GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
+            TapePWM.start(0)
+            TunerPWM.start(0)
+            AuxPWM.start(10)
+            CDPWM.start(0)
         elif source == 'cd':
-            GPIO.output(TapePin, GPIO.LOW) # led on
-            GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
-            GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
-            GPIO.output(CDPin, GPIO.HIGH)  # Set LedPin to low(0V)
+            TapePWM.start(0)
+            TunerPWM.start(0)
+            AuxPWM.start(0)
+            CDPWM.start(10)
 
 
     def destroy_led_blink():
