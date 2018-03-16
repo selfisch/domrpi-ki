@@ -58,7 +58,12 @@ class mopidy:
         logger.debug('mopidy.play_list play_mode: ' + play_mode)
         mopidy.mpdConnect()
         client.clear()
-        client.add(uri)
+
+        if 'spotify' in uri:
+            client.add(uri)
+        else:
+            client.load(uri)
+
         if play_mode == 'play':
             client.random(0)
             client.play()
