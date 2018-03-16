@@ -18,7 +18,6 @@ mouse = mouse()
 check_mouse = mouse.check_mouse()
 
 global source
-#source = 'tuner'
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
@@ -26,28 +25,24 @@ GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 global TunerPin
 TunerPin = 11
 GPIO.setup(TunerPin, GPIO.OUT)   # Set LedPin's mode is output
-#GPIO.output(TunerPin, GPIO.LOW)  # Set LedPin to low(0V)
 TunerPWM = GPIO.PWM(TunerPin, 100)
 TunerPWM.start(0)
 
 global AuxPin
 AuxPin = 13
 GPIO.setup(AuxPin, GPIO.OUT)   # Set LedPin's mode is output
-#GPIO.output(AuxPin, GPIO.LOW)  # Set LedPin to low(0V)
 AuxPWM = GPIO.PWM(AuxPin, 100)
 AuxPWM.start(0)
 
 global CDPin
 CDPin = 15
 GPIO.setup(CDPin, GPIO.OUT)   # Set LedPin's mode is output
-#GPIO.output(CDPin, GPIO.LOW)  # Set LedPin to low(0V)
 CDPWM = GPIO.PWM(CDPin, 100)
 CDPWM.start(0)
 
 global TapePin
 TapePin = 7
 GPIO.setup(TapePin, GPIO.OUT)   # Set LedPin's mode is output
-#GPIO.output(TapePin, GPIO.LOW)  # Set LedPin to low(0V)
 TapePWM = GPIO.PWM(TapePin, 100)
 TapePWM.start(0)
 
@@ -60,7 +55,6 @@ Test1PWM.start(10)
 global Test2
 Test2 = 18
 GPIO.setup(Test2, GPIO.OUT)   # Set LedPin's mode is output
-#GPIO.output(Test2, GPIO.LOW)  # Set LedPin to low(0V)
 Test2PWM = GPIO.PWM(Test2, 100)
 Test2PWM.start(0)
 
@@ -117,25 +111,28 @@ class usbbtn:
     def source_led(source):
         logger.debug("source_led: " + source)
         if source == 'tape':
-            TapePWM.start(10)
+#	    sudo service mopidy status >> /dev/null | mopidy_status = $?
+#            if mopidy_status != '0':
+#              sudo service mopidy start
+            TapePWM.start(20)
             TunerPWM.start(0)
             AuxPWM.start(0)
             CDPWM.start(0)
         elif source == 'tuner':
             TapePWM.start(0)
-            TunerPWM.start(10)
+            TunerPWM.start(20)
             AuxPWM.start(0)
             CDPWM.start(0)
         elif source == 'aux':
             TapePWM.start(0)
             TunerPWM.start(0)
-            AuxPWM.start(10)
+            AuxPWM.start(20)
             CDPWM.start(0)
         elif source == 'cd':
             TapePWM.start(0)
             TunerPWM.start(0)
             AuxPWM.start(0)
-            CDPWM.start(10)
+            CDPWM.start(20)
 
 
     def destroy_led_blink():
@@ -181,12 +178,7 @@ class usbbtn:
             logger.debug('vol down')
             os.system("amixer -q sset Master 1%-")
 
-        #if source == 'tape':
-        #    logger.debug('tape source aktiv')
-        #elif source == 'tuner':
-        #    logger.debug('tuner source aktiv')
-
-        # Tuner/Mopidy Knöpfe
+	# Tape/Mopidy Knöpfe
         if val == 589836:
             logger.debug('next track')
             mopidy.next()
@@ -210,8 +202,8 @@ class usbbtn:
     def button_press(self):
         try:
             logger.debug('starte USB Buttons')
-            usbbtn.source_led('tuner')
-            source = 'tuner'
+            usbbtn.source_led('tape')
+            source = 'tape'
             global time_stamp
             time_stamp = time.time()
             while True:
