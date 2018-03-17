@@ -57,6 +57,10 @@ class mopidy:
         logger.debug('mopidy.play_list uri: ' + uri)
         logger.debug('mopidy.play_list play_mode: ' + play_mode)
         mopidy.mpdConnect()
+        uris = csv.reader(open("plist.csv", "r"),delimiter=';')
+        plist = []
+        plist.extend(uris)
+
         client.clear()
 
         if 'spotify' in uri:
