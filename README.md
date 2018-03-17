@@ -37,6 +37,11 @@ Grundsätzlich hat die Anlage auf der Front an die 20 Knöpfe, die ich jedoch ni
 Alternativ habe ich somit momentan die Überlegung, die Button über eine USB Lösung anzusteuern/auszulesen.
 Falls jemand etwas derartiges schon gemacht hat, ich bin für Vorschläge offen :-).
 
+### Update 17.03.18
+- da wir inzwischen ein paar CDs haben, die bei Spotify nicht verfügbar sind, musste ich mir eine Möglichkeit mit lokalen Playlisten einfallen lassen. Kurzerhand, CDs gerippt und auf einem Netzwerkshare hinterlegt. M3U8 Playlisten erstellt und diese in Mopidy hinterlegt und siehe da, wenn man erstmal verstanden hat wie es funktioniert, ist es eine Kleinigkeit.
+Der Code musste etwas angepasst werden, da die URIs für M3U Listen etwas anders aussehen.
+Wer Fragen zu dem Konstrukt in Verbindung mit Mopidy hat, kann sich gern an mich wenden.
+
 ### Update: 18.08.17
 - die Spotify Playlisten funktionieren endlich, es funktionieren aber nur persönliche Playlisten, öffentliche Spotify Playlisten lassen sich nicht hinzufügen
 
