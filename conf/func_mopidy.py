@@ -42,7 +42,14 @@ class mopidy:
         logger.debug("URI to pass: " + uri)
         logger.debug("Playmode: " + play_mode)
         client.clear()
-        client.add(uri)
+
+        if "spotify" in uri:
+            #logger.debug('found spotify in uri')
+            client.add(uri)
+        else:
+            #logger.debug('does not find spotify in uri')
+            client.load(uri)
+
         if play_mode == 'play':
             client.random(0)
             client.play()
@@ -64,10 +71,10 @@ class mopidy:
         client.clear()
 
         if "spotify" in uri:
-            logger.debug('found spotify in uri')
+            #logger.debug('found spotify in uri')
             client.add(uri)
         else:
-            logger.debug('does not find spotify in uri')
+            #logger.debug('does not find spotify in uri')
             client.load(uri)
 
         if play_mode == 'play':
