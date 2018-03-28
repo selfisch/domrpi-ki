@@ -63,9 +63,11 @@ class mopidy:
 
         client.clear()
 
-        if 'spotify' in uri:
+        if "spotify" in uri:
+            logger.debug('found spotify in uri')
             client.add(uri)
         else:
+            logger.debug('does not find spotify in uri')
             client.load(uri)
 
         if play_mode == 'play':
